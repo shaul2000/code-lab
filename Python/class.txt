@@ -1,0 +1,24 @@
+TODAY'S SESSION: FUNCTIONS
+1. Creating a Function.
+syntax
+def function_name():
+    #cod block goes in here
+
+PROGRAMMING APPROACHES:
+1. Procedural Programming.
+2. Functional Programming.
+3. Object Oriented Programming (OOP)
+
+In Python, functions are reusable blocks of code that perform a specific task. They help organize code, reduce repetition, and make programs easier to read and maintain.
+
+2. Function Parameters vs Arguments
+- Parameters are placeholders or predefined variables given to the function during function definition/creation. Arguments are actual values given during funtion invocation.
+
+
+ASSIGNMENT:
+1. Make a concise study on:
+    - Function keyword arguments.
+    - Function arbitrary arguments.
+    - Return Statement.
+2. Write a function that'll accept a string, and return the length of the string.
+3. Write a function that'll accept a character and a string and returns the number of occurrences of the character on the string.
