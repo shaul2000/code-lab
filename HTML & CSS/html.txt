@@ -244,8 +244,78 @@ The Steps:
     # main: The branch you are pushing.
 Result: Your code is now live on GitHub! 🌍
 
+What is git pull?
+If git push is uploading your code to the cloud, git pull is downloading 
+updates from the cloud.
+
+# When do you use it?
+- On a new computer: You just installed Git on your laptop. You want to see your code. 
+    You run git pull.
+- Working with a team: Your teammate pushed a new file to GitHub. You need to get that file 
+    onto your computer. You run git pull.
+- Before you start working: You want to make sure you are working on the latest version 
+    before you start coding.
+
+Think of it like a Sync Button (like Google Drive or iCloud):
+1. You: git push → Uploads your changes to the Cloud.
+2. Cloud: Stores the new version.
+3. Teammate: git pull → Downloads your changes to their computer.
+4. Teammate: Makes their own changes.
+5. Teammate: git push → Uploads their changes to the Cloud.
+6. You: git pull → Downloads their changes to your computer.
+
+How to Pull:)
+Command: git pull origin main
+- pull: Download everything.
+- origin: From the cloud repository.
+- main: From the main branch.
+⚠️ What happens if there are conflicts?
+If you and your teammate changed the same line of code differently, Git will stop you and say:
+
+"Conflict! I don't know which version to keep."
+
+You then have to:
+# Open the file.
+# Choose which version to keep (yours or theirs).
+# Save the file.
+# Commit the fix.
+# Push again.
+
+NB: A merge conflict happens when Git can't automatically decide which version of the 
+code to keep because two people changed the same line in different ways.
+
 Summary:
 - Remote: The cloud version of your project.
 - Origin: The nickname for your cloud repo.
 - Push: Upload your commits to the cloud.
 - Pull: Download updates from the cloud.
+
+The "CSS" Concept:
+- HTML is the Skeleton (Structure: "This is the heading").
+- CSS is the skin/Clothes (Style: "Making the heading blue and big").
+
+CSS stands for Cascading Style Sheets.
+# Cascading: Means "flowing down. "If you have conflicting rules, the 
+one that comes last usually wins (or the one that is more specific).
+
+The 3 Core Concept:
+1. The Syntax (The Grammar).
+    CSS is built on a simple structure:
+    - Selector: Who do you want to style? (e.g., all <h1> tags).
+    - Property: What do you want to change? (e.g., color, font-size).
+    - Value: What do you want it to be? (e.g., red, 20px).
+2. Selectors (Who gets the style?).
+    - Tag Selector: Targets everything of that type.
+        # p {color: blue;}: All paragraphs become blue.
+    - Class Selector (.): Targets specific items.
+        # .special {color: red;}: Only items with class="special" become red.
+        # Use Case: "Make all buttons red."
+    - ID Selector (#): Targets one specific item.
+        * #header {background: black;}: only the item with id="header" becomes black.
+        * Rule: You can only have one ID with that name per page.
+3. Linking External Stylesheets.
+    Instead of writing CSS inside every HTML file (messy!), you write it 
+    in a separate file (clean!).
+    Code: <head><link rel="stylesheet" href="css/style.css"></head>
+        - rel="stylesheet": Tells the browser "This is a style file."
+        - href="...": The path to the file.
