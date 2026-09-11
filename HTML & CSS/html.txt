@@ -154,3 +154,6 @@ Pro Tip: This is where you find "Why is my margin 0?" or "Why is the font tiny?"
 3 - Console (The Error Log)
 Shows JavaScript errors or messages.
 If code breaks, it usually yells at you here!
+
+- Why this matters is that this is how professional developers
+fix bugs. They don't guess; they inspect.
