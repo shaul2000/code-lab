@@ -3,35 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>APEX BURGER Menu</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>APEX BURGER</h1>
-    <h2>Our Specials</h2>
-    <p>We offer a variety of delicious burgers made with the freshest ingredients. Come and try our special menu items!</p>
-    <h3>Today's Top Picks</h3>
-    <ul>
-        <li>Classic Cheeseburger</li>
-        <li>Bacon BBQ Burger</li>
-        <li>Veggie Delight Burger</li>
-        <li>Spicy Chicken Burger</li>
-    </ul>
-    <h3>Combo Meals</h3>
-    <p>Make your meal complete with our combo options:</p>
-    <ul>
-        <li>Combo 1: Burger + Fries + Drink</li>
-        <li>Combo 2: Burger + Onion Rings + Drink</li>
-        <li>Combo 3: Burger + Salad + Drink</li>
-        <li>Combo 4: Burger + Sweet Potato Fries + Drink</li>
-    </ul>
-    <h3>How to Order</h3>
-    <ol>
-        <li>Visit our website or walk into the restaurant.</li>
-        <li>Choose your favorite burger from the menu.</li>
-        <li>Add a combo meal if you want!</li>
-        <li>Pay and enjoy your meal (or wait for delivery!)</li>
-    </ol>
-    <p>Visit our <a href="index.html">website</a> for more information and to place an order!</p>
+<body class="menu-page">
+    <div class="menu-shell">
+        <header class="menu-header">
+            <p class="eyebrow">Fresh • Flame-grilled • Fast</p>
+            <h1>APEX BURGER</h1>
+            <p class="tagline">Burgers built for bold cravings.</p>
+        </header>
+
+        <main class="menu-content">
+            <section class="intro-card">
+                <h2>Our Specials</h2>
+                <p>We offer a variety of delicious burgers made with the freshest ingredients. Come and try our special menu items!</p>
+            </section>
+
+            <div class="menu-grid">
+                <section class="menu-panel specials-panel">
+                    <h3>Today's Top Picks</h3>
+                    <ul class="menu-list">
+                        <li><span>Classic Cheeseburger</span><strong>$12</strong></li>
+                        <li><span>Bacon BBQ Burger</span><strong>$14</strong></li>
+                        <li><span>Veggie Delight Burger</span><strong>$11</strong></li>
+                        <li><span>Spicy Chicken Burger</span><strong>$13</strong></li>
+                    </ul>
+                </section>
+
+                <section class="menu-panel combo-panel">
+                    <h3>Combo Meals</h3>
+                    <p>Make your meal complete with our combo options:</p>
+                    <ul class="combo-list">
+                        <li><span>Combo 1</span><em>Burger + Fries + Drink</em></li>
+                        <li><span>Combo 2</span><em>Burger + Onion Rings + Drink</em></li>
+                        <li><span>Combo 3</span><em>Burger + Salad + Drink</em></li>
+                        <li><span>Combo 4</span><em>Burger + Sweet Potato Fries + Drink</em></li>
+                    </ul>
+                </section>
+            </div>
+
+            <section class="steps-panel">
+                <h3>How to Order</h3>
+                <ol>
+                    <li>Visit our website or walk into the restaurant.</li>
+                    <li>Choose your favorite burger from the menu.</li>
+                    <li>Add a combo meal if you want!</li>
+                    <li>Pay and enjoy your meal (or wait for delivery!)</li>
+                </ol>
+            </section>
+
+            <p class="visit-link">Visit our <a href="index.html">website</a> for more information and to place an order!</p>
+        </main>
+    </div>
 </body>
 </html>
