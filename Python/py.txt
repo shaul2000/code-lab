@@ -33,3 +33,25 @@ Setup:
 Variables:
 A variable is a box that stores a value. You give the box a name.
 
+The 4 core data types:
+1. - Type: str
+      - Means: string/text
+      - Example: "Lagos"
+
+2. - Type: int
+      - Means: integer/whole number
+      - Example: 25
+
+3. - Type: float
+      - Means: decimal number
+      - Example: 1.75
+
+4. - Type: bool
+      - true or false
+      - Example: True 
+
+Check any type with type():
+
+Type Conversion:
+Sometimes you need to change one type into another.
+Common conversions: int(), float(), str()
