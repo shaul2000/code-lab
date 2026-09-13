@@ -1,0 +1,35 @@
+What is Python?:
+Python is a programming language that reads almost like English. It's used for:
+    - Web apps (Instagram, Dropbox)
+    - Data & AI (ChatGPT, Netflix recommendations)
+    - Automation (sending emails, renaming 1000 files at once).
+
+History: Created by Guido van Rossum in 1991, named after 
+Monty Python (not the snake 🐍).
+
+How Python Code Runs:
+You write code → Python reads it line by line.
+
+Your code (.py file)
+      ↓
+Interpreter (reads it)
+      ↓
+Bytecode (middle-level, machine-friendly)
+      ↓
+Result on your screen
+You don't need to memorize this. Just know: Python runs top to bottom, one line at a time.
+
+Setup:
+ 1. Install Python from python.org → tick "Add Python to PATH" during install
+ 2. Install VS Code from code.visualstudio.com
+ 3. In VS Code, install the Python extension
+ 4. Create a folder, make a file called hello.py
+ 5. Run it in the terminal with: python hello.py
+
+ print() and Comments:
+ # = comment. Anything after # on that line is not run.
+ print("Hello World"): Prints the text "Hello World" to the screen.
+
+Variables:
+A variable is a box that stores a value. You give the box a name.
+
