@@ -22,6 +22,7 @@ print(float("5") + 5)
 
 
 
+
 """Study notes and solutions for the functions assignment."""
 
 
