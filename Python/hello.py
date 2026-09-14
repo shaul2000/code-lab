@@ -35,4 +35,13 @@ height = 1.75 #float = decimal number
 gpa = 3.5 #float = decimal number
 is_student = True #bool = true or false
 
-print("My name is " + name)
+print("Name:", name)
+print("Height:", height)
+print("GPA:", gpa)
+print("Is student:", is_student)
+
+age_str = "24" #string
+age_int = int(age_str) #convert string to integer
+
+next_year = age_int + 1 #add 1 to the integer value of age
+print("Next year, I will be", next_year, "years old.") #print the value of next_year

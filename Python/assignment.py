@@ -1,3 +1,20 @@
+First_Name = input("First Name: ")
+Last_Name = input("Last Name: ")
+
+print("Hello, ", First_Name, " ", Last_Name, "!")
+
+User_age = input("How old are you? ")
+User_age_int = int(User_age)
+Next_year_age = User_age_int + 1
+print("Next year, you will be ", Next_year_age, " years old.")
+
+print("5" + "5")
+print(int("5") + int("5"))
+print(float("5") + 5)
+
+
+
+
 """Study notes and solutions for the functions assignment."""
 
 
