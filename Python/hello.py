@@ -45,3 +45,10 @@ age_int = int(age_str) #convert string to integer
 
 next_year = age_int + 1 #add 1 to the integer value of age
 print("Next year, I will be", next_year, "years old.") #print the value of next_year
+
+print(name.upper()) #convert name to uppercase
+print(name.lower()) #convert name to lowercase
+
+sentence = "Python is a great programming language."
+words = sentence.split() #split the sentence into a list of words
+print(words) #print the list of words

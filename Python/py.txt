@@ -55,3 +55,14 @@ Check any type with type():
 Type Conversion:
 Sometimes you need to change one type into another.
 Common conversions: int(), float(), str()
+
+Strings, Numbers & User Input
+1. String Methods (Tools for Text):
+      Strings (text) have built-in tools called methods. You use them with a dot (.).
+
+            # .upper() and .lower():
+                  - Make text all caps or all lowercase.
+
+            # .split():
+                  - Break a long sentence into a list (array) of words.
+
