@@ -1,18 +1,28 @@
-// const form = document.getElementById("myForm");
-// const result = document.getElementById("result"); 
+fetch('../JavaScript/data.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Could not load data.json: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(students => {
+        const tableBody = document.getElementById('table-body');
 
-// form.addEventListener("submit", function(e){
-//    e.preventDefault();
+        tableBody.innerHTML = '';
 
-const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const age = document.getElementById("age").value;
+        students.forEach(student => {
+            const row = document.createElement('tr');
 
-result.innerHTML = `Name: ${name} <br> Email: ${email} <br> Age: ${age}`;
-        
-const student = [{name:"Precious", score:78},
-    {name:"John", score:32},
-    {name:"Hope", score:99}
-];
+            [student.id, student.name, student.age, student.course, student.score]
+                .forEach(value => {
+                    const cell = document.createElement('td');
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
 
-const num1 = [1,2,3,4]
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error(error);
+    });

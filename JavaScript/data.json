@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Chidi Okafor",
+        "age": 30,
+        "course": "Frontend Development",
+        "score": 85
+    },
+    {
+        "id": 2,
+        "name": "Aisha Bello",
+        "age": 25,
+        "course": "Backend Development",
+        "score": 90
+    },
+    {
+        "id": 3,
+        "name": "Emeka Nwosu",
+        "age": 28,
+        "course": "Fullstack Development",
+        "score": 95
+    },
+    {
+        "id": 4,
+        "name": "Fatima Yusuf",
+        "age": 22,
+        "course": "Data Science",
+        "score": 88
+    }
+]
