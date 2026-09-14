@@ -66,3 +66,59 @@ Strings, Numbers & User Input
             # .split():
                   - Break a long sentence into a list (array) of words.
 
+            # .replace():
+            Swap one word for another.
+
+2. Indexing and Slicing (Grabbing Parts of Text):
+      Think of a string as a row of boxes, numbered starting from 0.
+
+      - String: "  K  e  l  v  i  n  "
+      - Index:   0  1  2  3  4  5  6
+
+            # Indexing ([0]): Get one letter.
+            # Slicing ([start:end]): Get a chunk of letters.
+                  - Start is inclusive (included).
+                  - End is exclusive (NOT included).
+
+3. f-strings (The Modern way to print):
+      Instead of using the + or the , to join text and variables, use f before the quote. 
+      It's cleaner and easier. and also gives you control over the spacing so it 
+      appears how you typed it and not adding spacing.
+      - Why it's better: You don't need str() or +. Just put the variable name inside {}.
+
+            
+4. Arithmetic Operators (Math):
+- Operator: +
+- Meaning: Addition
+- Example: 5 + 2
+- Result: 7
+
+- Operator: -
+- Meaning: Subtraction
+- Example: 5 - 2
+- Result: 3
+
+- Operator: *
+- Meaning: Multiplication
+- Example: 5 * 2
+- Result: 10
+
+- Operator: /
+- Meaning: Division (always float)
+- Example: 5 / 2
+- Result: 2.5
+
+- Operator: //
+- Meaning: Floor Division (whole number)
+- Example: 5 // 2
+- Result: 2
+
+- Operator: %
+- Meaning: Modulo (remainder)
+- Example: 5 % 2
+- Result: 1
+
+- Operator: **
+- Meaning: Exponent (power)
+- Example: 5 ** 2
+- Result: 25

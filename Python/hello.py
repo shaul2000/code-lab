@@ -52,3 +52,67 @@ print(name.lower()) #convert name to lowercase
 sentence = "Python is a great programming language."
 words = sentence.split() #split the sentence into a list of words
 print(words) #print the list of words
+print(words[0]) #print the first word in the list
+print(words[-1]) #print the last word in the list
+
+
+text = "Hello, Good morning, how are you?"
+new_text = text.replace("morning", "afternoon") #replace "morning" with "afternoon"
+print(new_text) #print the new text
+count = text.count("o") #count the number of occurrences of "o" in the text
+print("The letter 'o' appears", count, "times in the text.") #print
+
+
+word = "Information"
+print(word[0]) #print the first character of the word
+print(word[6]) #print the seventh character of the word
+print(word[-1]) #print the last character of the word
+print(word[0:3]) #print the first three characters of the word
+print(word[3:6]) #print the fourth to sixth characters of the word
+print(word[6:]) #print the seventh character to the end of the word
+print(word[:6]) #print the first six characters of the word
+print(word[::2]) #print every second character of the word
+print(word[::-1]) #print the word in reverse order
+
+
+name = "Kelvin"
+age = 24
+
+# Old way (hard to read)
+print("My name is " + name + " and I am " + str(age))
+
+# New way (f-string)
+print(f"My name is {name} and I am {age}")
+
+
+#The Sentence Analyzer:
+sentence = input("Enter a sentence: ")
+reversed_sentence = sentence[::-1]
+uppercase_sentence = sentence.upper()
+word_count = len(sentence.split())
+
+print(f"Original sentence: {sentence}")
+print(f"Reversed sentence: {reversed_sentence}")
+print(f"Uppercase sentence: {uppercase_sentence}")
+print(f"Word count: {word_count}")
+
+#Simple Calculator:
+#Task: Ask for two numbers and print their sum, difference, and product.
+num1 = int(input("Enter the first number: "))
+num2 = int(input("Enter the second number: "))
+sum = num1 + num2
+difference = num1 - num2
+product = num1 * num2
+print(f"Sum: {sum}")
+print(f"Difference: {difference}")
+print(f"Product: {product}")
+
+#Name Splitter:
+#Task: Ask for a full name and print the first and last name separately.
+full_name = input("Enter your full name (First Last): ")
+names = full_name.split()
+first_name = names[0]
+last_name = names[-1] #gets the last item in the list, which is the last name
+print(f"First Name: {first_name}")
+print(f"Last Name: {last_name}")
+print(f"Hello, {first_name} {last_name}!")

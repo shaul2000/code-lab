@@ -12,6 +12,13 @@ print("5" + "5")
 print(int("5") + int("5"))
 print(float("5") + 5)
 
+#Assignment:
+# 1. Reverse & Count: Write a program that asks for a word. Print the reversed word and how many vowels (a, e, i, o, u) it has.
+# 2. Calculator Plus: Modify the calculator to also calculate the remainder (%) and the power (**) of the two numbers.
+# 3. Split Challenge: Ask for a full name with middle name (e.g., "John Michael Doe"). Print the First and Last names, ignoring the middle.
+
+
+
 
 
 
