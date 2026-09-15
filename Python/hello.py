@@ -105,3 +105,19 @@ elif score >= 80:
     print("Grade: B")
 else:
     print("Grade: C or lower")
+    
+
+
+age = 25
+has_ticket = True
+
+if age >= 18 and has_ticket:
+    print("You can enter!") #Both must be true
+    
+if age < 18 or has_ticket:
+    print("Special entry allowed.") #Only one needs to be true
+    
+if not has_ticket:
+    print("You do not have a ticket.") #Reverses True to False or False to True
+    
+

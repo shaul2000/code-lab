@@ -139,3 +139,39 @@ Common Mistake: Use == to compare. Use = to assign.
 2. if, elif, else (The Decision Tree):
 This is how Python makes choices. It works like a fork in the road.
 
+How it works:
+- Python checks the first if. If True, it runs that block and skips everything else.
+If the first if is False, it checks the
+- elif ("else if"). If all if and elif are False, it runs the 
+- else block.
+Key Rule: Only one block runs.
+
+3. Logical Operators (Combining Questions)
+You can combine multiple conditions using and, or, not.
+
+- Operator: and
+- Meaning Both must be True
+- Logic: True and True → True
+
+- Operator: or
+- Meaning At least one must be True
+- Logic: True or False → True
+
+- Operator: not
+- Meaning: Reverses the value
+- Logic: not True → False
+
+4. Truthiness (Everything has a "True/False" value):
+In Python, not just booleans can be true or false.
+
+- Value: True
+- Truthiness: ✅ True
+
+- Value: False
+- Truthiness: ❌ False
+
+- Value: 5, 10.5, 100
+- Truthiness: ✅ True (Non-zero numbers)
+
+- Value: 0, 0.0
+- Truthiness:
