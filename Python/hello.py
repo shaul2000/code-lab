@@ -83,36 +83,3 @@ print("My name is " + name + " and I am " + str(age))
 
 # New way (f-string)
 print(f"My name is {name} and I am {age}")
-
-
-#The Sentence Analyzer:
-sentence = input("Enter a sentence: ")
-reversed_sentence = sentence[::-1]
-uppercase_sentence = sentence.upper()
-word_count = len(sentence.split())
-
-print(f"Original sentence: {sentence}")
-print(f"Reversed sentence: {reversed_sentence}")
-print(f"Uppercase sentence: {uppercase_sentence}")
-print(f"Word count: {word_count}")
-
-#Simple Calculator:
-#Task: Ask for two numbers and print their sum, difference, and product.
-num1 = int(input("Enter the first number: "))
-num2 = int(input("Enter the second number: "))
-sum = num1 + num2
-difference = num1 - num2
-product = num1 * num2
-print(f"Sum: {sum}")
-print(f"Difference: {difference}")
-print(f"Product: {product}")
-
-#Name Splitter:
-#Task: Ask for a full name and print the first and last name separately.
-full_name = input("Enter your full name (First Last): ")
-names = full_name.split()
-first_name = names[0]
-last_name = names[-1] #gets the last item in the list, which is the last name
-print(f"First Name: {first_name}")
-print(f"Last Name: {last_name}")
-print(f"Hello, {first_name} {last_name}!")
