@@ -83,3 +83,17 @@ print("My name is " + name + " and I am " + str(age))
 
 # New way (f-string)
 print(f"My name is {name} and I am {age}")
+
+
+print(5 == 5)
+print(5 != 5)
+print(5 != 3)
+print(5 > 3)
+print(5 < 3)
+print(3 > 5)
+print(3 < 5)
+print(5 >= 5)
+print(5 <= 5)
+print(3 <= 5)
+print(3 >= 5)
+print(5 <= 3)

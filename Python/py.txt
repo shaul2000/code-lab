@@ -122,3 +122,20 @@ Strings, Numbers & User Input
 - Meaning: Exponent (power)
 - Example: 5 ** 2
 - Result: 25
+
+
+Conditions & Decision Making
+1. Comparison Operators (The Question Askers)
+These operators compare two values and ask: "Is this true or false?" They always return a Boolean (True or False).
+
+Operator: ==
+Meaning: Equal to
+Example: 5 == 5
+
+Common Mistake: Use == to compare. Use = to assign.
+-x = 5: "Put 5 in x"
+-x == 5: "Is x equal to 5?"
+
+2. if, elif, else (The Decision Tree):
+This is how Python makes choices. It works like a fork in the road.
+
