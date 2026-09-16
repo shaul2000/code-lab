@@ -128,9 +128,35 @@ Conditions & Decision Making
 1. Comparison Operators (The Question Askers)
 These operators compare two values and ask: "Is this true or false?" They always return a Boolean (True or False).
 
-Operator: ==
-Meaning: Equal to
-Example: 5 == 5
+- Operator: ==
+- Meaning: Equal to
+- Example: 5 == 5
+- Result: True
+
+- Operator: !=
+- Meaning: Not equal to
+- Example: 5 != 3
+- Result: True
+
+- Operator: >
+- Meaning: Greater than
+- Example: 5 > 3
+- Result: True
+
+- Operator: <
+- Meaning: Less than
+- Example: 3 < 5
+- Result: True
+
+- Operator: >=
+- Meaning: Greater than or equal to
+- Example: 5 >= 5
+- Result: True
+
+- Operator: <=
+- Meaning: Less than or equal to
+- Example: 3 <= 5
+- Result: True
 
 Common Mistake: Use == to compare. Use = to assign.
 -x = 5: "Put 5 in x"
