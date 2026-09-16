@@ -174,4 +174,6 @@ In Python, not just booleans can be true or false.
 - Truthiness: ✅ True (Non-zero numbers)
 
 - Value: 0, 0.0
-- Truthiness:
+- Truthiness: ❌ False (Zero)
+
+
