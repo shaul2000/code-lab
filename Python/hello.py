@@ -137,4 +137,30 @@ if "hello":
 if "":
     print("Won't run")          # ❌ Skipped (empty text = False)
     
+#List Examples
+subjects = ["Math", "Python", "Physics"]
+print(subjects) #['Math', 'Python', 'Physics']
+print(subjects[0]) #"Math" (first item on the list)
+print(subjects[-1]) #"Physics" (last object on the list)
+print(len(subjects)) # 3 (how many items are on the list)
 
+#Slicing, sorting and searching
+nums = [10, 20, 30, 40, 50]
+print(nums[1:4]) #[20, 30, 40] ← start included, end excluded
+print(nums[::-1]) #[50, 40, 30, 20, 10] ← reversed
+
+#Sorting:
+scores = [85, 42, 90, 67]
+scores.sort() #sorts the original list in place → [42, 67, 85, 90]
+print(sorted(scores, reverse=True)) #Prints the reversed copy of the sorted scores [90, 85, 67, 42] (doesn't change original)
+print(scores) #prints the sorted original scores in ascending, nothing changed.
+
+#Searching: (in)
+if "Python" in subjects:
+    print("Python is on my timetable")
+    
+courses = ["Math", "Python", "Physics"]    
+courses.append("Chemistry") #Adds Chemistry to the list
+courses.pop(2) #Removes "Math" from the list 
+
+print(courses)

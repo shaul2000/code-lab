@@ -211,3 +211,23 @@ In Python, not just booleans can be true or false.
 - Value: None
 - Truthiness: ❌ False
 
+
+Lists:
+1. Creating and Accessing Lists
+A list is made with square brackets [], and items are separated by commas.
+
+2. Slicing, Sorting & Searching
+Slicing (same rules as strings!)
+
+3. Adding & Removing Items
+      - Method: .append()
+      - What is does: Add to the end
+      - Example: list.append("Chem")
+
+      - Method: .pop()
+      - What it does: Remove + return item (default: last)
+      - Example: list.pop()
+
+      - Method: .remove()
+      - What it does: Remove by value (name) of the item
+      - Example: list.remove("Math")
