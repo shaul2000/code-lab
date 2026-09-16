@@ -85,18 +85,18 @@ print("My name is " + name + " and I am " + str(age))
 print(f"My name is {name} and I am {age}")
 
 
-print(5 == 5)
-print(5 != 5)
-print(5 != 3)
-print(5 > 3)
-print(5 < 3)
-print(3 > 5)
-print(3 < 5)
-print(5 >= 5)
-print(5 <= 5)
-print(3 <= 5)
-print(3 >= 5)
-print(5 <= 3)
+print(5 == 5) # equal to
+print(5 != 5) # not equal to
+print(5 != 3) # not equal to
+print(5 > 3) # greater than
+print(5 < 3) # less than
+print(3 > 5) # greater than (false)
+print(3 < 5) # less than
+print(5 >= 5) # greater than or equal to
+print(5 <= 5) # less than or equal to
+print(3 <= 5) # less than or equal to
+print(3 >= 5) # greater than or equal to (false)
+print(5 <= 3) # less than or equal to (false)
 
 score = 85
 if score >= 90:
