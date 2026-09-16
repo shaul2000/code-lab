@@ -176,4 +176,12 @@ In Python, not just booleans can be true or false.
 - Value: 0, 0.0
 - Truthiness: ❌ False (Zero)
 
+- Value: "Hello"
+- Truthiness: ✅ True (Non-empty text)
+
+- Value: ""
+- Truthiness: ❌ False (Empty text)
+
+- Value: None
+- Truthiness: ❌ False
 

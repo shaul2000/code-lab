@@ -121,3 +121,20 @@ if not has_ticket:
     print("You do not have a ticket.") #Reverses True to False or False to True
     
 
+    
+if 0:
+    print("This won't run") #doesn't run because 0 is false
+    
+if 5:
+    print("This WILL run")      # ✅ Runs (5 = True)
+
+if -1:
+    print("This WILL also run") # ✅ Runs (-1 = True, it's not zero!)
+
+if "hello":
+    print("This runs too")      # ✅ Runs (non-empty text = True)
+
+if "":
+    print("Won't run")          # ❌ Skipped (empty text = False)
+    
+

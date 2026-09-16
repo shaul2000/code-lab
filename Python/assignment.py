@@ -19,7 +19,23 @@ print(float("5") + 5)
 
 
 
+#Assignment:
+#1. Leap Year Checker: Ask for a year. Print"Leap Year" if it's divisible by 4 (but not 100, unless also divisible by 400).
 
+	#- Hint: Use % (modulo) and and/or.
+ 
+year = int(input("Enter a year: "))
+ 
+if (year % 4 == 0 and year % 100 !=0) or (year % 400 == 0):
+    print(f"{year} is a Leap Year!")
+else:
+    print(f"{year} is NOT a Leap Year!")
+ 
+#2. Voting Eligibility: Ask for age. If age >= 18, print "You can vote". Else, print "Wait until you are 18".
+
+
+
+#3. Ternary Expression: Rewrite the Grade Calculator using the ternary (short) syntax: 
 
 
 

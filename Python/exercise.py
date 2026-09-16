@@ -30,6 +30,35 @@ print(f"First Name: {first_name}")
 print(f"Last Name: {last_name}")
 print(f"Hello, {first_name} {last_name}!")
 
+#Check if a number is positive, negative, or zero.
+num = int(input('Enter a number: '))
+
+if num > 0:
+    print("Positive")
+elif num < 0:
+    print("Negative")
+else:
+    print("Zero")
+    
+    
+#Simple Login System: Check username and password.
+username = input("Enter username: ")
+password = input("Enter password: ")
+
+if username == "admin" and password == "1234":
+    print("Login Successful!")
+else:
+    print("Access Denied.")
+#Note: We used and because both conditions must be true to login. 
+
+
+#Grade Calculator: Print "Pass" or "Fail" based on a score: (Pass = 50+).
+score = int(input("Enter your score: "))
+
+if score >= 50:
+    print("Pass")
+else:
+    print("Fail")
 
 
 
