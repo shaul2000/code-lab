@@ -32,7 +32,9 @@ else:
     print(f"{year} is NOT a Leap Year!")
  
 #2. Voting Eligibility: Ask for age. If age >= 18, print "You can vote". Else, print "Wait until you are 18".
-
+age = int(input("Enter your age: "))
+if age >= 18:
+    
 
 
 #3. Ternary Expression: Rewrite the Grade Calculator using the ternary (short) syntax: 
