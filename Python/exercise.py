@@ -59,6 +59,16 @@ if score >= 50:
     print("Pass")
 else:
     print("Fail")
+    
+    
+nums = [10, 20, 30, 40]
+
+a = nums.pop(0)
+b = nums.pop(0)
+
+print(a)
+print(b)
+print(nums) 
 
 
 

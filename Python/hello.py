@@ -1,33 +1,33 @@
-print("Hello World")
-print(5 + 5)
+print("Hello World") # Prints a basic greeting to the screen
+print(5 + 5) # Adds two numbers and prints the result: 10
 
 name = "Kelvin" #str = text (must be in quotes)
 age = 24 #int = whole number
 gpa = 3.5 #float = decimal number
 is_student = True #bool = true or false
 
-print("My name is " + name)
-print("I am " + str(age) + " years old")
-print("My GPA is " + str(gpa))
-print("I am a student: " + str(is_student)) 
+print("My name is " + name) # Combines text and a variable into one message
+print("I am " + str(age) + " years old") # Converts age to text before joining it with the sentence
+print("My GPA is " + str(gpa)) # Converts the float to text before printing it
+print("I am a student: " + str(is_student)) # Converts the boolean to text so it can be printed
 
-print(type(age)) #prints the type of variable
+print(type(age)) # Shows the data type of age (it should be <class 'int'>)
 
 x = "10" #this is a string, not an integer
 Y = int(x) #this converts the string to an integer
-print(type(Y)) #prints the type of variable
-print(type(x)) #prints the type of variable
-print( x + x) #this will print 1010 because x is a string
-print( Y + Y) #this will print 20 because Y is an integer
-print(Y + 30) #this will print 40 because Y is an integer
+print(type(Y)) # Shows that Y is now an integer after conversion
+print(type(x)) # Shows that x is still a string
+print( x + x) # Concatenates the string twice, so "10" + "10" becomes "1010"
+print( Y + Y) # Adds the integer values, so 10 + 10 = 20
+print(Y + 30) # Adds 30 to the integer value of Y, giving 40
 
 name = input("What is your name? ") #this will ask the user for input
 age = input("What is your age? ") #this will ask the user for input
-print("Hello " + name + ", you are " + age + " years old.") 
-#input() will always return a string, so if you want to use the input as an 
-# integer, you will need to convert it using int(), that's why we don't do math with age here
+print("Hello " + name + ", you are " + age + " years old.") # Prints a greeting using the user's input
+# input() always returns a string, so you must convert it to int before doing math
+# This is why age is kept as text here instead of being added to a number
 
-input("Press enter to exit") #this will wait for the user to press enter before closing the program
+input("Press enter to exit") # Pauses the program until the user presses Enter
 
 
 name = "Kelvin"
@@ -35,75 +35,75 @@ height = 1.75 #float = decimal number
 gpa = 3.5 #float = decimal number
 is_student = True #bool = true or false
 
-print("Name:", name)
-print("Height:", height)
-print("GPA:", gpa)
-print("Is student:", is_student)
+print("Name:", name) # Prints the person's name with a label
+print("Height:", height) # Prints the height value with a label
+print("GPA:", gpa) # Prints the GPA with a label
+print("Is student:", is_student) # Prints the boolean value with a label
 
 age_str = "24" #string
 age_int = int(age_str) #convert string to integer
 
 next_year = age_int + 1 #add 1 to the integer value of age
-print("Next year, I will be", next_year, "years old.") #print the value of next_year
+print("Next year, I will be", next_year, "years old.") # Displays the person's next age after adding 1
 
-print(name.upper()) #convert name to uppercase
-print(name.lower()) #convert name to lowercase
+print(name.upper()) # Converts the name to uppercase letters
+print(name.lower()) # Converts the name to lowercase letters
 
 sentence = "Python is a great programming language."
-words = sentence.split() #split the sentence into a list of words
-print(words) #print the list of words
-print(words[0]) #print the first word in the list
-print(words[-1]) #print the last word in the list
+words = sentence.split() # Splits the sentence into a list of words
+print(words) # Shows the full list of words
+print(words[0]) # Prints the first word in the sentence
+print(words[-1]) # Prints the last word in the sentence
 
 
 text = "Hello, Good morning, how are you?"
 new_text = text.replace("morning", "afternoon") #replace "morning" with "afternoon"
-print(new_text) #print the new text
-count = text.count("o") #count the number of occurrences of "o" in the text
-print("The letter 'o' appears", count, "times in the text.") #print
+print(new_text) # Prints the sentence after replacing the word "morning" with "afternoon"
+count = text.count("o") # Counts how many times the letter "o" appears in the text
+print("The letter 'o' appears", count, "times in the text.") # Shows the final count
 
 
 word = "Information"
-print(word[0]) #print the first character of the word
-print(word[6]) #print the seventh character of the word
-print(word[-1]) #print the last character of the word
-print(word[0:3]) #print the first three characters of the word
-print(word[3:6]) #print the fourth to sixth characters of the word
-print(word[6:]) #print the seventh character to the end of the word
-print(word[:6]) #print the first six characters of the word
-print(word[::2]) #print every second character of the word
-print(word[::-1]) #print the word in reverse order
+print(word[0]) # Prints the first character: I
+print(word[6]) # Prints the seventh character: a
+print(word[-1]) # Prints the last character: n
+print(word[0:3]) # Prints the first three characters: Inf
+print(word[3:6]) # Prints characters 4 to 6: orm
+print(word[6:]) # Prints from the seventh character onward: ation
+print(word[:6]) # Prints the first six characters: Inform
+print(word[::2]) # Prints every second character: Ifrain
+print(word[::-1]) # Prints the word backwards: noitamrofnI
 
 
 name = "Kelvin"
 age = 24
 
-# Old way (hard to read)
-print("My name is " + name + " and I am " + str(age))
+# Old way (harder to read because of string joining)
+print("My name is " + name + " and I am " + str(age)) # Joins text and variables using + and str()
 
-# New way (f-string)
-print(f"My name is {name} and I am {age}")
+# New way (f-string) - cleaner and easier to read
+print(f"My name is {name} and I am {age}") # Inserts values directly inside the string
 
 
-print(5 == 5) # equal to
-print(5 != 5) # not equal to
-print(5 != 3) # not equal to
-print(5 > 3) # greater than
-print(5 < 3) # less than
-print(3 > 5) # greater than (false)
-print(3 < 5) # less than
-print(5 >= 5) # greater than or equal to
-print(5 <= 5) # less than or equal to
-print(3 <= 5) # less than or equal to
-print(3 >= 5) # greater than or equal to (false)
-print(5 <= 3) # less than or equal to (false)
+print(5 == 5) # Checks whether 5 is equal to 5 -> True
+print(5 != 5) # Checks whether 5 is not equal to 5 -> False
+print(5 != 3) # Checks whether 5 is not equal to 3 -> True
+print(5 > 3) # Checks whether 5 is greater than 3 -> True
+print(5 < 3) # Checks whether 5 is less than 3 -> False
+print(3 > 5) # Checks whether 3 is greater than 5 -> False
+print(3 < 5) # Checks whether 3 is less than 5 -> True
+print(5 >= 5) # Checks whether 5 is greater than or equal to 5 -> True
+print(5 <= 5) # Checks whether 5 is less than or equal to 5 -> True
+print(3 <= 5) # Checks whether 3 is less than or equal to 5 -> True
+print(3 >= 5) # Checks whether 3 is greater than or equal to 5 -> False
+print(5 <= 3) # Checks whether 5 is less than or equal to 3 -> False
 
 score = 85
-if score >= 90:
+if score >= 90: # If the score is 90 or more, print an A
     print("Grade: A")
-elif score >= 80:
+elif score >= 80: # Otherwise, if the score is 80 or more, print a B
     print("Grade: B")
-else:
+else: # If neither condition is true, print a lower grade
     print("Grade: C or lower")
     
 
@@ -111,56 +111,81 @@ else:
 age = 25
 has_ticket = True
 
-if age >= 18 and has_ticket:
-    print("You can enter!") #Both must be true
+if age >= 18 and has_ticket: # Both conditions must be true to allow entry
+    print("You can enter!") # Both must be true
     
-if age < 18 or has_ticket:
-    print("Special entry allowed.") #Only one needs to be true
+if age < 18 or has_ticket: # At least one condition must be true
+    print("Special entry allowed.") # Only one needs to be true
     
-if not has_ticket:
-    print("You do not have a ticket.") #Reverses True to False or False to True
+if not has_ticket: # Reverses the boolean value
+    print("You do not have a ticket.") # Reverses True to False or False to True
     
 
     
 if 0:
-    print("This won't run") #doesn't run because 0 is false
+    print("This won't run") # 0 is false, so this block is skipped
     
 if 5:
-    print("This WILL run")      # ✅ Runs (5 = True)
+    print("This WILL run")      # 5 is a non-zero number, so it is treated as True
 
 if -1:
-    print("This WILL also run") # ✅ Runs (-1 = True, it's not zero!)
+    print("This WILL also run") # -1 is also non-zero, so it is treated as True
 
 if "hello":
-    print("This runs too")      # ✅ Runs (non-empty text = True)
+    print("This runs too")      # A non-empty string is considered True
 
 if "":
-    print("Won't run")          # ❌ Skipped (empty text = False)
+    print("Won't run")          # An empty string is considered False, so it is skipped
     
-#List Examples
+# List Examples
 subjects = ["Math", "Python", "Physics"]
-print(subjects) #['Math', 'Python', 'Physics']
-print(subjects[0]) #"Math" (first item on the list)
-print(subjects[-1]) #"Physics" (last object on the list)
-print(len(subjects)) # 3 (how many items are on the list)
+print(subjects) # Prints the whole list: ['Math', 'Python', 'Physics']
+print(subjects[0]) # Prints the first item: "Math"
+print(subjects[-1]) # Prints the last item: "Physics"
+print(len(subjects)) # Prints the number of items in the list: 3
 
-#Slicing, sorting and searching
+# Slicing, sorting and searching
 nums = [10, 20, 30, 40, 50]
-print(nums[1:4]) #[20, 30, 40] ← start included, end excluded
-print(nums[::-1]) #[50, 40, 30, 20, 10] ← reversed
+print(nums[1:4]) # Prints items from index 1 to 3: [20, 30, 40]
+print(nums[::-1]) # Reverses the list: [50, 40, 30, 20, 10]
 
-#Sorting:
+# Sorting
 scores = [85, 42, 90, 67]
-scores.sort() #sorts the original list in place → [42, 67, 85, 90]
-print(sorted(scores, reverse=True)) #Prints the reversed copy of the sorted scores [90, 85, 67, 42] (doesn't change original)
-print(scores) #prints the sorted original scores in ascending, nothing changed.
+scores.sort() # Sorts the original list in place: [42, 67, 85, 90]
+print(sorted(scores, reverse=True)) # Creates a new reversed sorted copy: [90, 85, 67, 42]
+print(scores) # Shows the original list after sorting in ascending order
 
-#Searching: (in)
+# Searching using 'in'
 if "Python" in subjects:
-    print("Python is on my timetable")
+    print("Python is on my timetable") # Runs only if "Python" is in the list
     
 courses = ["Math", "Python", "Physics"]    
-courses.append("Chemistry") #Adds Chemistry to the list
-courses.pop(2) #Removes "Math" from the list 
+courses.append("Chemistry") # Adds Chemistry to the end of the list
+fav_course = courses.pop(2) # Removes and returns the item at index 2: "Physics"
+courses.remove("Math") # Removes "Math" from the list
 
-print(courses)
+print(courses) # Prints the updated list
+print(fav_course) # Prints the removed item: "Physics"
+
+
+stu_scores = [45, 72, 38, 88, 55, 91]
+stu_scores.sort() # Sorts the list in ascending order
+passed = [s for s in stu_scores if s > 60] # Keeps only scores greater than 60
+print(passed) # Displays the passing scores
+
+passed = []
+for m in stu_scores:
+    if m >= 60:
+        passed.append(m) # Adds a score to the passing list if it is 60 or above
+    else:
+        print(f"Failed: {m}") # Prints each failed score below 60
+
+# After the loop finishes, print the final list of passing scores
+print(f"Final Passed List: {passed}") # Shows the completed pass list
+
+students  = [
+    ["David", 90, 85], ["Ada", 78, 92], ["Mark", 55, 60]
+]
+print(students[0]) # Prints the first student record
+print(students[0][0]) # Prints the first student's name
+print(students[1][2]) # Prints Ada's second score (92)

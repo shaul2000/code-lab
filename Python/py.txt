@@ -227,7 +227,20 @@ Slicing (same rules as strings!)
       - Method: .pop()
       - What it does: Remove + return item (default: last)
       - Example: list.pop()
+      # .pop(index) (With a number inside)
+            - code: list.pop(0)
+            - What happens: Removes the first item
+            - Result: Returns first item
 
       - Method: .remove()
       - What it does: Remove by value (name) of the item
       - Example: list.remove("Math")
+⚠️ .pop() removes by position. .remove() removes by name/value.
+
+4. List Comprehensions: (The Shortcut)
+A one-line way to build a new list from an old one.
+
+Formula: [expression for item in list if condition]
+
+5. Nested Lists (A List Inside a List)
+Perfect for tables of data.
