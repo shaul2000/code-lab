@@ -189,3 +189,49 @@ students  = [
 print(students[0]) # Prints the first student record
 print(students[0][0]) # Prints the first student's name
 print(students[1][2]) # Prints Ada's second score (92)
+
+birth_date = (1999, 5, 16) # A tuple storing year, month, and day
+print(f"Birth Year: {birth_date[0]}") # Show the year from the tuple
+
+year, month, day = birth_date # Unpack the tuple into separate variables
+print(f"Born on {day}/{month}/{year}") # Print the date in day/month/year format
+
+student = {
+    "name": "Samuel",
+    "age": 23,
+    "gpa": 4.6
+}
+print(f"Student's Name: {student['name']}") # Access a value using its dictionary key
+print(f"Student's Age: {student['age']}") # Print the age from the dictionary
+print(f"Student's GPA: {student['gpa']}") # Print the GPA from the dictionary
+# Notice: student['name'] is easier to read than student[0]
+print(f"Student's Grade: {student.get('grade', 'N/A')}") # Use get() so that missing keys can return a default value
+
+# Creating a dictionary with product details
+product = {"name": "Dell Laptop", "price": "$800"} # A dictionary stores data as key-value pairs
+
+# Accessing values using keys
+print(f"Product Name: {product['name']}, Price: {product['price']}") # Shows the product's name and price
+
+# Updating an existing value in the dictionary
+product["price"] = "$750" # Changes the price to a new value
+print(f"Updated Price: {product['price']}") # Prints the updated price
+
+# Adding a new key-value pair to the dictionary
+product["category"] = "Electronics" # Adds a new category field to the dictionary
+print(f"Updated Product: {product}") # Prints the whole dictionary after the update
+
+# Sorting dictionary keys alphabetically
+sorted_keys = sorted(product.keys()) # Creates a sorted list of the dictionary's keys
+print(f"Sorted Dictionary Keys: {sorted_keys}") # Prints the sorted keys in order
+
+# Loop through the sorted keys and print each key-value pair
+for key in sorted(product):
+    print(f"{key}: {product[key]}") # Prints each key and its matching value in sorted order
+
+# Deleting a key from the dictionary
+product.pop("category") # Removes the category entry from the dictionary
+print(f"After Deletion: {product}") # Shows the dictionary after removing the key
+
+
+
