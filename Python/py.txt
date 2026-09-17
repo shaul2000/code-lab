@@ -326,3 +326,17 @@ print(student)
 
 ⚠️ The Trap: If you delete a key that doesn't exist, Python crashes.
 The Safe Way: Use .pop() or .popitem().
+
+
+Dictionary Methods:
+- Method: .keys()
+- What it gives you: All the keys (labels)
+
+- Method: .values()
+- What it gives you: All the values
+
+- Method: .items()
+- What it gives you: Both, as pairs
+
+NESTED DICTIONARIES:
+Nested Dictionaries are simply a dictionary inside another dictionary. They let you store complex, structured dat - like a mini database.

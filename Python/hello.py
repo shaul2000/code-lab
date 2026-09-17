@@ -230,8 +230,33 @@ for key in sorted(product):
     print(f"{key}: {product[key]}") # Prints each key and its matching value in sorted order
 
 # Deleting a key from the dictionary
-product.pop("category") # Removes the category entry from the dictionary
+category = product.pop("category") # Removes the category entry and stores it in the variable category
 print(f"After Deletion: {product}") # Shows the dictionary after removing the key
+print(f"Category: {category}") # Prints the removed value so we can see what was deleted
+
+del product["price"] # Deletes the price key directly from the dictionary
+print(product) # Shows the dictionary after removing the price entry
+
+car = {
+    "brand": "BMW",
+    "year": 2025,
+    "color": "Black"
+}
+print(f"Car Brand: {car["brand"]}")
+
+car["year"] = 2027
+print(f"Updated Car Year: {car["year"]}")
+
+car["mileage"] = 70000
+print(f"Car Mileage: {car["mileage"]}")
+
+del car["color"]
+print(f"Car Information{car}")
+
+print(car.keys())
+print(car.values())
+print(car.items())
+
 
 
 
