@@ -70,6 +70,35 @@ print(a)
 print(b)
 print(nums) 
 
+#Subject Manager: Create a list of subjects, add/remove items, and sort them.
+subjects = ["Math", "Python", "Physics", "Chemistry"]
+subjects.append("Biology")
+subjects.remove("Physics")
+subjects.sort()
+fav_subject = subjects.pop()
+
+print(f"My subjects: {subjects}")
+print(fav_subject)
+print(f"Total Courses: {len(subjects)}")
+
+#Filter Scores (List Comprehension): Filter Scores above 60.
+scores = [45, 72, 38, 88, 55, 91, 60]
+passed = [s for s in scores if s > 60]
+scores.sort()
+best_score = scores.pop()
+print(f" Passed students: {passed}")
+print(f"Number who passed: {len(passed)}")
+print(f"Scores {scores}")
+print(f"Best Score: {best_score}")
+
+#Student Report Card (Nested List): Build nested records and print a formatted report.
+students = [
+    ["Ultimate", 87, 93, 76],
+    ["Mercy", 48, 89, 68],
+    ["Daniel", 65, 70, 30]
+]
+print("===== STUDENT REPORT =====")
+
 
 
 

@@ -244,3 +244,4 @@ Formula: [expression for item in list if condition]
 
 5. Nested Lists (A List Inside a List)
 Perfect for tables of data.
+Think of it like Excel: students[row][column].
