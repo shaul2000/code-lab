@@ -245,3 +245,84 @@ Formula: [expression for item in list if condition]
 5. Nested Lists (A List Inside a List)
 Perfect for tables of data.
 Think of it like Excel: students[row][column].
+
+Tuples & Dictionaries:
+TUPLES 🔒
+What is a Tuple?
+A tuple is like a list, but locked. Once created, you cannot add, remove, or change items.
+
+- List → [] → Changeable ✏️
+- Tuple → () → Locked 🔒
+
+Tuples are used for dat that should not change - birth date, coordinates, constants, it's safer.
+
+Unpacking a Tuple (The Cool Trick)
+Instead of grabbing items one by one, you can unpack them into separate variables in one line.
+birth_date = (1998, 5, 14)
+
+year, month, day = birth_date   # Unpacking!
+
+print(f"Born on {day}/{month}/{year}")
+#How it works: Python matches the items left-to-right:
+- year gets 1998
+- month gets 5
+- day gets 14
+
+⚠️ The number of variables must match the number of items, or Python crashes.
+
+DICTIONARIES 📖
+What is a Dictionary?
+A list uses numbers as positions (list[0]). A dictionary uses names (keys) as labels.
+
+Think of a real dictionary: you look up a word (key) to find its meaning (value).
+
+Syntax: Uses curly braces {} with key: value pairs.
+
+⚠️ The Trap: If you use a Key that doesn't exist, Python crashes with an error!
+The Safe Way: Use .get() to avoid crashing. It returns None (or whatever you ask it to return) if the key is missing.
+
+Creating, Accessing, Updating, Adding, Deleting:
+1. Creating (The Setup)
+You create a dictionary using curly braces {}. Inside, you write key: value pairs separated by commas.
+
+student = {
+    "name": "Emmanuel",
+    "age": 24,
+    "is_active": True
+}
+
+- "name" is the Key (the label/keyword).
+- "Emmanuel" is the Value (the data).
+Rule: Keys must be unique. You can't have two "name" keys. Values can be anything (text, numbers, lists, etc.).
+
+2. Accessing (Getting Data)
+To get data out, you use the Key inside square brackets [].
+print(student["name"])   # Output: Emmanuel
+print(student["age"])    # Output: 24
+
+3. Updating (Changing Existing Data)
+To change a value, you use the Key again on the left side of the = sign.
+student["age"] = 25   # Change age from 24 to 25
+
+print(student["age"])   # Output: 25
+Note: You cannot change the Key itself. If you want to rename a key, you have to delete the old one and add the new one.
+
+4. Adding (New Data)
+To add a new item, you just create a new Key that doesn't exist yet.
+student["city"] = "Lagos"   # "city" didn't exist before
+
+print(student)
+# Output: {"name": "Emmanuel", "age": 25, "city": 'Lagos'}
+
+Rule: If the Key exists → Update. Rule: If the Key is new → Add.
+
+5. Deleting (Removing Data)
+To remove a key-value pair, use the del command.
+
+del student["age"]   # Remove the "is_active" item
+
+print(student)
+# Output: {"name": "Emmanuel", "city": "Lagos"}
+
+⚠️ The Trap: If you delete a key that doesn't exist, Python crashes.
+The Safe Way: Use .pop() or .popitem().
