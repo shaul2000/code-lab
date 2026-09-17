@@ -69,6 +69,35 @@ score = int(input("Enter your score: "))
 
 print("Pass") if score >= 50 else print("Fail")
 
+#Assignment 4
+#1. Shopping List: Create a list of 5 items. Add one item, remove one using .remove(), then use pop() to remove the last. Print the final list.
+shopping_list = ["Rice", "Beans", "Oil", "Salt", "Garri"]
+print(f"Original Shopping List: {shopping_list}")
+
+shopping_list.append("Milk")
+print(f"Added item: {shopping_list}")
+
+shopping_list.remove("Salt")
+print(f"Removed salt from the list: {shopping_list}")
+
+last_item = shopping_list.pop()
+print(f"Removed last item: {last_item}")
+print(f"Final Shopping List: {shopping_list}")
+
+#2. Even Numbers: Use a list comprehension to get only the even numbers from [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]. #Hint - A number even if n % 2 == 0.
+nums = [1, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = [n for n in nums if n % 2 == 0]
+print(f"Even Numbers: {even_numbers}")
+
+#3. Class Average: Make a nested list of 3 students, each with 2 scores. Print each student's name and their total score.
+students = [
+    ["Samuel", 67, 89], ["Kelvin", 74, 97], ["John", 83, 39]
+]
+for student in students:
+    name = student[0]
+    total_score = student[1] + student[2]
+    print(f"{name}: Total Score = {total_score}")
+
 
 """Study notes and solutions for the functions assignment."""
 
@@ -91,12 +120,12 @@ print("Pass") if score >= 50 else print("Fail")
 
 # 2. Accept a string and return its length.
 def string_length(text):
-	return len(text)
+    return len(text)
 
 
 # 3. Accept a character and a string and return the occurrence count.
 def count_character(character, text):
-	return text.count(character)
+    return text.count(character)
 
 
 print(string_length("Python"))

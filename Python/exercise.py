@@ -99,6 +99,15 @@ students = [
 ]
 print("===== STUDENT REPORT =====")
 
+for student in students:
+    name = student[0]
+    average = (student[1] + student[2] + student[3]) / 3
+    if average >= 50:
+        status = "PASS"
+    else:
+        status = "FAIL"
+    print(f"{name}: Average = {average:.2f} {status}") #Note: {average:.2f} inside an f-string means "show only 2 decimal places".
+
 
 
 
