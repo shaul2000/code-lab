@@ -107,11 +107,45 @@ for student in students:
     else:
         status = "FAIL"
     print(f"{name}: Average = {average:.2f} {status}") #Note: {average:.2f} inside an f-string means "show only 2 decimal places".
+    
+#Birth Date Tuple: Create a tuple for your birth date and unpack it.
+birth_date = (2005, 5, 16) #year, month, day
+year, month, day = birth_date
+print(f"I was born on the {day}th of May({month}), {year}")
+    
+#Product Dictionary: Build a product record and update it.
+products = {
+    "name": "Wireless Mouse",
+    "price": 4500,
+    "category": "Accessories",
+    "in_stock": True  
+} 
+print(f"Products: {products["name"]} - ₦{products["price"]}")
+#price discount update
+products["price"] = 3800
+print(f"New Price: ₦{products["price"]}")
+#Check stock
+if products["in_stock"]:
+    print("Available for purchase!")
+else:
+    print("Out of stock.")
 
 
+#Payroll Report (Iterating a dictionary):
+employees = {
+    "Kelvin": 25000000,
+    "Samuel": 67600000,
+    "Destiny": 12300000
+}
+print(f"===== PAYROLL REPORT =====")
+total_payroll = 0
+for name, salary in employees.items():
+    total_payroll += salary
+    print(f"{name}: ₦{salary:,}") #{salary:,}: adds commas to big numbers
+print(f"Total Payroll: ₦{total_payroll:,}") 
 
 
-My_name = "PAUL AWAJIMIJAN"
+My_name = "Emmanuel Solomon"
 My_school_name = "Federal University of Technology, Minna"
 
 def my_second_function():

@@ -242,46 +242,49 @@ car = {
     "year": 2025,
     "color": "Black"
 }
-print(f"Car Brand: {car['brand']}")
+print(f"Car Brand: {car['brand']}") # Accesses the value stored under the brand key
 
-car["year"] = 2027
+car["year"] = 2027 # Updates the value of an existing key
 print(f"Updated Car Year: {car['year']}")
 
-car["mileage"] = 70000
+car["mileage"] = 70000 # Adds a new key-value pair to the dictionary
 print(f"Car Mileage: {car['mileage']}")
 
-del car["color"]
+del car["color"] # Removes the color key and its value
 print(f"Car Information{car}")
 
+# These methods return views of the dictionary's keys, values, and key-value pairs
 print(car.keys())
 print(car.values())
 print(car.items())
 
+# A nested dictionary stores another dictionary as the value of a key
 ift_student = {
     "name": "Felix",
     "age": 24,
-    "address": {   #This is a nested dictionary!
+    "address": {
         "city": "Lagos",
         "state": "Lagos State"
     }
 }
-#How to Access Nested Data (The Chain)
-print(ift_student["address"]["city"]) #Output; Lagos
+# Accesses the city value by following the address key into the inner dictionary
+print(ift_student["address"]["city"]) # Output: Lagos
 
-#Update an inner value
-ift_student["address"] ["city"] = "Abuja"
+# Updates a value inside the nested address dictionary
+ift_student["address"]["city"] = "Abuja"
 print(ift_student["address"])
 
-#Add a NEW key inside the nested dictionary
-ift_student["address"] ["country"] = "Nigeria"
+# Adds a new key-value pair to the nested address dictionary
+ift_student["address"]["country"] = "Nigeria"
 print(ift_student ["address"])
 print(f"Student Country:{ift_student["address"] ["country"]}")
 
+# Each student ID maps to a dictionary containing personal details and scores
 cpt_students = {
     "S001": {
         "name": "Kelvin",
         "age": 24,
-        "scores": [90, 85, 78] #Even a list can be a value
+        "scores": [90, 85, 78] # A list can also be stored as a dictionary value
     },
     "S002": {
         "name": "Samuel",
@@ -290,5 +293,5 @@ cpt_students = {
     }
 }
 
-#Get Samuel's third score
+# Accesses Samuel's record, then the scores list, and finally its third item
 print(f"{cpt_students["S002"]["scores"][2]}")
