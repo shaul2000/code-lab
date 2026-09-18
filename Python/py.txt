@@ -339,4 +339,5 @@ Dictionary Methods:
 - What it gives you: Both, as pairs
 
 NESTED DICTIONARIES:
-Nested Dictionaries are simply a dictionary inside another dictionary. They let you store complex, structured dat - like a mini database.
+Nested Dictionaries are simply a dictionary inside another dictionary. They let you store complex, structured data - like a mini database.
+Think of it as boxes inside boxes. You can also update and add in nested dictionaries, you can change inner values just like the outer ones:

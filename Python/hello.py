@@ -196,7 +196,7 @@ print(f"Birth Year: {birth_date[0]}") # Show the year from the tuple
 year, month, day = birth_date # Unpack the tuple into separate variables
 print(f"Born on {day}/{month}/{year}") # Print the date in day/month/year format
 
-student = {
+student = { #This is a Dictionary
     "name": "Samuel",
     "age": 23,
     "gpa": 4.6
@@ -242,13 +242,13 @@ car = {
     "year": 2025,
     "color": "Black"
 }
-print(f"Car Brand: {car["brand"]}")
+print(f"Car Brand: {car['brand']}")
 
 car["year"] = 2027
-print(f"Updated Car Year: {car["year"]}")
+print(f"Updated Car Year: {car['year']}")
 
 car["mileage"] = 70000
-print(f"Car Mileage: {car["mileage"]}")
+print(f"Car Mileage: {car['mileage']}")
 
 del car["color"]
 print(f"Car Information{car}")
@@ -257,6 +257,38 @@ print(car.keys())
 print(car.values())
 print(car.items())
 
+ift_student = {
+    "name": "Felix",
+    "age": 24,
+    "address": {   #This is a nested dictionary!
+        "city": "Lagos",
+        "state": "Lagos State"
+    }
+}
+#How to Access Nested Data (The Chain)
+print(ift_student["address"]["city"]) #Output; Lagos
 
+#Update an inner value
+ift_student["address"] ["city"] = "Abuja"
+print(ift_student["address"])
 
+#Add a NEW key inside the nested dictionary
+ift_student["address"] ["country"] = "Nigeria"
+print(ift_student ["address"])
+print(f"Student Country:{ift_student["address"] ["country"]}")
 
+cpt_students = {
+    "S001": {
+        "name": "Kelvin",
+        "age": 24,
+        "scores": [90, 85, 78] #Even a list can be a value
+    },
+    "S002": {
+        "name": "Samuel",
+        "age": 22,
+        "scores": [78, 93, 86]
+    }
+}
+
+#Get Samuel's third score
+print(f"{cpt_students["S002"]["scores"][2]}")
