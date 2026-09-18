@@ -97,6 +97,42 @@ for student in students:
     name = student[0]
     total_score = student[1] + student[2]
     print(f"{name}: Total Score = {total_score}")
+    
+    
+#Assignment 5
+#1. Coordinates: Create a tuple point = (5, 10). Unpack it into x and y, then print x + y. Try changing point[0] = 3 and observe the error.
+point = (5, 10)
+x, y = point
+print(f"Sum of x and y: {x + y}")
+
+#2. Car Record: Build a dictionary for a car with keys: model, year, color, mileage. Print only the model and year. Then update the mileage after a trip.
+rides = {
+    "model": "BMW",
+    "year": 2025,
+    "color": "Black",
+    "Mileage": 56000
+}
+print(f"Car: {rides["model"]} {rides["year"]}")
+rides["Mileage"] = rides["Mileage"] + 500
+print(f"New Mileage: {rides["Mileage"]} km")
+
+#3. Phone Book: Create a dictionary of 3 friends and their phone numbers. Use a loop to print each friend's name and number. Then check if a specific name exists using in.
+phonebook = {
+    "Ultimate": "08156452678",
+    "Kelvin": "09078654324",
+    "Mary": "07087654543"
+}
+print("===== PHONE BOOK =====")
+for name, number in phonebook.items():
+    print(f"{name}: {number}")
+    
+search_name = "Kelvin"
+if search_name in phonebook:
+    print(f"\n✅ Found {search_name}: {phonebook[search_name]}")
+else:
+    print(f"\n❌ {search_name} not found in contacts.")
+
+
 
 
 """Study notes and solutions for the functions assignment."""
