@@ -295,3 +295,45 @@ cpt_students = {
 
 # Accesses Samuel's record, then the scores list, and finally its third item
 print(f"{cpt_students["S002"]["scores"][2]}")
+
+
+#Looping over a list:
+fruits = ["Apple", "Banana", "Cherry"]
+for fruit in fruits:
+    print(fruit)
+#Python picks one item at a time names it fruit, runs the block, then moves on.
+
+#Looping over a string:
+#Strings are just sequences of characters, so they loop too!
+for letter in "Python":
+    print(letter)
+    
+#Looping over a dictionary
+marks = {"Mary": 90, "John": 75}
+for name, mark in marks.items():
+    print(f"Name: {name} Mark {mark}")
+    
+
+#range()
+for p in range(5):
+    print(p)
+    
+for q in range(1, 6):
+    print(q)
+    
+for e in range(2, 21, 2):
+    print(e, end=" ") #Even Numbers only 
+    
+for a in range(1, 20, 2):
+    print(a) #Odd numbers only 
+    
+for s in range(10, 0, -1):
+    print(s)
+print("Liftoff!  🚀")
+
+for x in range(5, 51, 5):
+    print(x, end=" ")
+    
+number = 6
+for n in range(1, 41):
+    print(f"{number} x {n} = {number * n}")
