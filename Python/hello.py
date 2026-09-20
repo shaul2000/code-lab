@@ -205,37 +205,44 @@ print(f"Student's Name: {student['name']}") # Access a value using its dictionar
 print(f"Student's Age: {student['age']}") # Print the age from the dictionary
 print(f"Student's GPA: {student['gpa']}") # Print the GPA from the dictionary
 # Notice: student['name'] is easier to read than student[0]
+total = 0
+
+for i in range(1, 101):     # Numbers 1 through 100
+    total += i
+
+print(f"Sum of 1 to 100: {total}")
+# Output: Sum of 1 to 100: 5050
 print(f"Student's Grade: {student.get('grade', 'N/A')}") # Use get() so that missing keys can return a default value
 
 # Creating a dictionary with product details
-product = {"name": "Dell Laptop", "price": "$800"} # A dictionary stores data as key-value pairs
+products = {"name": "Dell Laptop", "price": "$800"} # A dictionary stores data as key-value pairs
 
 # Accessing values using keys
-print(f"Product Name: {product['name']}, Price: {product['price']}") # Shows the product's name and price
+print(f"Product Name: {products['name']}, Price: {products['price']}") # Shows the product's name and price
 
 # Updating an existing value in the dictionary
-product["price"] = "$750" # Changes the price to a new value
-print(f"Updated Price: {product['price']}") # Prints the updated price
+products["price"] = "$750" # Changes the price to a new value
+print(f"Updated Price: {products['price']}") # Prints the updated price
 
 # Adding a new key-value pair to the dictionary
-product["category"] = "Electronics" # Adds a new category field to the dictionary
-print(f"Updated Product: {product}") # Prints the whole dictionary after the update
+products["category"] = "Electronics" # Adds a new category field to the dictionary
+print(f"Updated Product: {products}") # Prints the whole dictionary after the update
 
 # Sorting dictionary keys alphabetically
-sorted_keys = sorted(product.keys()) # Creates a sorted list of the dictionary's keys
+sorted_keys = sorted(products.keys()) # Creates a sorted list of the dictionary's keys
 print(f"Sorted Dictionary Keys: {sorted_keys}") # Prints the sorted keys in order
 
 # Loop through the sorted keys and print each key-value pair
-for key in sorted(product):
-    print(f"{key}: {product[key]}") # Prints each key and its matching value in sorted order
+for key in sorted(products):
+    print(f"{key}: {products[key]}") # Prints each key and its matching value in sorted order
 
 # Deleting a key from the dictionary
-category = product.pop("category") # Removes the category entry and stores it in the variable category
-print(f"After Deletion: {product}") # Shows the dictionary after removing the key
+category = products.pop("category") # Removes the category entry and stores it in the variable category
+print(f"After Deletion: {products}") # Shows the dictionary after removing the key
 print(f"Category: {category}") # Prints the removed value so we can see what was deleted
 
-del product["price"] # Deletes the price key directly from the dictionary
-print(product) # Shows the dictionary after removing the price entry
+del products["price"] # Deletes the price key directly from the dictionary
+print(products) # Shows the dictionary after removing the price entry
 
 car = {
     "brand": "BMW",
@@ -297,51 +304,74 @@ cpt_students = {
 print(f"{cpt_students["S002"]["scores"][2]}")
 
 
-#Looping over a list:
+# Loop through each item in a list.
 fruits = ["Apple", "Banana", "Cherry"]
 for fruit in fruits:
     print(fruit)
-#Python picks one item at a time names it fruit, runs the block, then moves on.
+# Python assigns one item at a time to fruit and runs the loop body.
 
-#Looping over a string:
-#Strings are just sequences of characters, so they loop too!
+# Strings are sequences of characters, so a loop can visit each character.
 for letter in "Python":
     print(letter)
     
-#Looping over a dictionary
+# .items() provides each dictionary key and value together.
 marks = {"Mary": 90, "John": 75}
 for name, mark in marks.items():
     print(f"Name: {name} Mark {mark}")
     
 
-#range()
+# range(stop) starts at 0 and stops before 5.
 for p in range(5):
     print(p)
     
+# range(start, stop) includes 1 and stops before 6.
 for q in range(1, 6):
     print(q)
     
+# A step of 2 selects the even numbers from 2 through 20.
 for e in range(2, 21, 2):
-    print(e, end=" ") #Even Numbers only 
+    print(e, end=" ")
     
+# A step of 2 selects the odd numbers from 1 through 19.
 for a in range(1, 20, 2):
-    print(a) #Odd numbers only 
+    print(a)
     
+# A negative step counts backward from 10 to 1.
 for s in range(10, 0, -1):
     print(s)
 print("Liftoff!  🚀")
 
+# Print the multiples of 5 from 5 through 50.
 for x in range(5, 51, 5):
     print(x, end=" ")
    
-#Times Table Generator (reusable Function Style) 
+# Print the 6 times table from 1 to 40.
 number = 6
 for n in range(1, 41):
     print(f"{number} x {n} = {number * n}")
     
-#Summing Numbers with range()
-total = 0 
-for o in range(1, 201): 
+# Add each number from 1 through 200 to a running total.
+total = 0
+for o in range(1, 201):
     total += o
+print(f"Sum of 1 to 200: {total}")
+
+# Multiply the numbers from 1 through 20 into a running product.
+# The product starts at 1 because multiplying by 0 would always produce 0.
+product = 1
+for m in range(1, 21):
+    product *= m
+print(product)
+
+# Use an index when both the position and the item are needed.
+my_fruits = ["Pineapple", "Guava", "Orange", "Watermelon"]
+for index in range(len(my_fruits)):
+    print(f"item {index}: {my_fruits[index]}")
     
-print(f"Sum of 1 to 200")
+
+# A while loop repeats as long as its condition remains true.
+# Change the condition during each iteration to avoid an infinite loop.
+count = 1 
+while count <= 5:
+    print(count)
+    count += 1
