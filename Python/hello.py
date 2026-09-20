@@ -333,7 +333,15 @@ print("Liftoff!  🚀")
 
 for x in range(5, 51, 5):
     print(x, end=" ")
-    
+   
+#Times Table Generator (reusable Function Style) 
 number = 6
 for n in range(1, 41):
     print(f"{number} x {n} = {number * n}")
+    
+#Summing Numbers with range()
+total = 0 
+for o in range(1, 201): 
+    total += o
+    
+print(f"Sum of 1 to 200")
