@@ -144,6 +144,44 @@ for name, salary in employees.items():
     print(f"{name}: ₦{salary:,}") #{salary:,}: adds commas to big numbers
 print(f"Total Payroll: ₦{total_payroll:,}") 
 
+#10 Times Table: Print the 10-times table using a for loop.
+number = 10
+print(f"===== {number} TIMES TABLE =====")
+for k in range(1, 13):
+    result = number * k
+    print(f"{number} x {k} = {result}")
+    
+#Password Checker: Keep asking until the correct password is entered.
+correct_password = "Machinee-X"
+while True:
+    guess = input("Enter Password: ")
+    if guess == correct_password:
+        print("✅ Access Granted!")
+        break
+    else:
+        print("❌ Wrong password. Try again.")
+#Why while True? We don't know how many tries the user needs. We loop indefinitely and use break when they finally get it right. Perfect pattern for login systems! 
+
+#Number Guessing Game: Guess a secret number with Higher?Lower hints.
+import random
+secret = random.randint(1, 40)
+attempts = 0
+print("I'm thinking of a number between 1 and 40...")
+
+while True:
+    trial = int(input("Your guess: "))
+    attempts += 1
+    
+    if trial < secret:
+        print("📈 Higher!")
+    elif trial > secret:
+        print("📉 Lower!")
+    else:
+        print(f"🎉 Correct! You got it in {attempts} attempts.")
+        break
+    
+
+
 
 My_name = "Emmanuel Solomon"
 My_school_name = "Federal University of Technology, Minna"

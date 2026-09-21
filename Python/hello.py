@@ -375,3 +375,26 @@ count = 1
 while count <= 5:
     print(count)
     count += 1
+    
+    
+# Stop the loop immediately when n reaches 5.
+for n in range(1, 25):
+    if n == 5:
+        break
+    print(n)
+    
+# Skip the number 5 and continue with the next iteration.
+for x in range(1, 9):
+    if x == 5:
+        continue
+    print (x)
+    
+# Use pass as a placeholder when no action is needed yet.
+for u in range(8):
+    pass
+
+# A nested loop runs the inner loop completely for each outer-loop iteration.
+for row in range(3):  # The outer loop runs three times.
+    for col in range(3):  # The inner loop runs three times per row.
+        print(f"({row}, {col})", end=" ")
+    print()  # Start a new line after each row is complete.

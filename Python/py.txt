@@ -384,3 +384,21 @@ Visual Summary Table:
 
 THE WHILE LOOP: 
 A while loop says: "Keep doing this As Long As the condition is True."
+
+for vs while loop
+- use the for loop when you know how many times to repeat.
+- use while when you don't know -- it depends on a condition.
+
+- use the for loop when looping over lists/strings/dictionaries.
+- use the while loop when waiting for user input or an event.
+
+break, continue, pass
+These control what happens inside a loop.
+
+- break → Stop the loop immediately
+- continue → Skip this round, go to next
+- pass → Do nothing (a placeholder)
+
+
+Nested Loops (Loop Inside a Loop):
+A nested loop runs the inner loop completely for each repetition of the outer loop.
