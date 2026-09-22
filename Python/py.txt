@@ -402,3 +402,37 @@ These control what happens inside a loop.
 
 Nested Loops (Loop Inside a Loop):
 A nested loop runs the inner loop completely for each repetition of the outer loop.
+
+FUNCTIONS
+Think of a function as a tool or a recipe. Instead of writing the same code over and over, you write it once, give it a name, and then you can "call" it whenever you need it.
+What is a Function?
+A function is a block of code that performs a specific task.
+- Defining a Function (The "Blueprint")
+When you define a function, you are not running the code inside it yet. You are just creating a blueprint. Python reads this line and says, "Okay, I've saved this block of code under this name. I won't do anything with it until I'm told to."
+
+Key Rules for Defining:
+- def: The magic keyword.
+- function_name: Must follow Python naming rules (starts with a letter, no spaces, no numbers at the start). It's best practice to use snake_case (e.g., calculate_total, get_user_data).
+- (): Parentheses are mandatory, even if empty.
+- :: The colon is mandatory. Without it, Python throws a SyntaxError.
+- Indentation: The very first line inside the function must be indented (usually 4 spaces). If it's not indented, Python thinks it's outside the function.
+
+- Calling a Function (The "Action")
+Calling a function means executing the code inside it. You do this by typing the function's name followed by ().
+
+Parameters and Return Values:
+- Parameters:
+These are placeholders for data you want to put inside the function.
+- Calling with Arguments
+This is the actual data you pass in.
+
+Return Values:
+Functions can give back a result so you can use it later.
+Note: Once return is hit, the function stops immediately. Any code after return is ignored.
+
+Default Arguments:
+You can set a "backup" value for parameters. If the user doesn't provide one, the function uses the default.
+
+*args and **kwargs (The "Too Many" Arguments):
+*args (Arbitrary Arguments):
+Use this when you don't know how many positional arguments (numbers/items) will be passed. It collects them into a tuple.

@@ -398,3 +398,24 @@ for row in range(3):  # The outer loop runs three times.
     for col in range(3):  # The inner loop runs three times per row.
         print(f"({row}, {col})", end=" ")
     print()  # Start a new line after each row is complete.
+    
+#FUNCTION:
+def greeting(name):  #Parameter = variable name, not a value
+    print(f"Hello there! {name}") #use the PARAMETER inside {}
+    
+greeting("Samuel") #Now you pass the value "Samuel"
+
+#Return Values:
+def add(a, b):
+    return a + b #Returns the result
+
+result = add(5, 3) 
+print(result) #Prints 8
+
+def greet(person_name, greeting="Hello"):
+    print(f"{greeting}, {person_name}")
+    
+greet("Machinee")    #Uses default: "Hello" → Hello Machinee!
+
+greet("Ada", "Hi")   #Overrides default: "Hi" → Hi, Ada! 
+    
