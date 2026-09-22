@@ -133,6 +133,32 @@ else:
     print(f"\n❌ {search_name} not found in contacts.")
 
 
+#Assignment 6:
+#1. Even Sum: Use a for loop with range() to add up all even numbers from 1 to 50. print the total.
+  #- Hint: range(2, 51, 2) gives you evens directly.
+sum_total = 0
+for r in range(2, 51, 2):
+    sum_total += r
+print(f"Sum of even numbers (1-50): {sum_total}")
+
+#2. Countdown: Write a while loop that counts down from 10 to 1, then prints "LiftOff! 🚀".
+count = 10
+while count >= 1:
+    print(count)
+    count -= 1
+print("Liftoff!🚀")
+
+#3. Pattern Printer: Use nested loops to print this triangle:
+#*
+#**
+#***
+#****
+#*****
+for row in range(1, 8):
+    for col in range(row):
+        print("*", end="")
+    print()
+
 
 
 """Study notes and solutions for the functions assignment."""
