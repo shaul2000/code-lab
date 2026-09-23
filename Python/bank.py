@@ -243,7 +243,7 @@ def previewCustomers():
     if len(customers) <= 0:
         print("No customer record")
         return None
-    for customer_user in customers:025645
+    for customer_user in customers:
         print(f"* {customer_user['firstname']} {customer_user['lastname']} -- {customer_user['account']} -- {customer_user['balance']}")
 
 # main function to start the application

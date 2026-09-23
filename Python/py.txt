@@ -436,3 +436,6 @@ You can set a "backup" value for parameters. If the user doesn't provide one, th
 *args and **kwargs (The "Too Many" Arguments):
 *args (Arbitrary Arguments):
 Use this when you don't know how many positional arguments (numbers/items) will be passed. It collects them into a tuple.
+
+**kwargs (Keyword Arguments)
+Use this for named arguments (keyword = value). It collects them into a dictionary.

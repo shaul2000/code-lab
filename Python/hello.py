@@ -113,10 +113,8 @@ has_ticket = True
 
 if age >= 18 and has_ticket: # Both conditions must be true to allow entry
     print("You can enter!") # Both must be true
-    
 if age < 18 or has_ticket: # At least one condition must be true
     print("Special entry allowed.") # Only one needs to be true
-    
 if not has_ticket: # Reverses the boolean value
     print("You do not have a ticket.") # Reverses True to False or False to True
     
@@ -402,20 +400,25 @@ for row in range(3):  # The outer loop runs three times.
 #FUNCTION:
 def greeting(name):  #Parameter = variable name, not a value
     print(f"Hello there! {name}") #use the PARAMETER inside {}
-    
 greeting("Samuel") #Now you pass the value "Samuel"
 
 #Return Values:
 def add(a, b):
     return a + b #Returns the result
-
 result = add(5, 3) 
 print(result) #Prints 8
 
+#Default Arguments:
 def greet(person_name, greeting="Hello"):
     print(f"{greeting}, {person_name}")
-    
 greet("Machinee")    #Uses default: "Hello" → Hello Machinee!
-
 greet("Ada", "Hi")   #Overrides default: "Hi" → Hi, Ada! 
     
+#*args
+def sum_all(*numbers):
+    sum_total = 0
+    for n in numbers:
+        sum_total += n
+    return sum_total
+print(sum_all(1, 2, 3, 4, 5, 6, 7, 8, 8, 10))
+print(sum_all(100, 200, 300, 400, 500, 600, 700))
