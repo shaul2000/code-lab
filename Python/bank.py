@@ -2,15 +2,14 @@
 import random 
 
 # declare storage to store customer, staff and manager details
-
 customers = []
 staff_users = []
 manager = {
-    "username":"manager",
-    "password":"12345678"
+    "username":"machinee",
+    "password":"@123$456&789)"
 }
-# function to display the application menu
 
+# function to display the application menu
 def appMenu():
     print("What do you want to perform?")
     print("1. Open/Create Account")
@@ -22,10 +21,10 @@ def appMenu():
 # customers operation
 # 1. account creation
 # function to handle account creation
-
 def CreateAccount():
     # collect customer data: first name, last name, phone number, email address
     # date of birth, home address, nationality, state of origin, gender
+    print("\n--- Create New Account ---")
     fName = input("Enter your first name: ")
     lName = input("Enter your last name: ")
     phone = input("Enter your phone number: ")
@@ -35,6 +34,7 @@ def CreateAccount():
     nationality = input("Enter your country: ")
     state = input("Enter your state of origin: ")
     gender = input("Enter your gender(M/F): ")
+    
     # system auto generate account number for customer
     account = random.randint(2020000000, 2029999999)
     password = input("create password")
@@ -56,54 +56,54 @@ def CreateAccount():
          "pin": None,
          "restricted": False
     }
+    
     # store to the new customer list above
     customers.append(new_customer)
-    print(f"congratulations, your account number is: {new_customer["account"]}")
+    print(f"congratulations, your account number is: {new_customer['account']}")
 
 # function to handle user login
-
-def login(user):
-    logggedInUser = None
+def login(user_type):
+    loggedInUser = None
     # identify the user
-    if user == "customer":
+    if user_type == "customer":
         # check customer login details
         email = input("Enter email address: ")
         password = input("Enter password: ")
         # look for the customer with the given email and password above
         for customer in customers:
             if customer["email"] == email.strip() and customer["password"] == password:
-                logggedInUser = customer
+                loggedInUser = customer
                 print("welcome to Customer Dashboard")
                 # return the customer
-                return logggedInUser
-        if logggedInUser == None:
+                return loggedInUser
+        if loggedInUser == None:
             print("incorrect login credentials")
-            return logggedInUser
-    elif user == "staff":
+            return loggedInUser
+    elif user_type == "staff":
         staffId = input("Enter your staffID: ")
         password = input("Enter your password: ")
         # look through staff_users list above
         for staff in staff_users:
             if staff["id"] == staffId and staff["password"] == password:
-                logggedInUser = staff
+                loggedInUser = staff
                 print("welcome to staff Dashboard")
-                return logggedInUser
-        if logggedInUser == None:
+                return loggedInUser
+        if loggedInUser == None:
             print("Incorrect login credentials")
-            return logggedInUser
+            return loggedInUser
     else:
         username = input("Enter username: ")
         password = input("Enter password: ")
         # check if the username and password given above matches the manager detail
         if manager["username"] == username and manager["password"] == password:
-            logggedInUser = manager
+            loggedInUser = manager
             print("welcome to Bank Manager Dashboard")
-            return logggedInUser
+            return loggedInUser
         else:
             print("incorrect login credentials")
-            return logggedInUser
+            return loggedInUser
 
-# functtion to handle withdrawal
+# function to handle withdrawal
 def withdrawal(customer):
     # request amount to bw withdrawn
     amount = float(input("Enter amount to be withdrawn"))
@@ -115,7 +115,7 @@ def withdrawal(customer):
     elif customer["balance"] > amount:
     # debit the customer's balance
          customer["balance"] -= amount
-         print("withdrawal succesful")
+         print("withdrawal successful")
          print(f"your new balance is: {customer["balance"]}.")
          return customer
     else:
@@ -154,7 +154,6 @@ def transfer(sender):
         print(f"This account number: {receiver_account} is incorrect.")
 
 # function to handle customer's account management
-
 def accountManagement(action):
     account = int(input(f"Enter customer's account number to {action}"))
     notFound = True
@@ -245,7 +244,7 @@ def startApp():
                         # invoke the transfer function
                         transfer(sender = loggedUser)
                     elif sub_choice.lower() == "c":
-                        # invoke the deposit fuction
+                        # invoke the deposit function
                         deposit(customer = loggedUser)
                     elif sub_choice.lower() == "d":
                         # display the user balance
