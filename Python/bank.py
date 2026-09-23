@@ -153,8 +153,13 @@ def deposit(customer):
         # credit the amount to customer balance
         customer["balance"] += amount
         print("Deposit successful.")
-        print(f"Your new balance is: {customer['balance']}")
+        print(f"Your new balance is: {customer['balance']:.2f}")
         return customer
+
+# function to check current customer balance
+def checkBalance(customer):
+    print(f"Your current balance is: {customer['balance']:.2f}")
+    return customer['balance']
 
 # function to handle transfer operation 
 def transfer(sender):
@@ -238,7 +243,7 @@ def previewCustomers():
     if len(customers) <= 0:
         print("No customer record")
         return None
-    for customer_user in customers:
+    for customer_user in customers:025645
         print(f"* {customer_user['firstname']} {customer_user['lastname']} -- {customer_user['account']} -- {customer_user['balance']}")
 
 # main function to start the application
@@ -290,8 +295,8 @@ def startApp():
                         # invoke the deposit function
                         deposit(customer = loggedUser)
                     elif sub_choice.lower() == "d":
-                        # display the user balance
-                        print(f"Your current balance is: {loggedUser['balance']}")
+                        # display the logged-in user's balance
+                        checkBalance(loggedUser)
                     elif sub_choice.lower() == "e":
                         print("You are logged out.")
                         break
