@@ -13,10 +13,10 @@ print(f"Word count: {word_count}")
 #Task: Ask for two numbers and print their sum, difference, and product.
 num1 = int(input("Enter the first number: "))
 num2 = int(input("Enter the second number: "))
-sum = num1 + num2
+sum_total = num1 + num2
 difference = num1 - num2
 product = num1 * num2
-print(f"Sum: {sum}")
+print(f"Sum: {sum_total}")
 print(f"Difference: {difference}")
 print(f"Product: {product}")
 
@@ -164,9 +164,9 @@ while True:
 
 #Number Guessing Game: Guess a secret number with Higher?Lower hints.
 import random
-secret = random.randint(1, 40)
+secret = random.randint(1, 10)
 attempts = 0
-print("I'm thinking of a number between 1 and 40...")
+print("I'm thinking of a number between 1 and 10...")
 
 while True:
     trial = int(input("Your guess: "))
@@ -179,7 +179,44 @@ while True:
     else:
         print(f"🎉 Correct! You got it in {attempts} attempts.")
         break
-    
+
+#Time _Based Greeting: A function that greets based on the hour.
+def greeting_time(hour):
+    """Returns a greeting based on the type of the day."""
+    if 5 <= hour < 12:
+        return "Good Morning!"
+    elif 12 <= hour < 18:
+        return "Good Afternoon!"
+    else:
+        return "Good Evening!"
+
+#Usage:
+current_hour = 15
+print(greeting_time(current_hour))
+
+#Sum of any prices: A function that takes any number of prices and sums them.
+def calculate_total(*prices):
+    """Calculates the sum of any number of prices."""
+    return sum(prices)
+
+#Usage:
+bill = calculate_total(2400, 345, 678, 5300, 7865)
+print(f"Total Bill: NGN{bill}")
+
+#lambda Sorting: Sort a list of products by price using a lambda function:
+new_products = [
+    {"name": "Mouse", "price": 3500},
+    {"name": "Keyboard", "price": 5300},
+    {"name": "Headphones", "price": 3000}
+]
+
+#sort by price (ascending)
+new_products.sort(key = lambda p: p["price"])
+
+for p in new_products:
+    print(f"{p["name"]}: ${p["price"]}")
+
+
 
 
 

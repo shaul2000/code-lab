@@ -160,6 +160,38 @@ for row in range(1, 8):
     print()
 
 
+#Assignment 7:
+#1. - Tip Calculator: A function that calculates the tip amount, with a default of 10%
+def calculate_tip(bill_amount, tip_percent = 10):
+    """Calculates the tip amount based on bill and percentage."""
+    tip = bill_amount * (tip_percent / 100)
+    return tip
+bill = 50000
+print(f"Tip (default 10%): NGN{calculate_tip(bill)}")
+print(f"Tip (custom 15%): NGN{calculate_tip(bill, 15)}")
+
+#2. - Student Grades: Return a letter grade based on score ranges.
+def get_grade(score):
+    """Returns letter grade based on numerical score."""
+    if score >= 70:
+        return "A"
+    elif score >= 60:
+        return "B"
+    elif score >= 50:
+        return "C"
+    else:
+        return "Fail"
+grade_scores = [65, 78, 90, 23]
+for s in grade_scores:
+    print(f"Score {s}: {get_grade(s)}")
+    
+#3 - Lambda filter: 
+nums = [10, 55, 30, 60, 90]
+
+result = list(filter(lambda x: x > 50, nums))
+
+print(result)
+
 
 """Study notes and solutions for the functions assignment."""
 

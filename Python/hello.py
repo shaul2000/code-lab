@@ -397,28 +397,86 @@ for row in range(3):  # The outer loop runs three times.
         print(f"({row}, {col})", end=" ")
     print()  # Start a new line after each row is complete.
     
-#FUNCTION:
-def greeting(name):  #Parameter = variable name, not a value
-    print(f"Hello there! {name}") #use the PARAMETER inside {}
-greeting("Samuel") #Now you pass the value "Samuel"
+# FUNCTIONS: used to group repeated code and make programs easier to manage.
+# A function can take parameters, perform logic, and return a value when needed.
 
-#Return Values:
+def greeting(name):  # name is a parameter, which acts like a placeholder.
+    print(f"Hello there! {name}")  # The value passed in is displayed here.
+
+
+greeting("Samuel")  # We pass the actual value "Samuel" to the function.
+
+# RETURN VALUES: a function can send back data using the return keyword.
 def add(a, b):
-    return a + b #Returns the result
-result = add(5, 3) 
-print(result) #Prints 8
+    return a + b  # This returns the sum of a and b.
 
-#Default Arguments:
+
+result = add(5, 3)
+print(result)  # Prints 8
+
+# DEFAULT ARGUMENTS: optional parameters that already have a value.
 def greet(person_name, greeting="Hello"):
     print(f"{greeting}, {person_name}")
-greet("Machinee")    #Uses default: "Hello" → Hello Machinee!
-greet("Ada", "Hi")   #Overrides default: "Hi" → Hi, Ada! 
-    
-#*args
+
+
+greet("Machinee")  # Uses the default greeting: Hello Machinee!
+greet("Ada", "Hi")  # Overrides the default with Hi.
+
+# *args: allows a function to accept any number of positional arguments.
 def sum_all(*numbers):
-    sum_total = 0
+    total = 0
     for n in numbers:
-        sum_total += n
-    return sum_total
+        total += n
+    return total
+
+
 print(sum_all(1, 2, 3, 4, 5, 6, 7, 8, 8, 10))
 print(sum_all(100, 200, 300, 400, 500, 600, 700))
+
+# **kwargs: allows a function to accept any number of keyword arguments.
+def build_profile(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+
+build_profile(name="Kelvin", age=24, city="Lagos")
+
+# VARIABLE SCOPE: local variables exist only inside a function, while global variables exist outside.
+count = 100  # This is a global variable.
+
+
+def my_func():
+    count = 5  # This is a local variable and does not change the global one.
+    print(count)
+
+
+my_func()  # Prints 5
+print(count)  # Prints 100 because the global value was not changed.
+
+# LAMBDA FUNCTION: a small anonymous function used for quick operations.
+# Regular function example.
+def square(x):
+    return x ** 2
+
+
+print(square(8))
+
+# Lambda version: same idea, but written in one line.
+square_lambda = lambda x: x ** 2
+print(square_lambda(5))
+
+# DOCSTRINGS: documentation text inside a function that explains what it does.
+def square(x):
+    """
+    Returns the square of a number.
+
+    Parameters:
+    x (int or float): The number to square.
+
+    Returns:
+    int or float: The squared value of x.
+    """
+    return x ** 2
+
+
+print(square(4))  # Prints 16

@@ -439,3 +439,30 @@ Use this when you don't know how many positional arguments (numbers/items) will 
 
 **kwargs (Keyword Arguments)
 Use this for named arguments (keyword = value). It collects them into a dictionary.
+
+Variable Scope (Local vs Global)
+- Local: Variables created inside a function exist only there.
+- Global: variables created outside exist everywhere.
+
+Lambda Functions & Docstrings:
+- Lambda
+A lambda function is a tiny, anonymous (nameless) function defined in a single line. You use them when you need a simple function for a very short time, and you don't want to bother writing def.
+Syntax:
+lambda arguments: expression
+
+- Docstrings (The "User Manual"):
+A docstring is a special string written inside a function to describe what the function does. Unlike comments (#), docstrings are stored inside the function's metadata and can be read by Python (and other developers) using help().
+
+How to Write One:
+Place a triple-quoted string ("""...""") as the very first thing inside the function.
+
+Why Use Docstrings?:
+- Self-Documentation: Anyone reading your code (including future you!) will instantly know what the function does.
+- Built-in Help: You can type help(square) in the interactive Python shell, and it will print your docstring!
+
+Docstrings vs Comments:
+Feature	Comments (#)	            Docstrings ("""...""")
+Purpose	Explain how or why	      Explain what the function does
+Visibility	Hidden from Python	      Stored in __doc__
+Access	None	                        help(function_name)
+Location	Anywhere	                  First line of the function
