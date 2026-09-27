@@ -480,3 +480,18 @@ def square(x):
 
 
 print(square(4))  # Prints 16
+
+
+class Dog:
+    def __init__(self, name, age):
+        self.name = name    #Data (attribute)
+        self.age = age      #Data (attribute)
+        
+    def bark(self):         #Behavior (method)
+        print(f"{self.name} says: Woof!")
+        
+dog1 = Dog("Rex", 3)
+dog2 = Dog("Bella", 5)
+
+dog1.bark()   # Rex says: Woof!
+dog2.bark()   # Bella says: Woof!

@@ -466,3 +466,42 @@ Purpose	Explain how or why	      Explain what the function does
 Visibility	Hidden from Python	      Stored in __doc__
 Access	None	                        help(function_name)
 Location	Anywhere	                  First line of the function
+
+
+Classes & Object-Oriented Programming (OOP):
+The Big Idea: What Is OOP?:
+OOP = organizing code around "objects" instead of just functions and data.
+
+An object bundles two things together:
+
+- Data (what it knows) → called attributes
+- Behavior (what it does) → called methods (functions that belong to an object)
+Real-world analogy 🚗: Think of a car.
+- Data: color, model, fuel level, current speed
+- Behavior: accelerate(), brake(), honk()
+Instead of storing car_color, car_speed in loose variables with - separate functions floating around, OOP packs them into ONE tidy unit.
+
+Think of it this way:
+- A Class is a blueprint/architectural drawing. This is a template that defines the structure.
+- An Object is the actual thing built from that blueprint. A concrete instance with real values.
+
+Class "Car" (Blueprint)
+    ↓ builds
+Object: my_car      (a red Toyota)
+Object: your_car    (a blue Honda)
+
+Same blueprint, different objects with different data!
+
+_init__, self, and Instance Methods:
+
+- Term: class
+- Meaning: Keyword to create a blueprint.
+
+- Term: __init__
+- Meaning: The constructor - runs automatically when you create an object
+
+- Term: self
+- Meaning: Refers to the specific object itself
+
+- Term: self.name:
+- Meaning: Stored data inside this particular object.
