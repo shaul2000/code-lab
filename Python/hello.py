@@ -495,3 +495,7 @@ dog2 = Dog("Bella", 5)
 
 dog1.bark()   # Rex says: Woof!
 dog2.bark()   # Bella says: Woof!
+
+my_dog = Dog("Rex", 3)    #Calls__init__automatically
+print(my_dog.name)   #Rex
+print(my_dog.age)   # 3
