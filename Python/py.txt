@@ -550,3 +550,29 @@ Make your objects work with len():
 
 Calling the Object: __call__ 📞
 You can make an object behave like a function!
+
+
+Key Takeaways:
+- Class = blueprint; Object = instance built from it.
+- __init__ sets up data; self refers to the current object.
+- Inheritance reuses code; overriding customizes it.
+- super() calls the parent's method.
+- __str__ makes objects printable.
+
+
+Raise Command (Triggering Errors):
+The word raise is used to trigger an error intentionally.
+Usually, errors happen by accident (like dividing by zero). But sometimes, you want to force an error if the user gives you bad input or if something goes wrong in your logic.
+
+Why Use raise Instead of print?:
+- If you just use print("Error!"), the program keeps running, and the bad data might cause more problems later.
+
+By using raise, you stop the program (or the specific function) immediately, forcing the developer (or the user) to fix the issue before continuing.
+
+Common Built-in Errors You Can Raise:
+You can raise specific types of errors to be more helpful:
+- raise ValueError("Invalid value") → For bad data types or values.
+- raise TypeError("Wrong type") → When a variable is the wrong type.
+- raise FileNotFoundError("File missing") → When a file isn't found.
+
+

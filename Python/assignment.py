@@ -193,35 +193,75 @@ result = list(filter(lambda x: x > 50, nums))
 print(result)
 
 
-"""Study notes and solutions for the functions assignment."""
+#Assignment 8:
+#1. Car Class: Create a Car class with attributes brand, model, mileage, and add methods drive(km) (increases mileage) and __str__showing details.
+class Car:
+    def __init__(self, brand, model, mileage = 0):
+        self.brand = brand
+        self.model = model
+        self.mileage = mileage
 
+    def drive(self, km):
+        """Increases the car's mileage by km."""
+        self.mileage += km
+        print(f"{self.brand} {self.model} drove {km} km. Total mileage: {self.mileage} km.")
 
-# 1. Concise study
-#
-# Keyword arguments are arguments passed by parameter name. They make a call
-# easier to read, and their order does not matter.
-# Example: greetings(name="Paul", age=29)
-#
-# Arbitrary arguments allow a function to accept an unknown number of values.
-# Use *args for extra positional arguments and **kwargs for extra keyword
-# arguments. Inside the function, args is a tuple and kwargs is a dictionary.
-# Example: add_all(2, 4, 6) and show_details(name="Paul", age=29)
-#
-# A return statement sends a value back to the code that called the function.
-# The returned value can be stored, printed, or used in another expression.
-# A function without return sends back None.
+    def __str__(self):
+        return f"{self.brand} {self.model} - {self.mileage} km"
+    
+my_car = Car("Toyota", "Camry", 45000)
+my_car.drive(450)
+print(my_car)
 
+#2. Phone Book Class: Build a ContactBook class with an internal dictionary. Methods: add_contact(name, number), find(name), remove(name).
+class ContactBook:
+    def __init__(self):
+        self.contacts = {}
 
-# 2. Accept a string and return its length.
-def string_length(text):
-    return len(text)
+    def add_contact(self, name, number, address = None):
+        """Adds a contact to the phone book."""
+        self.contacts[name] = {"number": number, "address": address}
+        print(f"Added {name}: {number}")
 
+    def find(self, name):
+        """Finds and returns a contact's number."""
+        return self.contacts.get(name, "Contact not found.")
 
-# 3. Accept a character and a string and return the occurrence count.
-def count_character(character, text):
-    return text.count(character)
+    def remove(self, name):
+        """Removes a contact from the phone book."""
+        if name in self.contacts:
+            del self.contacts[name]
+            print(f"Removed {name} from contacts.")
+        else:
+            print(f"{name} not found in contacts.")
+            
+book = ContactBook()
+book.add_contact("Emmanuel John", "09078654567", "123 Main St")
+book.add_contact("Jane Smith", "08076546898", "456 Oak Ave")
+book.add_contact("Kelvin Agaskid", "07087654321", "789 Pine Rd")
+print(book.find("Emmanuel John"))
+book.remove("Jane Smith")
+print(book.find("Jane Smith"))
 
+#3. Share Inheritance: Create a parent shape class with an area() method. Make Square and Rectangle inherit from it, each overriding area() correctly. 
+class Shape:
+    def area(self):
+        return 0
 
-print(string_length("Python"))
-print(count_character("o", "Hello, how are you?"))
+class Square(Shape):
+    def __init__(self, side):
+        self.side = side
 
+    def area(self):
+        return self.side ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+print(f"Square area: {Square(5).area()}")
+print(f"Rectangle area: {Rectangle(4, 6).area()}")
