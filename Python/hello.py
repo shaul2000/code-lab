@@ -1,10 +1,10 @@
 print("Hello World") # Prints a basic greeting to the screen
 print(5 + 5) # Adds two numbers and prints the result: 10
 
-name = "Kelvin" #str = text (must be in quotes)
-age = 24 #int = whole number
-gpa = 3.5 #float = decimal number
-is_student = True #bool = true or false
+name = "Kelvin" # str = text (must be in quotes)
+age = 24 # int = whole number
+gpa = 3.5 # float = decimal number
+is_student = True # bool = true or false
 
 print("My name is " + name) # Combines text and a variable into one message
 print("I am " + str(age) + " years old") # Converts age to text before joining it with the sentence
@@ -13,16 +13,16 @@ print("I am a student: " + str(is_student)) # Converts the boolean to text so it
 
 print(type(age)) # Shows the data type of age (it should be <class 'int'>)
 
-x = "10" #this is a string, not an integer
-Y = int(x) #this converts the string to an integer
+x = "10" # This is a string, not an integer.
+Y = int(x) # This converts the string to an integer.
 print(type(Y)) # Shows that Y is now an integer after conversion
 print(type(x)) # Shows that x is still a string
 print( x + x) # Concatenates the string twice, so "10" + "10" becomes "1010"
 print( Y + Y) # Adds the integer values, so 10 + 10 = 20
 print(Y + 30) # Adds 30 to the integer value of Y, giving 40
 
-name = input("What is your name? ") #this will ask the user for input
-age = input("What is your age? ") #this will ask the user for input
+name = input("What is your name? ") # This asks the user for input.
+age = input("What is your age? ") # This asks the user for input.
 print("Hello " + name + ", you are " + age + " years old.") # Prints a greeting using the user's input
 # input() always returns a string, so you must convert it to int before doing math
 # This is why age is kept as text here instead of being added to a number
@@ -31,17 +31,17 @@ input("Press enter to exit") # Pauses the program until the user presses Enter
 
 
 name = "Kelvin"
-height = 1.75 #float = decimal number
-gpa = 3.5 #float = decimal number
-is_student = True #bool = true or false
+height = 1.75 # float = decimal number
+gpa = 3.5 # float = decimal number
+is_student = True # bool = true or false
 
 print("Name:", name) # Prints the person's name with a label
 print("Height:", height) # Prints the height value with a label
 print("GPA:", gpa) # Prints the GPA with a label
 print("Is student:", is_student) # Prints the boolean value with a label
 
-age_str = "24" #string
-age_int = int(age_str) #convert string to integer
+age_str = "24" # string
+age_int = int(age_str) # Convert the string to an integer.
 
 next_year = age_int + 1 #add 1 to the integer value of age
 print("Next year, I will be", next_year, "years old.") # Displays the person's next age after adding 1
@@ -57,7 +57,7 @@ print(words[-1]) # Prints the last word in the sentence
 
 
 text = "Hello, Good morning, how are you?"
-new_text = text.replace("morning", "afternoon") #replace "morning" with "afternoon"
+new_text = text.replace("morning", "afternoon") # Replace "morning" with "afternoon".
 print(new_text) # Prints the sentence after replacing the word "morning" with "afternoon"
 count = text.count("o") # Counts how many times the letter "o" appears in the text
 print("The letter 'o' appears", count, "times in the text.") # Shows the final count
@@ -194,7 +194,7 @@ print(f"Birth Year: {birth_date[0]}") # Show the year from the tuple
 year, month, day = birth_date # Unpack the tuple into separate variables
 print(f"Born on {day}/{month}/{year}") # Print the date in day/month/year format
 
-student = { #This is a Dictionary
+student = { # This is a dictionary.
     "name": "Samuel",
     "age": 23,
     "gpa": 4.6
@@ -255,8 +255,8 @@ print(f"Updated Car Year: {car['year']}")
 car["mileage"] = 70000 # Adds a new key-value pair to the dictionary
 print(f"Car Mileage: {car['mileage']}")
 
-del car["color"] # Removes the color key and its value
-print(f"Car Information{car}")
+del car["color"] # Removes the color key and its value.
+print(f"Car Information{car}") # Shows the remaining car details.
 
 # These methods return views of the dictionary's keys, values, and key-value pairs
 print(car.keys())
@@ -282,7 +282,7 @@ print(ift_student["address"])
 # Adds a new key-value pair to the nested address dictionary
 ift_student["address"]["country"] = "Nigeria"
 print(ift_student ["address"])
-print(f"Student Country:{ift_student["address"] ["country"]}")
+print(f"Student Country:{ift_student["address"] ["country"]}") # Prints the new country value.
 
 # Each student ID maps to a dictionary containing personal details and scores
 cpt_students = {
@@ -482,6 +482,7 @@ def square(x):
 print(square(4))  # Prints 16
 
 
+# Basic class example: a Dog object combines data (attributes) and behavior (methods).
 class Dog:
     def __init__(self, name, age):
         self.name = name    #Data (attribute)
@@ -501,7 +502,7 @@ print(my_dog.name)   #Rex
 print(my_dog.age)   # 3
 
 # Inheritance lets a child class reuse code from a parent class.
-# This Dog class replaces the earlier Dog example with an inheritance example.
+# This second Dog definition intentionally reuses the name for the inheritance example.
 class Animal:      # Parent class (also called a base class)
     def __init__(self, name):
         self.name = name
@@ -547,7 +548,7 @@ puppy.speak()
 print(puppy)  # Puppy also inherits the parent's __str__() method.
 
 
-#Arithmetic Operators: __add__, __sub__, etc.
+# Arithmetic Operators: __add__, __sub__, and other special methods.
 # A Vector stores a position or direction using x and y coordinates.
 class Vector:
     def __init__(self, x, y):
@@ -566,7 +567,7 @@ v2 = Vector(3, 4)
 v3 = v1 + v2      
 
 # Display the x and y coordinates of the resulting vector.
-print(v3.x, v3.y)  #Output: 4 6
+print(v3.x, v3.y)  # Output: 4 6
 
 
 # Comparison Operators: __eq__, __lt__, etc.
@@ -594,7 +595,7 @@ print(p3 < p1)   # True, because p3 is closer to the origin
 p4 = Point(3, 4)
 print(p4 < p1)   # False, because p4 is farther from the origin
 
-#Length: __len__ 📏
+# Length: __len__
 # A custom class that represents a collection of items and supports the len() function.
 class MyCollection:
     def __init__(self, items):
@@ -609,8 +610,8 @@ class MyCollection:
 collection = MyCollection(["LV Bag", "Leather Belt", "Iphone 18pro", "Wristwatch", ""])
 print(len(collection))  # Output: 5
 
-#Calling the Object: __call__ 📞
-# You can make an object behave like a function!
+# Calling an Object: __call__
+# You can make an object respond to function-call syntax.
 class Greeter:
     def __init__(self, name):
         self.name = name
@@ -621,3 +622,105 @@ class Greeter:
 # Create an instance of Greeter and call it like a function.
 greeting = Greeter("Kelvin")
 greeting()  # Output: Hello, This is Kelvin!
+
+
+# Encapsulation: keep an object's data protected and control access through methods.
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.__balance = balance  # Double underscore name-mangles the internal attribute.
+
+    def deposit(self, amount):
+        # Only allow positive amounts to be added to the account.
+        if amount > 0:
+            self.__balance += amount
+
+    def withdraw(self, amount):
+        # Prevent withdrawals that are larger than the current balance.
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            return True
+        return False
+
+    def get_balance(self):
+        # Provide controlled, read-only access to the balance.
+        return self.__balance
+
+
+account = BankAccount("Kelvin", 1000)
+account.deposit(250)
+account.withdraw(100)
+print(account.owner, account.get_balance())  # Output: Kelvin 1150
+
+
+# Abstraction: define the required action without specifying every implementation detail.
+from abc import ABC, abstractmethod
+
+
+class Payment(ABC):
+    @abstractmethod
+    def pay(self, amount):
+        # Every payment method must provide its own version of pay().
+        pass
+
+
+class CardPayment(Payment):
+    def pay(self, amount):
+        return f"Paid ${amount} by card."
+
+
+class CashPayment(Payment):
+    def pay(self, amount):
+        return f"Paid ${amount} in cash."
+
+
+# The user of these objects only needs to call pay(); each class handles the details.
+payments = [CardPayment(), CashPayment()]
+for payment in payments:
+    print(payment.pay(50))
+
+
+# Polymorphism: different classes can respond to the same method in their own way.
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+
+class RectangleShape:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+
+# The same area() call works for both shapes, even though the calculations differ.
+shapes = [Circle(3), RectangleShape(4, 5)]
+for shape in shapes:
+    print(f"Area: {shape.area()}")
+
+
+# Duck typing: an object can be used if it provides the required method,
+# regardless of its class or inheritance relationship.
+class EmailNotifier:
+    def send(self, message):
+        return f"Email sent: {message}"
+
+
+class SMSNotifier:
+    def send(self, message):
+        return f"SMS sent: {message}"
+
+
+def notify_user(notifier, message):
+    # This function only cares that notifier has a send() method.
+    print(notifier.send(message))
+
+
+# These unrelated classes both work because they follow the same behavior.
+notify_user(EmailNotifier(), "Your order is ready.")
+notify_user(SMSNotifier(), "Your order is ready.")

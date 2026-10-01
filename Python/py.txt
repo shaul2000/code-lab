@@ -575,4 +575,32 @@ You can raise specific types of errors to be more helpful:
 - raise TypeError("Wrong type") → When a variable is the wrong type.
 - raise FileNotFoundError("File missing") → When a file isn't found.
 
+Encapsulation (Hiding Data):
+Encapsulation is a way to hide the internal state of an object and only expose what’s necessary. This is done to protect the integrity of the data and prevent external code from messing with it in unintended ways.
+- Public Attributes: Accessible from anywhere.
+- Private Attributes: Start with __ (double underscore). Not directly accessible from outside the class.
 
+Abstraction (Simplifying Complexity):
+Abstraction is the concept of hiding complex implementation details and showing only the essential features of an object
+- Example: When you drive a car, you don't need to know how the engine works.
+
+How to do it in Python:
+We use Abstract Base Classes (ABC) from the abc module. An abstract class can have abstract methods that must be implemented by any subclass.
+from abc import ABC, abstractmethod
+class Animal(ABC):
+    @abstractmethod
+    def speak(self):
+        pass  # Subclasses must implement this method
+
+
+Polymorphism (Many Forms):
+Polymorphism allows objects of different classes to be treated as objects of a common superclass. It means "many forms" and lets you use the same method name for different types of objects.
+- Example: Both Dog and Cat classes can have a speak() method, but they behave differently
+- This allows you to write code that works with any Animal, without caring if it's a Dog
+
+Duck Typing (If it Quacks Like a Duck):
+Duck typing is a concept in Python where the type or class of an object is less important than the methods it defines. If an object behaves like a certain type (has the right methods), you can use it as if it were that type, regardless of its actual class.
+- Example: If an object has a speak() method, you can treat it as an Animal, even if it's not explicitly a subclass of Animal.
+
+Built-in Polymorphism (len(), +, etc.):
+Python's built-in functions and operators are polymorphic. For example, len() can be used on strings, lists, dictionaries, and more. The + operator can concatenate strings or add numbers, depending on the types of the operands. This is an example of polymorphism in action, where the same function or operator behaves differently based on the input types.
