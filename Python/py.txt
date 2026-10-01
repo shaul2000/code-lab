@@ -4,11 +4,9 @@ Python is a programming language that reads almost like English. It's used for:
     - Data & AI (ChatGPT, Netflix recommendations)
     - Automation (sending emails, renaming 1000 files at once).
 
-History: Created by Guido van Rossum in 1991, named after 
-Monty Python (not the snake 🐍).
+History: Created by Guido van Rossum in 1991, named after Monty Python (not the snake 🐍).
 
-How Python Code Runs:
-You write code → Python reads it line by line.
+How Python Code Runs: You write code → Python reads it line by line.
 
 Your code (.py file)
       ↓
@@ -17,6 +15,7 @@ Interpreter (reads it)
 Bytecode (middle-level, machine-friendly)
       ↓
 Result on your screen
+
 You don't need to memorize this. Just know: Python runs top to bottom, one line at a time.
 
 Setup:
@@ -27,11 +26,10 @@ Setup:
  5. Run it in the terminal with: python hello.py
 
  print() and Comments:
- # = comment. Anything after # on that line is not run.
- print("Hello World"): Prints the text "Hello World" to the screen.
+ - # = comment. Anything after # on that line is not run.
+ - print("Hello World"): Prints the text "Hello World" to the screen.
 
-Variables:
-A variable is a box that stores a value. You give the box a name.
+Variables: A variable is a box that stores a value. You give the box a name.
 
 The 4 core data types:
 1. - Type: str
@@ -51,27 +49,21 @@ The 4 core data types:
       - Example: True 
 
 Check any type with type():
-
-Type Conversion:
-Sometimes you need to change one type into another.
+Type Conversion: Sometimes you need to change one type into another.
 Common conversions: int(), float(), str()
 
 Strings, Numbers & User Input
-1. String Methods (Tools for Text):
-      Strings (text) have built-in tools called methods. You use them with a dot (.).
-
-            # .upper() and .lower():
+1. String Methods (Tools for Text): Strings (text) have built-in tools called methods. You use them with a dot (.).
+      # .upper() and .lower():
                   - Make text all caps or all lowercase.
 
-            # .split():
+      # .split():
                   - Break a long sentence into a list (array) of words.
 
-            # .replace():
+      # .replace():
             Swap one word for another.
 
-2. Indexing and Slicing (Grabbing Parts of Text):
-      Think of a string as a row of boxes, numbered starting from 0.
-
+2. Indexing and Slicing (Grabbing Parts of Text): Think of a string as a row of boxes, numbered starting from 0.
       - String: "  K  e  l  v  i  n  "
       - Index:   0  1  2  3  4  5  6
 
@@ -80,10 +72,7 @@ Strings, Numbers & User Input
                   - Start is inclusive (included).
                   - End is exclusive (NOT included).
 
-3. f-strings (The Modern way to print):
-      Instead of using the + or the , to join text and variables, use f before the quote. 
-      It's cleaner and easier. and also gives you control over the spacing so it 
-      appears how you typed it and not adding spacing.
+3. f-strings (The Modern way to print): Instead of using the + or the , to join text and variables, use f before the quote. It's cleaner and easier. and also gives you control over the spacing so it appears how you typed it and not adding spacing.
       - Why it's better: You don't need str() or +. Just put the variable name inside {}.
 
             
@@ -162,12 +151,10 @@ Common Mistake: Use == to compare. Use = to assign.
 -x = 5: "Put 5 in x"
 -x == 5: "Is x equal to 5?"
 
-2. if, elif, else (The Decision Tree):
-This is how Python makes choices. It works like a fork in the road.
+2. if, elif, else (The Decision Tree): This is how Python makes choices. It works like a fork in the road.
 
 How it works:
-- Python checks the first if. If True, it runs that block and skips everything else.
-If the first if is False, it checks the
+- Python checks the first if. If True, it runs that block and skips everything else. If the first if is False, it checks the
 - elif ("else if"). If all if and elif are False, it runs the 
 - else block.
 Key Rule: Only one block runs.
@@ -242,8 +229,7 @@ A one-line way to build a new list from an old one.
 
 Formula: [expression for item in list if condition]
 
-5. Nested Lists (A List Inside a List)
-Perfect for tables of data.
+5. Nested Lists (A List Inside a List) Perfect for tables of data.
 Think of it like Excel: students[row][column].
 
 Tuples & Dictionaries:
