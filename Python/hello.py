@@ -499,3 +499,125 @@ dog2.bark()   # Bella says: Woof!
 my_dog = Dog("Rex", 3)    #Calls__init__automatically
 print(my_dog.name)   #Rex
 print(my_dog.age)   # 3
+
+# Inheritance lets a child class reuse code from a parent class.
+# This Dog class replaces the earlier Dog example with an inheritance example.
+class Animal:      # Parent class (also called a base class)
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        # Controls the readable text shown when an Animal object is printed.
+        return f"Animal name: {self.name}"
+        
+    def speak(self):
+        print("Some generic animal sound")  # The general version of the method
+        
+class Dog(Animal): # Child class - inherits from Animal
+    # This method overrides Animal.speak() with a dog-specific version.
+    def speak(self):
+        print(f"{self.name} says: Woof!")
+        
+class Cat(Animal):   # Another child class with its own version of speak()
+    def speak(self):
+        print(f"{self.name} says: Meow!")
+        
+# Create objects from the child classes and call their overridden methods.
+d = Dog("Rex")
+c = Cat("Whiskers")
+
+d.speak()   # Rex says: Woof!
+c.speak()   # Whiskers says: Meow!
+
+# Because __str__ is inherited, print(d) uses Animal.__str__().
+print(d)     # Animal name: Rex
+
+
+# Puppy inherits from Dog, so Dog is Puppy’s parent class here.
+class Puppy(Dog):
+    def speak(self):
+        # super() calls the parent class method before adding new behavior.
+        super().speak()  # Calls Dog.speak(), which prints the Woof! message.
+        print(f"{self.name} is still a puppy.")
+
+
+# Calling Puppy.speak() runs both the parent and child messages.
+puppy = Puppy("Buddy")
+puppy.speak()
+print(puppy)  # Puppy also inherits the parent's __str__() method.
+
+
+#Arithmetic Operators: __add__, __sub__, etc.
+# A Vector stores a position or direction using x and y coordinates.
+class Vector:
+    def __init__(self, x, y):
+        # Save the coordinates on this Vector object.
+        self.x = x
+        self.y = y
+        
+    def __add__(self, other):
+        # Add matching coordinates and return a new Vector with the result.
+        return Vector(self.x + other.x, self.y + other.y)
+    
+# Create two vectors that will be added together.
+v1 = Vector(1, 2)
+v2 = Vector(3, 4)
+# Python translates v1 + v2 into a call to v1.__add__(v2).
+v3 = v1 + v2      
+
+# Display the x and y coordinates of the resulting vector.
+print(v3.x, v3.y)  #Output: 4 6
+
+
+# Comparison Operators: __eq__, __lt__, etc.
+# A Point represents a location that can be compared with another Point.
+class Point:
+    def __init__(self, x, y):
+        # Store the point's coordinates for later comparison.
+        self.x = x
+        self.y = y
+        
+    def __eq__(self, other):
+        # Two points are equal when both of their coordinates match.
+        return self.x == other.x and self.y == other.y
+    
+    def __lt__(self, other):
+        # A point is less than another when its distance from the origin is smaller.
+        return (self.x ** 2 + self.y ** 2) < (other.x ** 2 + other.y ** 2)
+
+p1 = Point(1, 2)
+p2 = Point(1, 2)
+print(p1 == p2)  # True, because both points have the same coordinates.
+p3 = Point(0, 1)
+print(p3 < p1)   # True, because p3 is closer to the origin
+
+p4 = Point(3, 4)
+print(p4 < p1)   # False, because p4 is farther from the origin
+
+#Length: __len__ 📏
+# A custom class that represents a collection of items and supports the len() function.
+class MyCollection:
+    def __init__(self, items):
+        # Store the items in a list for later use.
+        self.items = items
+        
+    def __len__(self):
+        # Return the number of items in the collection.
+        return len(self.items)
+
+# Create an instance of MyCollection and use len() to get its length.
+collection = MyCollection(["LV Bag", "Leather Belt", "Iphone 18pro", "Wristwatch", ""])
+print(len(collection))  # Output: 5
+
+#Calling the Object: __call__ 📞
+# You can make an object behave like a function!
+class Greeter:
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print(f"Hello, This is {self.name}!")
+
+# Create an instance of Greeter and call it like a function.
+greeting = Greeter("Kelvin")
+greeting()  # Output: Hello, This is Kelvin!

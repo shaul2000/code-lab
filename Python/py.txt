@@ -505,3 +505,48 @@ _init__, self, and Instance Methods:
 
 - Term: self.name:
 - Meaning: Stored data inside this particular object.
+
+Inheritance and Overriding
+Inheritance lets a new class (child/subclass) automatically get all attributes and methods of an existing class (parent/superclass).
+
+Adding Your Own __init__ with super():
+Often the child needs EXTRA data beyond the parent's. That's where super() comes in:
+
+Method Overriding — Customizing Inherited Behavior:
+Overriding = when the child defines its OWN version of a method the parent already has. The child's version wins.
+
+Calling the Parent's Version Anyway:
+Sometimes you want to extend the parent's method, not replace it completely:
+super().info() runs the parent's logic, then we continue with ours. Reuse + customize in two lines. 
+
+
+Dunder (Magic) Methods:
+Dunder methods are special methods that start and end with double underscores (__). They let you define how your objects behave with built-in Python operations.
+
+__str__The "Nice" Print:
+By default, if you print() an object, Python shows you its memory address:
+
+      <main.MyClass object at 0x7f8b8c>
+
+That’s not helpful! __str__ lets you define a human-readable string representation. 
+
+__repr__The "Official" Print:
+__repr__ is meant to be unambiguous and for developers. It should ideally return a string that, if passed to eval(), would recreate the object. If __str__ is not defined, Python falls back to __repr__ when you print() an object.
+
+Arithmetic Operators: __add__, __sub__, etc.
+You can make your objects behave like numbers!
+
+a + b triggers a.__add__(b)
+a - b triggers a.__sub__(b)
+
+Comparison Operators: __eq__, __lt__, etc.
+You can control how your objects compare:
+
+== triggers __eq__ (equal)
+< triggers __lt__ (less than)
+
+Length: __len__ 📏
+Make your objects work with len():
+
+Calling the Object: __call__ 📞
+You can make an object behave like a function!

@@ -215,6 +215,43 @@ new_products.sort(key = lambda p: p["price"])
 
 for p in new_products:
     print(f"{p["name"]}: ${p["price"]}")
+    
+    
+#Student Class: Create a Student class with methods to get grades and study.
+class Student:
+    def __init__(self, name, score, age):
+        self.name = name
+        self.score = score
+        self.age = age
+
+    def get_grade(self):
+        if self.score >= 90:
+            return "A"
+        elif self.score >= 80:
+            return "B"
+        elif self.score >= 70:
+            return "C"
+        elif self.score >= 60:
+            return "D"
+        else:
+            return "F"
+        
+    def study(self, hours):
+        print(f"{self.name} is studying for {hours} hours.")
+        self.score += hours * 2  #Assuming each hour of study increases score by 2 points
+        
+    def __str__(self):
+        return f"Student: {self.name}, Age: {self.age}, Score: {self.score}, Grade: {self.get_grade()})"
+    
+#Usage:
+student1 = Student("Emmanuel", 85, 20)
+print(student1)  #Emmanuel's details
+
+student1.study(5)  #Emmanuel studies for 5 hours
+print(student1)  #Updated details after studying
+
+
+
 
 
 
