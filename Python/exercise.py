@@ -250,39 +250,90 @@ print(student1)  #Emmanuel's details
 student1.study(5)  #Emmanuel studies for 5 hours
 print(student1)  #Updated details after studying
 
+#Bank Account Class: Deposit, Withdraw, and Check Balance with transaction history.
+class BankAccount:
+    def __init__(self, account_holder, initial_balance=0):
+        self.account_holder = account_holder
+        self.balance = initial_balance
+        self.transactions = []  #List to keep track of transactions
 
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            self.transactions.append(f"Deposited: NGN{amount}")
+            print(f"Deposited NGN{amount}. New Balance: NGN{self.balance}")
+        else:
+            print("Deposit amount must be positive.")
 
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            self.transactions.append(f"Withdrew: NGN{amount}")
+            print(f"Withdrew NGN{amount}. New Balance: NGN{self.balance}")
+        else:
+            print("Invalid withdrawal amount.")
+        if amount > self.balance:
+            print("Insufficient funds!.")
 
+    def check_balance(self):
+        print(f"Current Balance: NGN{self.balance}")
 
+    def transaction_history(self):
+        print(f"\n===== Transaction History =====")
+        for transaction in self.transactions:
+            print(f"{transaction}")
+        print(f"Current Balance: NGN{self.balance}")
+        
+#Usage:
+account = BankAccount("Emmanuel", 10000)
+account.deposit(5000)
+account.withdraw(2526)
+account.withdraw(20000)  #Attempt to withdraw more than balance
+account.check_balance()
+account.transaction_history()
 
+account2 = BankAccount("Solomon", 5000)
+account2.deposit(3000)
+account2.withdraw(1000)
+account2.withdraw(8000)  #Attempt to withdraw more than balance
+account2.check_balance()
+account2.transaction_history()
 
-
-My_name = "Emmanuel Solomon"
-My_school_name = "Federal University of Technology, Minna"
-
-def my_second_function():
-    print(My_name)
-    print(My_school_name)
+#Animal Inheritance: Dog and cat classed inheriting from Animal.
+class Animal:
+    def __init__(self, name, sound):
+        self.name = name
+        self.sound = sound
+        
+    def speak(self):
+        print(f"{self.name} says {self.sound}")
+        
+    def sleep(self):
+        print(f"{self.name} is sleeping....")
+        
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name, "Woof!") #Reuse parent's constructor and set sound to "Woof!"
     
-#function invocation
-my_second_function()
+    def fetch(self):     #Dog-only method
+        print(f"{self.name} is fetching the ball!")
+        
+class Cat(Animal):
+    def __init__(self, name):
+        super().__init__(name, "Meow!") #Reuse parent's constructor and set sound to "Meow!"
+    
+    def climb(self): #Cat-only method
+        print(f"{self.name} climbs the tree!")
+        
+#Usage:
+rudy = Dog("Rudy")
+whiskers = Cat("Whiskers")
+
+rudy.speak()    #Rudy says Woof!   - inherited from Animal
+rudy.sleep()    #Rudy is sleeping.... - inherited from Animal
+rudy.fetch()    #Rudy is fetching the ball! - Dog-only method
 
 
-#Function that will accept 2 numbers and find their product
-def find_product(num1, num2):
-    product = num1 * num2
-    print(f"The product of {num1} and {num2} is {product}")
-    
-    
-find_product(12, 14)
-find_product(18, 53)
-    
- #Finding the quotient of 2 numbers
-def findQ(num1, num2):
-    if num2 == 0:
-        print("Error: Division by zero is not allowed.")
-    else:
-        quotient = num1 / num2
-        print(f"The quotient of {num1} and {num2} is {quotient}")
-findQ(27, 3)
-findQ(27, 0)
+whiskers.speak()  #Whiskers says Meow!   - inherited from Animal
+whiskers.sleep()  #Whiskers is sleeping.... - inherited from Animal
+whiskers.climb()  #Whiskers climbs the tree! - Cat-only method
