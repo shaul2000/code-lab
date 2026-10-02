@@ -1,0 +1,4 @@
+Python file handling practice
+Files can store information between program runs.
+The with statement closes this file for us.
+This sentence was added later.

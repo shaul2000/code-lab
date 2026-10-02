@@ -724,3 +724,66 @@ def notify_user(notifier, message):
 # These unrelated classes both work because they follow the same behavior.
 notify_user(EmailNotifier(), "Your order is ready.")
 notify_user(SMSNotifier(), "Your order is ready.")
+
+# FILE HANDLING
+# File handling lets a program save information to a file and read it later.
+# The "with" statement automatically closes the file when the indented block ends.
+
+from pathlib import Path
+
+file_path = Path("file_handling_demo.txt")
+
+# 1. Writing to a file
+# "w" means write. It creates the file if it does not exist,
+# or replaces its contents if it already exists.
+with open(file_path, "w", encoding="utf-8") as file:
+    file.write("Python file handling practice\n")
+    file.write("Files can store information between program runs.\n")
+    file.write("The with statement closes this file for us.\n")
+
+print(f"Created: {file_path}")
+
+
+# 2. Reading the entire file
+# "r" means read. This is the default mode, but writing it explicitly is clear.
+with open(file_path, "r", encoding="utf-8") as file:
+    contents = file.read()
+
+print("\n--- Entire file ---")
+print(contents)
+
+
+# 3. Reading one line at a time
+# A for loop reads each line in order without loading all lines at once.
+print("--- Reading line by line ---")
+with open(file_path, "r", encoding="utf-8") as file:
+    for line in file:
+        print(line.strip())  # strip() removes the newline at the end of each line.
+
+
+# 4. Appending to a file
+# "a" means append. It adds new content to the end without erasing existing content.
+# Include "\n" to start the new text on its own line.
+with open(file_path, "a", encoding="utf-8") as file:
+    file.write("This sentence was added later.\n")
+
+print("\n--- File after appending ---")
+with open(file_path, "r", encoding="utf-8") as file:
+    print(file.read())
+
+
+# 5. Handling a file that cannot be found
+# If a file does not exist, opening it in read mode raises FileNotFoundError.
+missing_file = Path("this_file_does_not_exist.txt")
+
+try:
+    with open(missing_file, "r", encoding="utf-8") as file:
+        print(file.read())
+except FileNotFoundError:
+    print(f"\nCould not find {missing_file}. Check the file name or location.")
+
+
+# Common file modes:
+# "r" = read an existing file
+# "w" = write; create a file or replace its existing contents
+# "a" = append; add content to the end of a file
