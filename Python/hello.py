@@ -787,3 +787,87 @@ except FileNotFoundError:
 # "r" = read an existing file
 # "w" = write; create a file or replace its existing contents
 # "a" = append; add content to the end of a file
+
+
+#JSON HANDLING
+import json
+
+# PART 1: THE DATA (Python Dictionary)
+# Writing a Python dictionary to a JSON file
+data = {
+    "name": "Kelvin",
+    "age": 24,
+    "level": "Intermediate",
+    "gpa": 3.5,
+    "is_student": True,     #Python True becomes JSON true (lowercase)
+    "courses": ["Math", "Python", "Physics"],
+    "scores": {
+        "Math": 90,
+        "Python": 85,
+        "Physics": 78,
+    },
+}
+# PART 2: SERIALIZATION (Python Dictionary -> JSON String)
+# Convert the dictionary to a JSON string with indentation for readability and write it to a file.
+# "w" = write mode; creates the file if it doesn't exist or overwrites it if it does.
+json_string = json.dumps(data, indent = 4)  # Convert the dictionary to a JSON string with indentation for readability.
+with open("data.json", "w", encoding="utf-8") as json_file:
+    json_file.write(json_string)
+print(f"Created: data.json")
+
+
+# PART 3: DESERIALIZATION (JSON String -> Python Dictionary)
+# Read the JSON string from the file and convert it back to a Python dictionary.
+with open("data.json", "r", encoding="utf-8") as json_file:
+    text_from_file = json_file.read()  # Read the JSON string from the file.
+    data_from_json = json.loads(text_from_file)  # Convert the JSON string back to a Python dictionary.
+print("\n--- Data read from JSON file ---")
+print(data_from_json)
+
+
+# PART 4: USING THE DATA FROM THE JSON FILE
+# Accessing values from the deserialized dictionary.
+print(f"Name: {data_from_json['name']}")  # Access the name value
+print(f"Age: {data_from_json['age']}")    # Access the age value
+print(f"GPA: {data_from_json['gpa']}")    # Access the GPA value
+print(f"Is Student: {data_from_json['is_student']}")  # Access the boolean value
+print(f"Courses: {data_from_json['courses']}")  # Access the list of courses
+print(f"Math Score: {data_from_json['scores']['Math']}")  # Access the nested dictionary value for Math score
+print(f"Python Score: {data_from_json['scores']['Python']}")  # Access the nested dictionary value for Python score
+print(f"Physics Score: {data_from_json['scores']['Physics']}")  # Access the nested dictionary value for Physics score
+print(f"All Scores: {data_from_json['scores']}")  # Access the entire nested dictionary of scores
+print(f"Keys in data: {list(data_from_json.keys())}")  # List all keys in the dictionary
+print(f"Values in data: {list(data_from_json.values())}")  # List all values in the dictionary
+print(f"Items in data: {list(data_from_json.items())}")  # List all key-value pairs in the dictionary
+print(f"Number of keys in data: {len(data_from_json)}")  # Count the number of keys in the dictionary
+print(f"Is 'name' a key in data? {'name' in data_from_json}")  # Check if 'name' is a key in the dictionary
+print(f"Is 'address' a key in data? {'address' in data_from_json}")  # Check if 'address' is a key in the dictionary
+
+print(f"Average Score: {sum(data_from_json['scores'].values()) / len(data_from_json['scores'])}")  # Calculate the average score
+
+print((f"Courses: {', '.join(data_from_json['courses'])}"))  # Join the list of courses into a single string
+
+print(f"First Course: {data_from_json['courses'][0]}")  # Access the first course in the list
+print(f"Last Course: {data_from_json['courses'][-1]}")  # Access the last course in the list
+
+#Looping Through the nested scores dictionary.
+for subject, score in data_from_json['scores'].items():
+    print(f"{subject}: {score}")
+
+# PART 5: MODIFYING THE DATA AND WRITING BACK TO JSON (UPDATE CYCLE)
+# Update the GPA and add a new course to the list of courses.
+data_from_json['gpa'] = 4.3  # Update the GPA value
+data_from_json['courses'].append("Data Science")  # Add a new course to the list
+
+#SAVE THE UPDATED DATA BACK TO THE JSON FILE
+updated_string = json.dumps(data_from_json, indent=4)  # Convert the updated dictionary back to a JSON string
+with open("data.json", "w", encoding="utf-8") as json_file:
+    json_file.write(updated_string)  # Write the updated JSON string back to the file
+print("\n--- Updated data written back to data.json ---")
+
+# PART 6: READING THE UPDATED JSON FILE TO VERIFY CHANGES
+with open("data.json", "r", encoding="utf-8") as json_file:
+    updated_text_from_file = json_file.read()  # Read the updated JSON string from the file
+    updated_data_from_json = json.loads(updated_text_from_file)  # Convert it back to a Python dictionary
+print("\n--- Data read from updated JSON file ---")
+print(updated_data_from_json)  # Print the updated dictionary to verify changes

@@ -622,3 +622,49 @@ Without it, Python uses your OS default encoding. On Windows that might be cp125
 Result: code that works on your machine crashes or corrupts data on another machine. Classic "works on my machine" bug.
 UTF-8 handles every language + symbols (₦, £, é, 😊). Always declare it explicitly — it prevents silent data corruption.
 
+
+
+JSON (JavaScript Object Notation): Structured Data for Humans & Machines
+JSON is a lightweight data format that is easy for humans to read and write, and easy for machines to parse and generate. It's commonly used for data exchange between a server and a web application,
+or between different parts of a software system and is also perfect for storing and transmitting structured data.
+- JSON is text-based and language-independent, making it a universal format for data interchange.
+
+The Four Functions of JSON in Python:
+1. json.dump() → Write Python object to a JSON file.
+2. json.dumps() → Convert Python object to a JSON string.
+3. json.load() → Read JSON file and convert to Python object.
+4. json.loads() → Convert JSON string to Python object.
+functions with s at the end (dumps, loads) work with strings, while the others (dump, load) work with files.
+
+NOTE: JSON is a subset of Python's dictionary syntax, but not all Python objects can be represented in JSON. For example, Python tuples and sets are not directly supported in JSON.
+
+The 2 shapes you need to know:
+Shape 1: { } Object (dictionary-like):
+{
+    "name": "Alice",
+    "age": 30,
+    "is_student": false
+}
+Shape 2: [ ] Array (list-like):
+[
+    "apple",
+    "banana",
+    "cherry"
+]
+
+NB: Object contains key-value pairs, while arrays are ordered lists of values. JSON can also nest these structures, allowing for complex data representations. Objects can contain arrays, and arrays can contain objects, enabling the representation of hierarchical data.
+
+The Rules of JSON:
+1. Data is in name/value pairs (key: value).
+2. Data is separated by commas.
+3. Curly braces hold objects (dictionaries).
+4. Square brackets hold arrays (lists).
+5. Keys must be strings (in double quotes).
+6. Values can be strings, numbers, objects, arrays, true, false, or null
+7. No comments are allowed in JSON. It's purely data, no explanations.
+8. Whitespace is ignored outside of strings, so you can format JSON for readability without affecting its meaning.
+
+Part 1: The Data (Python Dictionary):
+Part 2: SERIALIZATION (Python → JSON):
+- json.dump() → Write Python object to a JSON file.
+- json.dumps() → Convert Python object to a JSON string.

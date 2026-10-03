@@ -1,0 +1,18 @@
+{
+    "name": "Kelvin",
+    "age": 24,
+    "level": "Intermediate",
+    "gpa": 4.3,
+    "is_student": true,
+    "courses": [
+        "Math",
+        "Python",
+        "Physics",
+        "Data Science"
+    ],
+    "scores": {
+        "Math": 90,
+        "Python": 85,
+        "Physics": 78
+    }
+}
