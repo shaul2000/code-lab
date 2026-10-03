@@ -621,3 +621,4 @@ Why encoding="utf-8" matters (Cybersecurity/IT angle 🛡️):
 Without it, Python uses your OS default encoding. On Windows that might be cp1252; on Linux utf-8.
 Result: code that works on your machine crashes or corrupts data on another machine. Classic "works on my machine" bug.
 UTF-8 handles every language + symbols (₦, £, é, 😊). Always declare it explicitly — it prevents silent data corruption.
+
