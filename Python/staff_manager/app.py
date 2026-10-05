@@ -56,3 +56,28 @@ class StaffManager:
         self.staff.append(staff_member)
         print (f"Staff member {name} added successfully with ID {staff_id}, department: {department} , position: {position} , role: {role} , salary: {salary} .")
         self.save_data()
+        
+    def list_staff(self):
+        if not self.staff:
+            print("No staff members found.")
+            return
+        
+        print("\n===== STAFF DIRECTORY =====")
+        print(f"{'ID':<10} {'Name':<20} {'Department':<15} {'Position':<15} {'Role':<15} {'Salary':<10}")
+        print("=" * 90)
+        for member in self.staff:
+            print(f"{member['id']:<10} {member['name']:<20} {member['department']:<15} {member['position']:<15} {member['role']:<15} {member['salary']:<10}")
+            print("=" * 90)
+            
+    def search_staff(self, search_term):
+        # Search for staff members by ID (case-insensitive)
+        results = [member for member in self.staff if search_term.lower() in member['id'].lower()]
+        
+        if results:
+            print(f"\n===== SEARCH RESULTS FOR '{search_term}' =====")
+            print(f"{'ID':<10} {'Name':<20} {'Department':<15} {'Position':<15} {'Role':<15} {'Salary':<10}")
+            print("=" * 90)
+            for member in results:
+                print(f"{member['id']:<10} {member['name']:<20} {member['department']:<15} {member['position']:<15} {member['role']:<15} {member['salary']:<10}")
+        else:
+            print(f"No staff members found matching '{search_term}'.")
