@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 class StaffManager:
     # ---- Reusable Table Header ----
-    table_header = f"{'ID':<10} {'Name':<20} {'Department':<15} {'Position':<15} {'Role':<15} {'Salary':<10} {'Joined Date':<12}"
+    table_header = f"{'ID':<10} {'First Name':<13} {'Last Name':<13} {'Department':<15} {'Position':<15} {'Role':<15} {'Salary':<10} {'Joined Date':<12}"
     divider = "=" * 120
 
     def __init__(self):
@@ -66,19 +66,20 @@ class StaffManager:
         print(self.divider)
         for member in members:
             print(
-                f"{member['id']:<10} {member['name']:<20} {member['department']:<15} {member['position']:<15} {member['role']:<15} {member['salary']:<10} {member['joined_date']:<12}"
+                f"{member['id']:<10} {member['first_name']:<13} {member['last_name']:<13} {member['department']:<15} {member['position']:<15} {member['role']:<15} {member['salary']:<10} {member['joined_date']:<12}"
             )
         print(self.divider)
 
     # ---Staff Operations---
-    def add_staff(self, name, department, position, role, salary):
+    def add_staff(self, first_name, last_name, department, position, role, salary):
         # Generate a unique ID for the new staff member
         staff_id = f"STF{self.next_id:04d}"  # Format the ID with leading zeros (e.g., STF0001, STF0002, etc.)
         self.next_id += 1  # Increment the next_id for future staff members
 
         staff_member = {
             "id": staff_id,
-            "name": name,
+            "first_name": first_name,
+            "last_name": last_name,
             "department": department,
             "position": position,
             "role": role,
@@ -89,7 +90,7 @@ class StaffManager:
         }
         self.staff.append(staff_member)
         print(
-            f"Staff member {name} added successfully with ID {staff_id}, department: {department} , position: {position} , role: {role} , salary: {salary} ."
+            f"Staff member {first_name} {last_name} added successfully with ID {staff_id}, department: {department} , position: {position} , role: {role} , salary: {salary} ."
         )
         self.save_data()
 
@@ -109,7 +110,14 @@ class StaffManager:
             for member in self.staff
             if any(
                 term in str(member[k]).lower()
-                for k in ("id", "name", "department", "position", "role")
+                for k in (
+                    "id",
+                    "first_name",
+                    "last_name",
+                    "department",
+                    "position",
+                    "role",
+                )
             )
         ]
 
@@ -118,6 +126,26 @@ class StaffManager:
             self._print_table(results)
         else:
             print(f"No staff members found matching '{search_term}'.")
+
+    def update_staff(self, staff_id):
+        """Find a staff member by ID and update one field."""
+        # Locate the record
+        target = None
+        for member in self.staff:
+            if member["id"].lower() == staff_id.lower():
+                target = member
+                break
+
+        # Handle "Not Found"
+        if not target:
+            print(f"\n No staff member found with ID {staff_id}.")
+            return
+
+        # Show current values before editing
+        print(f"\n Editing {target['name']} ({target['id']})")
+        print("-" * 50)
+        for key, value in target.items():
+            print(f" {key}: {value}")
 
 
 # ---- Main Program Loop ----
@@ -135,10 +163,15 @@ def main():
 
         if choice == "1":
             # Validate all inputs to ensure they are not empty
-            name = input("Enter staff member's name: ").strip()
-            if not name:
-                print("Name cannot be empty. Please try again.")
+            first_name = input("Enter first name: ").strip()
+            if not first_name:
+                print("First name cannot be empty. Please try again.")
                 continue  # Skip to the next iteration of the loop if name is empty
+
+            last_name = input("Enter last name: ").strip()
+            if not last_name:
+                print("last name cannot be empty.")
+                continue
 
             department = input("Enter department: ").strip()
             if not department:
@@ -166,7 +199,7 @@ def main():
                 print("Salary cannot be negative. Please enter a valid salary.")
                 continue
 
-            manager.add_staff(name, department, position, role, salary)
+            manager.add_staff(first_name, last_name, department, position, role, salary)
 
         elif choice == "2":
             manager.list_staff()
