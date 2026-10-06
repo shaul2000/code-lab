@@ -18,12 +18,20 @@ Security-First: Implements defensive programming, input validation, and filesyst
 
 
 3. Key Features
-Feature:	                                        Description
-ID Generation:	                                    Unique, sequential IDs (STF0001, STF0002) to ensure record integrity.
-Audit Trails:	                                    Automatic tracking of "Joined Date" using UTC timestamps.
-Comprehensive Search:	                            Allows searching across multiple fields (ID, Name, Department, Role) with case-insensitive matching.
+Features & Descriptions
+ID Generation:	                                    
+- Unique, sequential IDs (STF0001, STF0002) to ensure record integrity.
+
+Audit Trails:	                                    
+- Automatic tracking of "Joined Date" using UTC timestamps.
+
+Comprehensive Search:	                            
+- Allows searching across multiple fields (ID, Name, Department, Role) with case-insensitive matching.
+
+
 Data Validation:	                                Validates numeric salaries and prevents empty string inputs.
-CRUD Operations:	                                Supports full Create, Read, Update, and Delete workflows.
+CRUD Operations:	                                
+- Supports full Create, Read, Update, and Delete workflows.
 
 
 4. Security & Best Practices Implemented
