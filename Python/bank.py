@@ -1,13 +1,11 @@
 # import random package or module
-import random 
+import random
 
 # declare storage to store customer, staff and manager details
 customers = []
 staff_users = []
-manager = {
-    "username":"machinee",
-    "password":"@123$456&789)"
-}
+manager = {"username": "machinee", "password": "@123$456&789)"}
+
 
 # function to display the application menu
 def appMenu():
@@ -17,6 +15,7 @@ def appMenu():
     print("3. Staff Login")
     print("4. Manager Login")
     print("5. Exit")
+
 
 # helper to avoid crashing when user provides no input or interrupts the program
 def safe_input(prompt):
@@ -30,6 +29,7 @@ def safe_input(prompt):
         except (EOFError, KeyboardInterrupt):
             print("\nInput ended. Exiting the application.")
             raise SystemExit
+
 
 # customers operation
 # 1. account creation
@@ -47,32 +47,33 @@ def CreateAccount():
     nationality = safe_input("Enter your country: ")
     state = safe_input("Enter your state of origin: ")
     gender = safe_input("Enter your gender(M/F): ")
-    
+
     # system auto generate account number for customer
     account = random.randint(2020000000, 2029999999)
     password = safe_input("create password: ")
 
-#create a customer dictionary object
+    # create a customer dictionary object
     new_customer = {
-         "firstname": fName,
-         "lastname": lName,
-         "email": email,
-         "phone": phone,
-         "home": home,
-         "gender": gender,
-         "country": nationality,
-         "state": state,
-         "dob": dob,
-         "account": account,
-         "password": password,
-         "balance": 0.00,
-         "pin": None,
-         "restricted": False
+        "firstname": fName,
+        "lastname": lName,
+        "email": email,
+        "phone": phone,
+        "home": home,
+        "gender": gender,
+        "country": nationality,
+        "state": state,
+        "dob": dob,
+        "account": account,
+        "password": password,
+        "balance": 0.00,
+        "pin": None,
+        "restricted": False,
     }
-    
+
     # store to the new customer list above
     customers.append(new_customer)
     print(f"congratulations, your account number is: {new_customer['account']}")
+
 
 # function to handle user login
 def login(user_type):
@@ -116,6 +117,7 @@ def login(user_type):
             print("incorrect login credentials")
             return loggedInUser
 
+
 # function to handle withdrawal
 def withdrawal(customer):
     # request amount to bw withdrawn
@@ -139,6 +141,7 @@ def withdrawal(customer):
         print("Insufficient funds, kindly make a deposit.")
         return customer
 
+
 # function to handle deposit
 def deposit(customer):
     try:
@@ -156,12 +159,14 @@ def deposit(customer):
         print(f"Your new balance is: {customer['balance']:.2f}")
         return customer
 
+
 # function to check current customer balance
 def checkBalance(customer):
     print(f"Your current balance is: {customer['balance']:.2f}")
-    return customer['balance']
+    return customer["balance"]
 
-# function to handle transfer operation 
+
+# function to handle transfer operation
 def transfer(sender):
     try:
         receiver_account = int(safe_input("Enter receiver account number: "))
@@ -183,6 +188,7 @@ def transfer(sender):
     if notFound:
         print(f"This account number: {receiver_account} is incorrect.")
 
+
 # function to handle customer's account management
 def accountManagement(action):
     try:
@@ -196,14 +202,15 @@ def accountManagement(action):
         if customer_user["account"] == account:
             if action == "restrict":
                 customer_user["restricted"] = True
-                print(f'{customer_user["firstname"]} account has been {action}ed.')
+                print(f"{customer_user['firstname']} account has been {action}ed.")
             elif action == "unrestrict":
                 customer_user["restricted"] = False
-                print(f'{customer_user["firstname"]} account has been {action}ed.')
+                print(f"{customer_user['firstname']} account has been {action}ed.")
             notFound = False
             break
     if notFound:
         print("Incorrect account number entered please try again!")
+
 
 # function to add new staff user to the system by bank manager
 def addStaff():
@@ -213,16 +220,13 @@ def addStaff():
     # system auto generate staffId
     staffId = f"HTI{random.randint(100000, 999999)}"
     # create a new staff dict object
-    new_staff = {
-        "username": username,
-        "id": staffId,
-        "password": password
-    }
+    new_staff = {"username": username, "id": staffId, "password": password}
     # add new staff to the user list above using list.append() method
     staff_users.append(new_staff)
     print("New staff has been added.")
     print("==== Staff Login details ====")
     print(f"Staff ID: {new_staff['id']} password: {new_staff['password']}")
+
 
 # function to delete staff
 def deleteStaff():
@@ -238,13 +242,17 @@ def deleteStaff():
     if notFound:
         print("Incorrect staff ID entered. please try again!")
 
+
 # function to preview all customers
 def previewCustomers():
     if len(customers) <= 0:
         print("No customer record")
         return None
     for customer_user in customers:
-        print(f"* {customer_user['firstname']} {customer_user['lastname']} -- {customer_user['account']} -- {customer_user['balance']}")
+        print(
+            f"* {customer_user['firstname']} {customer_user['lastname']} -- {customer_user['account']} -- {customer_user['balance']}"
+        )
+
 
 # main function to start the application
 def startApp():
@@ -282,18 +290,20 @@ def startApp():
                     print("d. Check Balance")
                     print("e. Logout")
                     try:
-                        sub_choice = safe_input("Enter a character letter between a and e: ")
+                        sub_choice = safe_input(
+                            "Enter a character letter between a and e: "
+                        )
                     except SystemExit:
                         break
                     if sub_choice.lower() == "a":
                         # invoke the withdrawal function
-                        withdrawal(customer = loggedUser)
+                        withdrawal(customer=loggedUser)
                     elif sub_choice.lower() == "b":
                         # invoke the transfer function
-                        transfer(sender = loggedUser)
+                        transfer(sender=loggedUser)
                     elif sub_choice.lower() == "c":
                         # invoke the deposit function
-                        deposit(customer = loggedUser)
+                        deposit(customer=loggedUser)
                     elif sub_choice.lower() == "d":
                         # display the logged-in user's balance
                         checkBalance(loggedUser)
@@ -301,7 +311,9 @@ def startApp():
                         print("You are logged out.")
                         break
                     else:
-                        print("Incorrect character entered. input must either be a/b/c/d/e")
+                        print(
+                            "Incorrect character entered. input must either be a/b/c/d/e"
+                        )
                         print("please try again.")
 
         elif main_choice == "3":
@@ -321,9 +333,9 @@ def startApp():
                         break
                     if sub_choice.lower() == "a":
                         # invoke the account management function to restrict
-                        accountManagement(action = "restrict")
+                        accountManagement(action="restrict")
                     elif sub_choice.lower() == "b":
-                        accountManagement(action = "unrestrict")
+                        accountManagement(action="unrestrict")
                     elif sub_choice.lower() == "c":
                         # invoke the preview customers function
                         previewCustomers()
@@ -331,7 +343,9 @@ def startApp():
                         print("You are logged out")
                         break
                     else:
-                        print("Incorrect character entered. input must either be a/b/c/d")
+                        print(
+                            "Incorrect character entered. input must either be a/b/c/d"
+                        )
                         print("please try again.")
 
         elif main_choice == "4":
@@ -359,7 +373,9 @@ def startApp():
                         print("You are logged out")
                         break
                     else:
-                        print("Incorrect character entered. input must either be a/b/c/d")
+                        print(
+                            "Incorrect character entered. input must either be a/b/c/d"
+                        )
                         print("please try again.")
 
         elif main_choice == "5":
@@ -371,9 +387,10 @@ def startApp():
                 break
             else:
                 print("welcome Back!")
-                
+
         else:
             print("Incorrect input. Number must be between 1 and 5\nTry again.")
+
 
 # start the banking application
 startApp()
