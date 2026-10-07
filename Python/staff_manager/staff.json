@@ -1,0 +1,28 @@
+{
+    "staff": [
+        {
+            
+        }
+        {
+            "id": "STF0002",
+            "first_name": "Kelvin",
+            "last_name": "Agada",
+            "department": "Administration",
+            "position": "General Manager",
+            "role": "Administrator",
+            "salary": 67890982.0,
+            "joined_date": "2026-10-07"
+        },
+        {
+            "id": "STF0003",
+            "first_name": "Colman",
+            "last_name": "Ekaite",
+            "department": "Mechanical Engineering",
+            "position": "HOD",
+            "role": "Repair, fix, modify, and engine maintenance",
+            "salary": 3500000000.0,
+            "joined_date": "2026-10-07"
+        }
+    ],
+    "next_id": 4
+}
