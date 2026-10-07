@@ -66,7 +66,9 @@ class StaffManager:
         print(self.divider)
         for member in members:
             print(
-                f"{member['id']:<10} {member['first_name']:<13} {member['last_name']:<13} {member['department']:<15} {member['position']:<15} {member['role']:<15} {member['salary']:<10} {member['joined_date']:<12}"
+                f"{member['id']:<10} {member['first_name']:<13} {member['last_name']:<13}"
+                f"{member['department']:<15} {member['position']:<15} {member['role']:<15}"
+                f"{member['salary']:<10} {member['joined_date']:<12}"
             )
         print(self.divider)
 
@@ -127,8 +129,24 @@ class StaffManager:
         else:
             print(f"No staff members found matching '{search_term}'.")
 
+    UPDATABLE_FIELDS = (
+        "first_name",
+        "last_name",
+        "department",
+        "position",
+        "role",
+        "salary",
+    )
+
+    def _find_member(self, staff_id):
+        """Return the member dict with this ID (case insensitive), or None."""
+        for member in self.staff:
+            if member["id"].lower() == staff_id.lower():
+                return member
+            return None
+
     def update_staff(self, staff_id):
-        """Find a staff member by ID and update one field."""
+        """Find a staff member by ID and update one whitelisted field."""
         # Locate the record
         target = None
         for member in self.staff:
@@ -142,10 +160,40 @@ class StaffManager:
             return
 
         # Show current values before editing
-        print(f"\n Editing {target['name']} ({target['id']})")
+        print(
+            f"\n Editing {target['first_name']} {target['last_name']} ({target['id']})"
+        )
         print("-" * 50)
         for key, value in target.items():
             print(f" {key}: {value}")
+
+        print("\nUpdatable Fields:", ", ".join(self.UPDATABLE_FIELDS))
+        field = input("Which field to update? ").strip().lower()
+
+        if field not in self.UPDATABLE_FIELDS:  # whitelist gate
+            print("[!] Invalid field. Nothing was changed.")
+            return
+
+        value = input(f"New value for '{field}': ").strip()
+        if not value:
+            print("[!] Value cannot be empty. Nothing was changed.")
+            return
+
+        if field == "salary":  # type-specific validation
+            try:
+                value = float(value)
+                if value < 0:
+                    print("[!] Salary cannot be negative. Nothing was changed.")
+                    return
+            except ValueError:
+                print("[!] Salary must be a number. Nothing was ")
+                return
+
+        target[field] = value  # Edits self.staff
+        self.save_data()
+        print(
+            f"[+] Updated {field.upper()} for {target['first_name']} {target['last_name']}."
+        )
 
 
 # ---- Main Program Loop ----
