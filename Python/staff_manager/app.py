@@ -143,16 +143,12 @@ class StaffManager:
         for member in self.staff:
             if member["id"].lower() == staff_id.lower():
                 return member
-            return None
+        return None
 
     def update_staff(self, staff_id):
         """Find a staff member by ID and update one whitelisted field."""
         # Locate the record
-        target = None
-        for member in self.staff:
-            if member["id"].lower() == staff_id.lower():
-                target = member
-                break
+        target = self._find_member(staff_id)
 
         # Handle "Not Found"
         if not target:
@@ -186,13 +182,40 @@ class StaffManager:
                     print("[!] Salary cannot be negative. Nothing was changed.")
                     return
             except ValueError:
-                print("[!] Salary must be a number. Nothing was ")
+                print("[!] Salary must be a number. Nothing was changed")
                 return
 
         target[field] = value  # Edits self.staff
         self.save_data()
         print(
             f"[+] Updated {field.upper()} for {target['first_name']} {target['last_name']}."
+        )
+
+    def delete_staff(self, staff_id):
+        """Remove a staff member by ID after explicit confirmation."""
+        target = self._find_member(staff_id)
+
+        if not target:
+            print(f"\n[!] No staff member found with ID {staff_id}.")
+            return
+
+        self._print_table([target])
+        confirm = (
+            input(
+                f"Permanently delete {target['first_name']} {target['last_name']} "
+                f"({target['id']})? [y/N]: "
+            )
+            .strip()
+            .lower()
+        )
+
+        if confirm != "y":  # Silence means No (fail-safe)
+            print("[i] Delete cancelled. Nothing was removed.")
+            return
+        self.staff.remove(target)  # Same object reference - remove works
+        self.save_data()
+        print(
+            f"[+] Deleted {target['first_name']} {target['last_name']} ({target['id']})."
         )
 
 
@@ -205,9 +228,11 @@ def main():
         print("1. Add Staff Member")
         print("2. List All Staff Members")
         print("3. Search Staff Member")
-        print("4. Exit")
+        print("4. Update Staff Member")
+        print("5. Delete Staff Member")
+        print("6. Exit")
 
-        choice = input("Enter your choice (1-4): ").strip()
+        choice = input("Enter your choice (1-6): ").strip()
 
         if choice == "1":
             # Validate all inputs to ensure they are not empty
@@ -263,6 +288,14 @@ def main():
             manager.search_staff(search_term)
 
         elif choice == "4":
+            staff_id = input("Enter staff ID to update: ").strip()
+            manager.update_staff(staff_id)
+
+        elif choice == "5":
+            staff_id = input("Enter staff ID to delete: ").strip()
+            manager.delete_staff(staff_id)
+
+        elif choice == "6":
             print("Exiting the program. Goodbye!")
             break
 
