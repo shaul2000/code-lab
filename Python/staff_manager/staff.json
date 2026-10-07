@@ -1,8 +1,15 @@
 {
     "staff": [
         {
-            
-        }
+            "id": "STF0001",
+            "first_name": "Joseph",
+            "last_name": "Matthew",
+            "department": "Administration",
+            "position": "Gen Sec",
+            "role": "Gen Sec",
+            "salary": 678356589.0,
+            "joined_date": "2026-10-07"
+        },
         {
             "id": "STF0002",
             "first_name": "Kelvin",
