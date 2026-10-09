@@ -1,0 +1,131 @@
+:root {
+  --cream: #f9f7f2; /* page background */
+  --off-white: #fdfbf7; /* lighter surfaces */
+  --sand: #ece8e1; /* subtle accents */
+  --charcoal: #2c2c2c; /* headings */
+  --soft-grey: #4a4a4a; /* body text */
+  --warm-brown: #5d4037; /* brand accent */
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* anchor links glide instead of jump */
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--soft-grey);
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+/* Typography: serif headings = expensive feel */
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: var(--charcoal);
+  margin-bottom: 15px;
+}
+
+/* Layout utility: shared alignment line */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: var(--off-white);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--sand);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between; /* logo left, links right */
+  align-items: center;
+}
+
+.logo {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--charcoal);
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--warm-brown);
+  font-weight: normal;
+  font-style: italic;
+}
+
+nav a {
+  color: var(--soft-grey);
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--warm-brown);
+}
+
+.contact-us {
+  margin-right: 65px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background-color: var(--charcoal);
+  color: var(--off-white);
+  padding: 14px 32px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--warm-brown);
+  transform: translateY(-2px);
+}
+
+/* Hero */
+.hero {
+  background-color: linear-gradient(to right, var(--off-white), var(--sand));
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto 35px; /* auto margin center the block */
+}
+
+footer {
+  background-color: var(--sand);
+  padding: 30px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
