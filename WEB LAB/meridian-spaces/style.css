@@ -41,6 +41,60 @@ h3 {
   padding: 0 20px;
 }
 
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10; /* sits above nav-links when open */
+}
+
+/* Mobile Styles (below 768px) */
+@media (max-width: 768px) {
+  /* Show the hamburger. hide desktop nav layout */
+  .hamburger {
+    display: flex;
+  }
+}
+
+.bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--charcoal);
+  border-radius: 2px;
+  transition: all 0.3 ease;
+}
+
+/* Mobile Styles (below 768px) */
+@media (max-width: 768px) {
+  /* Show the hamburger. hide desktop nav layout */
+  .hamburger {
+    display: flex;
+  }
+}
+
+.nav-links {
+  position: absolute;
+  top: 100%; /* right below the navbar */
+  left: 0;
+  right: 0;
+  background-color: var(--off-white);
+  flex-direction: column; /* stack links vertically */
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  max-height: 0; /* hidden by default */
+  overflow: hidden;
+  border-bottom: 1px solid var(--sand);
+  transition: max-height 0.4s ease;
+}
+
 /* NAVBAR */
 .navbar {
   background-color: var(--off-white);
@@ -80,10 +134,6 @@ nav a:hover {
   color: var(--warm-brown);
 }
 
-.contact-us {
-  margin-right: 65px;
-}
-
 /* Buttons */
 .btn {
   display: inline-block;
@@ -102,11 +152,12 @@ nav a:hover {
 .btn:hover {
   background-color: var(--warm-brown);
   transform: translateY(-2px);
+  color: aqua;
 }
 
 /* Hero */
 .hero {
-  background-color: linear-gradient(to right, var(--off-white), var(--sand));
+  background: linear-gradient(to right, var(--off-white), var(--sand));
   padding: 100px 0;
   text-align: center;
 }
