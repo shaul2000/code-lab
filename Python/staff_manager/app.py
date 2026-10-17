@@ -1,7 +1,8 @@
 import json
+import math
 import os
 import stat
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 
 class StaffManager:
@@ -25,6 +26,18 @@ class StaffManager:
                     if content.strip():  # Check if the file is not empty
                         data = json.loads(content)
                         self.staff = data.get("staff", [])
+                        
+                        # Recalculate next_id from actual data
+                        existing_ids = []
+                        for m in self.staff:
+                            raw_id = str(m.get("id", ""))
+                            if raw_id.startswith("STF"):
+                                num_part = raw_id[3:] # Remove "STF"
+                                try:
+                                    existing_ids.append(int(num_part))
+                                except ValueError:
+                                    print(f"[!] Skipping record with malformed ID: {raw_id}")
+                        
                         self.next_id = data.get("next_id", 1)
 
                         os.chmod(
@@ -73,8 +86,44 @@ class StaffManager:
         print(self.divider)
 
     # ---Staff Operations---
+    def _validate_text_field(self, value, field_name):
+        """Normalize and validate required text fields."""
+        if value is None:
+            raise ValueError(f"{field_name} cannot be empty.")
+
+        normalized = str(value).strip()
+        if not normalized:
+            raise ValueError(f"{field_name} cannot be empty.")
+        return normalized
+
+    def _coerce_salary(self, value):
+        """Validate salary input and return a float."""
+        try:
+            salary = float(value)
+        except (TypeError, ValueError):
+            raise ValueError("Salary must be a number.") from None
+
+        if not math.isfinite(salary):
+            raise ValueError("Salary must be a finite number.")
+
+        if salary < 0:
+            raise ValueError("Salary cannot be negative.")
+
+        return float(salary)
+
     def add_staff(self, first_name, last_name, department, position, role, salary):
         # Generate a unique ID for the new staff member
+        try:
+            first_name = self._validate_text_field(first_name, "First name")
+            last_name = self._validate_text_field(last_name, "Last name")
+            department = self._validate_text_field(department, "Department")
+            position = self._validate_text_field(position, "Position")
+            role = self._validate_text_field(role, "Role")
+            salary = self._coerce_salary(salary)
+        except ValueError as exc:
+            print(f"[!] {exc} Nothing was added.")
+            return
+
         staff_id = f"STF{self.next_id:04d}"  # Format the ID with leading zeros (e.g., STF0001, STF0002, etc.)
         self.next_id += 1  # Increment the next_id for future staff members
 
@@ -86,7 +135,7 @@ class StaffManager:
             "position": position,
             "role": role,
             "salary": salary,
-            "joined_date": datetime.now(timezone.utc).strftime(
+            "joined_date": datetime.now(UTC).strftime(
                 "%Y-%m-%d"
             ),  # Store the date when the staff member was added
         }
@@ -105,13 +154,21 @@ class StaffManager:
         self._print_table(self.staff)
 
     def search_staff(self, search_term):
-        term = search_term.lower()
+        if search_term is None:
+            print("Search term cannot be empty.")
+            return
+
+        term = str(search_term).strip().lower()
+        if not term:
+            print("Search term cannot be empty.")
+            return
+
         # Search for staff members by ID, name, department, position, or role (case-insensitive)
         results = [
             member
             for member in self.staff
             if any(
-                term in str(member[k]).lower()
+                term in str(member.get(k, "")).lower()
                 for k in (
                     "id",
                     "first_name",
@@ -140,8 +197,16 @@ class StaffManager:
 
     def _find_member(self, staff_id):
         """Return the member dict with this ID (case insensitive), or None."""
+        if staff_id is None:
+            return None
+
+        normalized_id = str(staff_id).strip()
+        if not normalized_id:
+            return None
+
         for member in self.staff:
-            if member["id"].lower() == staff_id.lower():
+            member_id = str(member.get("id", ""))
+            if member_id.lower() == normalized_id.lower():
                 return member
         return None
 
@@ -177,12 +242,16 @@ class StaffManager:
 
         if field == "salary":  # type-specific validation
             try:
-                value = float(value)
-                if value < 0:
-                    print("[!] Salary cannot be negative. Nothing was changed.")
-                    return
-            except ValueError:
-                print("[!] Salary must be a number. Nothing was changed")
+                value = self._coerce_salary(value)
+            except ValueError as exc:
+                print(f"[!] {exc} Nothing was changed.")
+                return
+
+        else:
+            try:
+                value = self._validate_text_field(value, field.replace("_", " ").title())
+            except ValueError as exc:
+                print(f"[!] {exc} Nothing was changed.")
                 return
 
         target[field] = value  # Edits self.staff
