@@ -164,12 +164,13 @@ class StaffManager:
         self.save_data()
 
     def list_staff(self):
-        if not self.staff:
+        active = self._get_active_only()
+        if not active:
             print("No staff members found.")
             return
 
         print("\n===== STAFF DIRECTORY =====")
-        self._print_table(self.staff)
+        self._print_table(active)
 
     def search_staff(self, search_term):
         if search_term is None:
@@ -182,9 +183,10 @@ class StaffManager:
             return
 
         # Search for staff members by ID, name, department, position, or role (case-insensitive)
+        active = self._get_active_only()
         results = [
             member
-            for member in self.staff
+            for member in active
             if any(
                 term in str(member.get(k, "")).lower()
                 for k in (
@@ -227,6 +229,10 @@ class StaffManager:
             if member_id.lower() == normalized_id.lower():
                 return member
         return None
+    
+    def _get_active_only(self):
+        """Filter out soft-deleted records."""
+        return [m for m in self.staff if m.get("active", True)]
 
     def update_staff(self, staff_id):
         """Find a staff member by ID and update one whitelisted field."""
@@ -252,6 +258,13 @@ class StaffManager:
         if field not in self.UPDATABLE_FIELDS:  # whitelist gate
             print("[!] Invalid field. Nothing was changed.")
             return
+        
+        if field == "role":
+            confirm = input("[!] Changing role is admin-only action. Confirm? [y/N]: ").strip().lower()
+            if confirm != 'y':
+                print("[i] Role change cancelled.")
+                return
+                
 
         value = input(f"New value for '{field}': ").strip()
         if not value:
@@ -279,7 +292,7 @@ class StaffManager:
         )
 
     def delete_staff(self, staff_id):
-        """Remove a staff member by ID after explicit confirmation."""
+        """Soft-delete a staff member by ID after explicit confirmation."""
         target = self._find_member(staff_id)
 
         if not target:
@@ -299,11 +312,10 @@ class StaffManager:
         if confirm != "y":  # Silence means No (fail-safe)
             print("[i] Delete cancelled. Nothing was removed.")
             return
-        self.staff.remove(target)  # Same object reference - remove works
+        target["active"] = False
+        target["deleted_at"] = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S")
         self.save_data()
-        print(
-            f"[+] Deleted {target['first_name']} {target['last_name']} ({target['id']})."
-        )
+        print(f"[+] Deleted {target['first_name']} {target['last_name']} ({target['id']}).")
 
 
 # ---- Main Program Loop ----
@@ -320,6 +332,10 @@ def main():
         print("6. Exit")
 
         choice = input("Enter your choice (1-6): ").strip()
+        
+        if choice not in ("1", "2", "3", "4", "5", "6"):
+            print("Invalid choice. Please try again.")
+            continue
 
         if choice == "1":
             # Validate all inputs to ensure they are not empty
