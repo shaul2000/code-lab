@@ -1,17 +1,18 @@
 {
-    "cSpell.words": [
-        "abstractmethod",
-        "Agaskid",
-        "Docstrings",
-        "Dunder",
-        "elif",
-        "Garri",
-        "kwargs",
-        "Machinee",
-        "pathlib",
-        "phonebook",
-        "popitem",
-        "repr",
-        "Rossum"
-    ]
+  "cSpell.words": [
+    "abstractmethod",
+    "Agaskid",
+    "Docstrings",
+    "Dunder",
+    "elif",
+    "Garri",
+    "kwargs",
+    "Machinee",
+    "pathlib",
+    "phonebook",
+    "popitem",
+    "repr",
+    "Rossum"
+  ],
+  "python-envs.defaultEnvManager": "ms-python.python:system"
 }

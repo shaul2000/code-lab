@@ -1,13 +1,14 @@
 import json
 import math
 import os
+import re
 import stat
 from datetime import UTC, datetime
 
 
 class StaffManager:
     # ---- Reusable Table Header ----
-    table_header = f"{'ID':<10} {'First Name':<13} {'Last Name':<13} {'Department':<15} {'Position':<15} {'Role':<15} {'Salary':<10} {'Joined Date':<12}"
+    table_header = f"{'ID':<10} {'First Name':<13} {'Last Name':<13} {'Department':<15} {'Position':<15} {'Role':<15} {'Salary':<10} {'Joined Date':<20}"
     divider = "=" * 120
 
     def __init__(self):
@@ -27,7 +28,7 @@ class StaffManager:
                         data = json.loads(content)
                         self.staff = data.get("staff", [])
                         
-                        # Recalculate next_id from actual data
+                        # Recalculate next_id from actual data + stored value (never trust either alone)
                         existing_ids = []
                         for m in self.staff:
                             raw_id = str(m.get("id", ""))
@@ -37,8 +38,9 @@ class StaffManager:
                                     existing_ids.append(int(num_part))
                                 except ValueError:
                                     print(f"[!] Skipping record with malformed ID: {raw_id}")
-                        
-                        self.next_id = data.get("next_id", 1)
+                                    
+                        stored_next = data.get("next_id", 1)
+                        self.next_id = max((stored_next, max(existing_ids) if existing_ids else 0)) + 1
 
                         os.chmod(
                             self.data_file, stat.S_IRUSR | stat.S_IWUSR
@@ -61,17 +63,28 @@ class StaffManager:
     def save_data(self):
         """Saves the current staff data to the JSON file with restricted file permissions."""
         data = {"staff": self.staff, "next_id": self.next_id}
+        tmp = self.data_file + ".tmp"
 
         try:
-            with open(self.data_file, "w", encoding="utf-8") as file:
+            with open(tmp, "w", encoding="utf-8") as file:
                 json.dump(data, file, indent=4)
+            os.replace(tmp, self.data_file)  # Atomic swap
             # Set file permissions to read/write for the owner only (600)
             os.chmod(self.data_file, stat.S_IRUSR | stat.S_IWUSR)
             print("Data saved successfully.")
         except PermissionError:
             print("Error: Permission denied. Unable to save data.")
+            
+            try:
+                os.unlink(tmp)
+            except FileNotFoundError:
+                pass
         except OSError as e:
             print(f"Error saving data: {e}")
+            try:
+                os.unlink(tmp)
+            except FileNotFoundError:
+                pass
 
     def _print_table(self, members):
         """Reusable method to print a formatted table of staff members."""
@@ -81,19 +94,26 @@ class StaffManager:
             print(
                 f"{member['id']:<10} {member['first_name']:<13} {member['last_name']:<13}"
                 f"{member['department']:<15} {member['position']:<15} {member['role']:<15}"
-                f"{member['salary']:<10} {member['joined_date']:<12}"
+                f"{member['salary']:<10} {member['joined_date']:<20}"
             )
         print(self.divider)
 
     # ---Staff Operations---
-    def _validate_text_field(self, value, field_name):
-        """Normalize and validate required text fields."""
+    def _validate_text_field(self, value, field_name, max_length=100):
+        """Normalize, strip HTML, and validate required text fields."""
         if value is None:
             raise ValueError(f"{field_name} cannot be empty.")
 
         normalized = str(value).strip()
         if not normalized:
             raise ValueError(f"{field_name} cannot be empty.")
+        
+        normalized = re.sub(r'<[^>]+>', '', normalized) # Strip HTML tags
+        if not normalized:
+            raise ValueError(f"{field_name} contains only HTML tags.")
+        
+        if len(normalized) > max_length:
+            raise ValueError(f"{field_name} exceeds {max_length} characters.")
         return normalized
 
     def _coerce_salary(self, value):
@@ -114,8 +134,8 @@ class StaffManager:
     def add_staff(self, first_name, last_name, department, position, role, salary):
         # Generate a unique ID for the new staff member
         try:
-            first_name = self._validate_text_field(first_name, "First name")
-            last_name = self._validate_text_field(last_name, "Last name")
+            first_name = self._validate_text_field(first_name, "First name", max_length=50)
+            last_name = self._validate_text_field(last_name, "Last name", max_length=50)
             department = self._validate_text_field(department, "Department")
             position = self._validate_text_field(position, "Position")
             role = self._validate_text_field(role, "Role")
@@ -135,9 +155,7 @@ class StaffManager:
             "position": position,
             "role": role,
             "salary": salary,
-            "joined_date": datetime.now(UTC).strftime(
-                "%Y-%m-%d"
-            ),  # Store the date when the staff member was added
+            "joined_date": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S"),  # Store the date when the staff member was added 
         }
         self.staff.append(staff_member)
         print(
