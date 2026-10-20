@@ -136,4 +136,17 @@ class AuthManager:
         self.save_auth()
         return False
 
-    
+    # Password change
+    def change_password(self, username, old_password, new_password):
+        user = self.users.get(username.lower())
+        if not user or not self._verify_password(old_password, user["password_hash"]):
+            print("[!] Current password is incorrect.")
+            return False
+        ok, msg = self._password_is_strong(new_password)
+        if not ok:
+            print(f"[!] {msg}")
+            return False
+        user["password_hash"] = self._hash_password(new_password)
+        self.save_auth()
+        print("[+] Password changed successfully. ")
+        return True

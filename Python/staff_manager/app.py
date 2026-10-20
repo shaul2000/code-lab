@@ -3,7 +3,10 @@ import math
 import os
 import re
 import stat
+import getpass
 from datetime import UTC, datetime
+
+from auth import AuthManager
 
 
 class StaffManager:
@@ -317,94 +320,87 @@ class StaffManager:
         self.save_data()
         print(f"[+] Deleted {target['first_name']} {target['last_name']} ({target['id']}).")
 
-
-# ---- Main Program Loop ----
-def main():
-    manager = StaffManager()
-
+def run_menu(manager, auth):
     while True:
-        print("\n===== STAFF MANAGEMENT SYSTEM =====")
+        print("\n==== STAFF MANAGEMENT SYSTEM ====")
         print("1. Add Staff Member")
-        print("2. List All Staff Members")
+        print("2. List all Staff Members")
         print("3. Search Staff Member")
         print("4. Update Staff Member")
         print("5. Delete Staff Member")
-        print("6. Exit")
-
-        choice = input("Enter your choice (1-6): ").strip()
+        print("6. Change Password")
+        print("7. Exit")
         
-        if choice not in ("1", "2", "3", "4", "5", "6"):
+        choice = input("Enter your choice (1-7): ").strip()
+        if choice not in ("1", "2", "3", "4", "5", "6", "7"):
             print("Invalid choice. Please try again.")
             continue
-
+        
         if choice == "1":
-            # Validate all inputs to ensure they are not empty
             first_name = input("Enter first name: ").strip()
-            if not first_name:
-                print("First name cannot be empty. Please try again.")
-                continue  # Skip to the next iteration of the loop if name is empty
-
             last_name = input("Enter last name: ").strip()
-            if not last_name:
-                print("last name cannot be empty.")
-                continue
-
             department = input("Enter department: ").strip()
-            if not department:
-                print("Department cannot be empty. Please try again.")
-                continue
-
             position = input("Enter position: ").strip()
-            if not position:
-                print("Position cannot be empty. Please try again.")
-                continue
-
             role = input("Enter role: ").strip()
-            if not role:
-                print("Role cannot be empty. Please try again.")
-                continue
-
-            # Validate salary input to ensure it's a numeric value and not negative
-            try:
-                salary = float(input("Enter salary: "))
-            except ValueError:
-                print("Invalid salary input. Please enter a numeric value.")
-                continue
-
-            if salary < 0:
-                print("Salary cannot be negative. Please enter a valid salary.")
-                continue
-
+            salary = input("Enter salary: ")
             manager.add_staff(first_name, last_name, department, position, role, salary)
-
+            
         elif choice == "2":
             manager.list_staff()
-
+            
         elif choice == "3":
-            # Validate search term input to ensure it's not empty
-            search_term = input(
-                "Enter ID, name, department, position, or role to search: "
-            ).strip()
-            if not search_term:
-                print("Search term cannot be empty. Please try again.")
-                continue
+            search_term = input("Enter ID, name, department, position, or role to search: ").strip()
             manager.search_staff(search_term)
-
+            
         elif choice == "4":
-            staff_id = input("Enter staff ID to update: ").strip()
+            staff_id = input("Enter Staff ID to update: ").strip()
             manager.update_staff(staff_id)
-
+            
         elif choice == "5":
-            staff_id = input("Enter staff ID to delete: ").strip()
+            staff_id = input ("Enter staff ID to delete: ").strip()
             manager.delete_staff(staff_id)
-
+            
         elif choice == "6":
+            username = input("Username: ").strip()
+            old_pw = input("Current password: ").strip()
+            new_pw = input("New password: ").strip()
+            auth.change_password(username, old_pw, new_pw)
+            
+        elif choice == "7":
             print("Exiting the program. Goodbye!")
             break
+            
 
-        else:
-            print("Invalid choice. Please try again.")
-
-
+# ---- Main Program Loop ----
+def main():
+    auth = AuthManager()
+    
+    # Create admin
+    if auth.need_setup():
+        print("=== FIRST RUN: No accounts found. Create an admin account. ====")
+        while True:
+            username = input("Choose admin username: ").strip()
+            if not username:
+                print("[!] Username cannot be empty. ")
+                continue
+            password = input("Choose admin password: ")
+            if auth.create_admin(username, password):
+                break
+    
+    # Admin Login
+    print("=== LOGIN ===")
+    for attempt in range(AuthManager.MAX_ATTEMPTS):
+        username = input("Username: ").strip()
+        password = input("Password: ").strip()
+        if auth.login(username, password):
+            break
+        
+    else:
+        print("[!] Access denied. Exiting.")
+        return
+    
+    manager = StaffManager()
+    run_menu(manager, auth)
+    
 if __name__ == "__main__":
     main()
