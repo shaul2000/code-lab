@@ -6,19 +6,18 @@ from datetime import UTC, datetime, timedelta
 import bcrypt
 
 
-
 class AuthManager:
     MAX_ATTEMPTS = 3
-    LOCKOUT_MINUTES = 5
+    LOCKOUT_MINUTES = 15
     MIN_PASSWORD_LENGTH = 8
-    
+
     def __init__(self):
         self.auth_file = "auth.json"
         self.is_authenticated = False
         self.users = {}
         self.load_auth()
-        
-    #--- Persistence (atomic writes, same pattern as StaffManager) ---
+
+    # --- Persistence (atomic writes, same pattern as StaffManager) ---
     def load_auth(self):
         if os.path.exists(self.auth_file):
             try:
@@ -77,6 +76,11 @@ class AuthManager:
         if not ok:
             print(f"[!] {msg}")
             return False
+
+        if username.lower() in self.users:
+            print(f"[!] Admin account '{username}' already exists.")
+            return False
+
         self.users[username.lower()] = {
             "username": username,
             "password_hash": self._hash_password(password),
@@ -92,9 +96,44 @@ class AuthManager:
     def _is_locked(self, user):
         if not user.get("locked_until"):
             return False
+
         locked_until = datetime.strptime(user["locked_until"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=UTC)
         if datetime.now(UTC) >= locked_until:
             user["locked_until"] = None
             user["failed_attempts"] = 0
             return False
         return True
+
+    # Login:
+    def login(self, username, password):
+        user = self.users.get(username.lower())
+        if not user:
+            print("[!] Invalid username or password.")
+            return False
+
+        if self._is_locked(user):
+            print(f"[!] Account locked until {user['locked_until']}.")
+            return False
+
+        if self._verify_password(password, user["password_hash"]):
+            user["failed_attempts"] = 0
+            user["locked_until"] = None
+            self.save_auth()
+            self.is_authenticated = True
+            print(f"[+] Welcome back, {user['username']}.")
+            return True
+
+        user["failed_attempts"] += 1
+        remaining = self.MAX_ATTEMPTS - user["failed_attempts"]
+        if remaining <= 0:
+            user["locked_until"] = (datetime.now(UTC) + timedelta(minutes=self.LOCKOUT_MINUTES)).strftime("%Y-%m-%d %H:%M:%S")
+            user["failed_attempts"] = 0
+            print(f"[!] Too many failed attempts. Account locked for {self.LOCKOUT_MINUTES} minutes")
+            
+        else:
+            print(f"[!] Invalid username or password. {remaining} attempts remaining.")
+
+        self.save_auth()
+        return False
+
+    
