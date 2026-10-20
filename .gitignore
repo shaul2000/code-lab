@@ -1,0 +1,5 @@
+Python/staff_manager/auth.json
+Python/staff_manager/staff.json
+__pycache__/
+*.pyc
+*.tmp
