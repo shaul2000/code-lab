@@ -27,18 +27,27 @@ class AuthManager:
                 if content.strip():
                     self.users = json.loads(content)
                     os.chmod(self.auth_file, stat.S_IRUSR | stat.S_IWUSR)
+                    
+                else:
+                    print("[!] auth.json is empty, Starting fresh.")
+                    self.users = {}
 
             except json.JSONDecodeError:
-                print("[!] auth.json is corrupted. Starting fresh.")
-                self.users = {}
-
+                raise RuntimeError("auth.json is corrupted Restore a backup or fix it manually. Refusing to start.")
+        else:
+            print("[+] No auth file found. Starting fresh.")
+            self.users = {}
+            
     def save_auth(self):
         tmp = self.auth_file + ".tmp"
+        # cspell:disable-next-line
+        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
         try:
-            with open(tmp, "w", encoding="utf-8") as file:
+            with os.fdopen(fd, "w", encoding="utf-8") as file:
                 json.dump(self.users, file, indent=4)
+                file.flush()
+                os.fsync(file.fileno())
             os.replace(tmp, self.auth_file)
-            os.chmod(self.auth_file, stat.S_IRUSR | stat.S_IWUSR)
         except OSError as e:
             print(f"[!] Could not save auth data: {e}")
             try:
@@ -46,7 +55,7 @@ class AuthManager:
             except FileNotFoundError:
                 pass
 
-    # Password helpers:
+    # Password helpers
     @staticmethod
     def _hash_password(password):
         """bcrypt auto-generates a unique salt per hash."""
@@ -92,7 +101,7 @@ class AuthManager:
         print(f"[+] Admin account '{username}' created.")
         return True
 
-    # Lockout Logic:
+    # Lockout logic
     def _is_locked(self, user):
         if not user.get("locked_until"):
             return False
@@ -104,7 +113,18 @@ class AuthManager:
             return False
         return True
 
-    # Login:
+    def _register_failure(self, user):
+        """Track shared failed attempts for login and password changes."""
+        user["failed_attempts"] += 1
+        remaining = self.MAX_ATTEMPTS - user["failed_attempts"]
+        if remaining <= 0:
+            user["locked_until"] = (datetime.now(UTC) + timedelta(minutes=self.LOCKOUT_MINUTES)).strftime("%Y-%m-%d %H:%M:%S")
+            print(f"[!] Too many failed attempts. Account locked for {self.LOCKOUT_MINUTES} minutes.")
+        else:
+            print(f"[!] Invalid username or password. {remaining} attempt(s) remaining.")
+        self.save_auth()
+
+    # Login
     def login(self, username, password):
         user = self.users.get(username.lower())
         if not user:
@@ -123,30 +143,37 @@ class AuthManager:
             print(f"[+] Welcome back, {user['username']}.")
             return True
 
-        user["failed_attempts"] += 1
-        remaining = self.MAX_ATTEMPTS - user["failed_attempts"]
-        if remaining <= 0:
-            user["locked_until"] = (datetime.now(UTC) + timedelta(minutes=self.LOCKOUT_MINUTES)).strftime("%Y-%m-%d %H:%M:%S")
-            user["failed_attempts"] = 0
-            print(f"[!] Too many failed attempts. Account locked for {self.LOCKOUT_MINUTES} minutes")
-            
-        else:
-            print(f"[!] Invalid username or password. {remaining} attempts remaining.")
-
-        self.save_auth()
+        self._register_failure(user)
         return False
 
-    # Password change
+    # Change password
     def change_password(self, username, old_password, new_password):
         user = self.users.get(username.lower())
-        if not user or not self._verify_password(old_password, user["password_hash"]):
-            print("[!] Current password is incorrect.")
+        if not user:
+            print("[!] Invalid username or password.")
             return False
+
+        if self._is_locked(user):
+            print(f"[!] Account locked until {user['locked_until']}.")
+            return False
+
+        if not self._verify_password(old_password, user["password_hash"]):
+            self._register_failure(user)
+            return False
+
         ok, msg = self._password_is_strong(new_password)
         if not ok:
             print(f"[!] {msg}")
             return False
+
+        if old_password == new_password:
+            print("[!] New password must be different from the current password.")
+            return False
+
         user["password_hash"] = self._hash_password(new_password)
+        user["failed_attempts"] = 0
+        user["locked_until"] = None
         self.save_auth()
-        print("[+] Password changed successfully. ")
+        print(f"[+] Password updated for {user['username']}.")
         return True
+ 

@@ -85,18 +85,19 @@ print("My name is " + name + " and I am " + str(age)) # Joins text and variables
 print(f"My name is {name} and I am {age}") # Inserts values directly inside the string
 
 
-print(5 == 5) # Checks whether 5 is equal to 5 -> True
-print(5 != 5) # Checks whether 5 is not equal to 5 -> False
-print(5 != 3) # Checks whether 5 is not equal to 3 -> True
-print(5 > 3) # Checks whether 5 is greater than 3 -> True
-print(5 < 3) # Checks whether 5 is less than 3 -> False
-print(3 > 5) # Checks whether 3 is greater than 5 -> False
-print(3 < 5) # Checks whether 3 is less than 5 -> True
-print(5 >= 5) # Checks whether 5 is greater than or equal to 5 -> True
-print(5 <= 5) # Checks whether 5 is less than or equal to 5 -> True
-print(3 <= 5) # Checks whether 3 is less than or equal to 5 -> True
-print(3 >= 5) # Checks whether 3 is greater than or equal to 5 -> False
-print(5 <= 3) # Checks whether 5 is less than or equal to 3 -> False
+a = 5
+b = 3
+
+print(a == b) # Checks whether a is equal to b -> False
+print(a != b) # Checks whether a is not equal to b -> True
+print(a > b)  # Checks whether a is greater than b -> True
+print(a < b)  # Checks whether a is less than b -> False
+print(b > a)  # Checks whether b is greater than a -> False
+print(b < a)  # Checks whether b is less than a -> True
+print(a >= b) # Checks whether a is greater than or equal to b -> True
+print(a <= b) # Checks whether a is less than or equal to b -> False
+print(b >= a) # Checks whether b is greater than or equal to a -> False
+print(b <= a) # Checks whether b is less than or equal to a -> True
 
 score = 85
 if score >= 90: # If the score is 90 or more, print an A
@@ -455,11 +456,11 @@ print(count)  # Prints 100 because the global value was not changed.
 
 # LAMBDA FUNCTION: a small anonymous function used for quick operations.
 # Regular function example.
-def square(x):
+def square_regular(x):
     return x ** 2
 
 
-print(square(8))
+print(square_regular(8))
 
 # Lambda version: same idea, but written in one line.
 square_lambda = lambda x: x ** 2
@@ -483,7 +484,7 @@ print(square(4))  # Prints 16
 
 
 # Basic class example: a Dog object combines data (attributes) and behavior (methods).
-class Dog:
+class BasicDog:
     def __init__(self, name, age):
         self.name = name    #Data (attribute)
         self.age = age      #Data (attribute)
@@ -491,18 +492,17 @@ class Dog:
     def bark(self):         #Behavior (method)
         print(f"{self.name} says: Woof!")
         
-dog1 = Dog("Rex", 3)
-dog2 = Dog("Bella", 5)
+dog1 = BasicDog("Rex", 3)
+dog2 = BasicDog("Bella", 5)
 
 dog1.bark()   # Rex says: Woof!
 dog2.bark()   # Bella says: Woof!
 
-my_dog = Dog("Rex", 3)    #Calls__init__automatically
+my_dog = BasicDog("Rex", 3)    #Calls__init__automatically
 print(my_dog.name)   #Rex
 print(my_dog.age)   # 3
 
 # Inheritance lets a child class reuse code from a parent class.
-# This second Dog definition intentionally reuses the name for the inheritance example.
 class Animal:      # Parent class (also called a base class)
     def __init__(self, name):
         self.name = name
@@ -616,8 +616,9 @@ class Greeter:
     def __init__(self, name):
         self.name = name
 
-    def __call__(self):
-        print(f"Hello, This is {self.name}!")
+    def __call__(self, name: str | None = None):
+        target_name = name if name is not None else self.name
+        print(f"Hello, This is {target_name}!")
 
 # Create an instance of Greeter and call it like a function.
 greeting = Greeter("Kelvin")
@@ -659,18 +660,18 @@ from abc import ABC, abstractmethod
 
 class Payment(ABC):
     @abstractmethod
-    def pay(self, amount):
+    def pay(self, amount) -> str:
         # Every payment method must provide its own version of pay().
         pass
 
 
 class CardPayment(Payment):
-    def pay(self, amount):
+    def pay(self, amount) -> str:
         return f"Paid ${amount} by card."
 
 
 class CashPayment(Payment):
-    def pay(self, amount):
+    def pay(self, amount) -> str:
         return f"Paid ${amount} in cash."
 
 
@@ -813,7 +814,7 @@ data = {
 json_string = json.dumps(data, indent = 4)  # Convert the dictionary to a JSON string with indentation for readability.
 with open("data.json", "w", encoding="utf-8") as json_file:
     json_file.write(json_string)
-print(f"Created: data.json")
+print("Created: data.json")
 
 
 # PART 3: DESERIALIZATION (JSON String -> Python Dictionary)
@@ -845,7 +846,7 @@ print(f"Is 'address' a key in data? {'address' in data_from_json}")  # Check if 
 
 print(f"Average Score: {sum(data_from_json['scores'].values()) / len(data_from_json['scores'])}")  # Calculate the average score
 
-print((f"Courses: {', '.join(data_from_json['courses'])}"))  # Join the list of courses into a single string
+print(f"Courses: {', '.join(data_from_json['courses'])}")  # Join the list of courses into a single string
 
 print(f"First Course: {data_from_json['courses'][0]}")  # Access the first course in the list
 print(f"Last Course: {data_from_json['courses'][-1]}")  # Access the last course in the list

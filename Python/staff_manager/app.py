@@ -1,9 +1,9 @@
+import getpass
 import json
 import math
 import os
 import re
 import stat
-import getpass
 from datetime import UTC, datetime
 
 from auth import AuthManager
@@ -18,6 +18,7 @@ class StaffManager:
         self.staff = []
         self.data_file = "staff.json"
         self.next_id = 1  # Helps to generate unique IDs for new staff members
+        self.load_failed = False
         self.load_data()  # Load existing staff data from the JSON file if it exists
 
     # --- Data Persistence ---
@@ -55,8 +56,9 @@ class StaffManager:
                     else:
                         print("Empty file found. Starting fresh.")
             except json.JSONDecodeError:
+                self.load_failed = True
                 print(
-                    f"Error: {self.data_file} is corrupted. Starting with an empty staff list."
+                    f"Error: {self.data_file} is corrupted. Data was not loaded. Refusing to save until fixed."
                 )
         else:
             print(
@@ -64,26 +66,24 @@ class StaffManager:
             )
 
     def save_data(self):
-        """Saves the current staff data to the JSON file with restricted file permissions."""
+        """Saves staff data atomically. Refuses if file didn't load cleanly."""
+        if self.load_failed:
+            print("[!] Refusing to save staff.json did not load cleanly. Fix or restore it first.")
+            return
+        
         data = {"staff": self.staff, "next_id": self.next_id}
         tmp = self.data_file + ".tmp"
-
+        
+        # cspell: disable-next-line
+        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
         try:
-            with open(tmp, "w", encoding="utf-8") as file:
+            with os.fdopen(fd, "w", encoding="utf-8") as file:
                 json.dump(data, file, indent=4)
-            os.replace(tmp, self.data_file)  # Atomic swap
-            # Set file permissions to read/write for the owner only (600)
-            os.chmod(self.data_file, stat.S_IRUSR | stat.S_IWUSR)
-            print("Data saved successfully.")
-        except PermissionError:
-            print("Error: Permission denied. Unable to save data.")
-            
-            try:
-                os.unlink(tmp)
-            except FileNotFoundError:
-                pass
+                file.flush()
+                os.fsync(file.fileno())
+            os.replace(tmp, self.data_file)
         except OSError as e:
-            print(f"Error saving data: {e}")
+            print(f"[!] Error saving data: {e}")
             try:
                 os.unlink(tmp)
             except FileNotFoundError:
@@ -320,6 +320,22 @@ class StaffManager:
         self.save_data()
         print(f"[+] Deleted {target['first_name']} {target['last_name']} ({target['id']}).")
 
+def get_password(prompt="Password: "):
+    """Ask for password with optional reveal and confirm."""
+    while True:
+        pw = getpass.getpass(prompt)
+        if not pw:
+            print("[!] Password cannot be empty.")
+            continue
+        
+        reveal = input("Show password? [N/v]: ").strip().lower()
+        if reveal == "v":
+            print(f"\nYour password: {pw}")
+            
+        confirm = input("Confirm? [Y/n]: ").strip().lower()
+        if confirm != "n":
+            return pw
+
 def run_menu(manager, auth):
     while True:
         print("\n==== STAFF MANAGEMENT SYSTEM ====")
@@ -362,8 +378,8 @@ def run_menu(manager, auth):
             
         elif choice == "6":
             username = input("Username: ").strip()
-            old_pw = input("Current password: ").strip()
-            new_pw = input("New password: ").strip()
+            old_pw = get_password("Current password: ")
+            new_pw = get_password("New password: ")
             auth.change_password(username, old_pw, new_pw)
             
         elif choice == "7":
@@ -373,7 +389,11 @@ def run_menu(manager, auth):
 
 # ---- Main Program Loop ----
 def main():
-    auth = AuthManager()
+    try:
+        auth  = AuthManager()
+    except RuntimeError as exc:
+        print(f"[!] {exc}")
+        return
     
     # Create admin
     if auth.need_setup():
@@ -383,15 +403,15 @@ def main():
             if not username:
                 print("[!] Username cannot be empty. ")
                 continue
-            password = input("Choose admin password: ")
+            password = get_password("Choose admin password: ")
             if auth.create_admin(username, password):
                 break
     
     # Admin Login
     print("=== LOGIN ===")
     for attempt in range(AuthManager.MAX_ATTEMPTS):
-        username = input("Username: ").strip()
-        password = input("Password: ").strip()
+        username = input("Enter Username: ").strip()
+        password = get_password("Enter Password: ")
         if auth.login(username, password):
             break
         
