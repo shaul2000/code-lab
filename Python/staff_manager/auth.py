@@ -9,7 +9,7 @@ import bcrypt
 class AuthManager:
     MAX_ATTEMPTS = 3
     LOCKOUT_MINUTES = 15
-    MIN_PASSWORD_LENGTH = 8
+    MIN_PASSWORD_LENGTH = 12
 
     def __init__(self):
         self.auth_file = "auth.json"
@@ -72,13 +72,24 @@ class AuthManager:
     def _password_is_strong(password):
         if len(password) < AuthManager.MIN_PASSWORD_LENGTH:
             return False, f"Password must be at least {AuthManager.MIN_PASSWORD_LENGTH} characters."
-        if password.isalpha() or password.isdigit():
-            return False, "Password must mix letters and numbers."
+        
+        if not any(c.isupper() for c in password):
+            return False, "Password must contain at least one uppercase letter."
+        
+        if not any(c.islower() for c in password):
+            return False, "Password must contain at least one lowercase letter."
+        
+        if not any(c.isdigit() for c in password):
+            return False, "Password must contain at least one number."
+        
+        if not any(c in "!@#$%^&*()_+-=" for c in password):
+            return False, "Password must contain at least one special character."
+        
         return True, ""
 
     # Account setup
     def need_setup(self):
-        return not self.users
+        return not any(user.get("role") == "admin" for user in self.users.values())
 
     def create_admin(self, username, password):
         ok, msg = self._password_is_strong(password)
@@ -93,6 +104,7 @@ class AuthManager:
         self.users[username.lower()] = {
             "username": username,
             "password_hash": self._hash_password(password),
+            "role": "admin",
             "failed_attempts": 0,
             "locked_until": None,
             "created_at": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S"),

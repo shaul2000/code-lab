@@ -333,8 +333,9 @@ def get_password(prompt="Password: "):
             print(f"\nYour password: {pw}")
             
         confirm = input("Confirm? [Y/n]: ").strip().lower()
-        if confirm != "n":
-            return pw
+        if confirm == "n":
+            continue
+        return pw
 
 def run_menu(manager, auth):
     while True:
@@ -373,7 +374,7 @@ def run_menu(manager, auth):
             manager.update_staff(staff_id)
             
         elif choice == "5":
-            staff_id = input ("Enter staff ID to delete: ").strip()
+            staff_id = input("Enter staff ID to delete: ").strip()
             manager.delete_staff(staff_id)
             
         elif choice == "6":

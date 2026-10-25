@@ -3,3 +3,7 @@ Python/staff_manager/staff.json
 __pycache__/
 *.pyc
 *.tmp
+**/.vscode/
+
+# IDE settings anywhere in the repo
+**/.vscode/
