@@ -9,7 +9,7 @@ import bcrypt
 class AuthManager:
     MAX_ATTEMPTS = 3
     LOCKOUT_MINUTES = 15
-    MIN_PASSWORD_LENGTH = 12
+    MIN_PASSWORD_LENGTH = 12 
 
     def __init__(self):
         self.auth_file = "auth.json"
@@ -141,11 +141,11 @@ class AuthManager:
         user = self.users.get(username.lower())
         if not user:
             print("[!] Invalid username or password.")
-            return False
+            return None
 
         if self._is_locked(user):
             print(f"[!] Account locked until {user['locked_until']}.")
-            return False
+            return None
 
         if self._verify_password(password, user["password_hash"]):
             user["failed_attempts"] = 0
@@ -153,10 +153,10 @@ class AuthManager:
             self.save_auth()
             self.is_authenticated = True
             print(f"[+] Welcome back, {user['username']}.")
-            return True
+            return dict(user)
 
         self._register_failure(user)
-        return False
+        return None
 
     # Change password
     def change_password(self, username, old_password, new_password):
@@ -188,4 +188,21 @@ class AuthManager:
         self.save_auth()
         print(f"[+] Password updated for {user['username']}.")
         return True
+    
+    def create_staff_user(self, staff_code, username, temp_password):
+        """Create a login linked to a specific staff record."""
+        self.users[username.lower()] = {
+            "username": username,
+            "password_hash": self._hash_password(temp_password),
+            "role": "staff",
+            "staff_code": staff_code,
+            "failed_attempts": 0,
+            "locked_until": None,
+            "must_change_pw": True,
+            "created_at": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S"),            
+        }
+        self.save_auth()
+        print(f"[+] Login created for {staff_code}: username '{username}'")
+        return True
+    
  

@@ -337,7 +337,7 @@ def get_password(prompt="Password: "):
             continue
         return pw
 
-def run_menu(manager, auth):
+def run_menu(manager, auth, session):
     while True:
         print("\n==== STAFF MANAGEMENT SYSTEM ====")
         print("1. Add Staff Member")
@@ -378,10 +378,10 @@ def run_menu(manager, auth):
             manager.delete_staff(staff_id)
             
         elif choice == "6":
-            username = input("Username: ").strip()
             old_pw = get_password("Current password: ")
             new_pw = get_password("New password: ")
-            auth.change_password(username, old_pw, new_pw)
+            auth.change_password(session["username"], old_pw, new_pw)
+            
             
         elif choice == "7":
             print("Exiting the program. Goodbye!")
@@ -413,7 +413,8 @@ def main():
     for attempt in range(AuthManager.MAX_ATTEMPTS):
         username = input("Enter Username: ").strip()
         password = get_password("Enter Password: ")
-        if auth.login(username, password):
+        session = auth.login(username, password)
+        if session:
             break
         
     else:
@@ -421,7 +422,21 @@ def main():
         return
     
     manager = StaffManager()
-    run_menu(manager, auth)
     
+    if session.get("must_change_pw"):
+        print("\n[!] First login detected - you MUST set a new password.")
+        while True:
+            new_pw = get_password("New password: ")
+            if auth.change_password(session["username"], password, new_pw):
+                session["must_change_pw"] = False
+                break
+
+    if session.get("role") == "staff":
+        from dashboard import staff_dashboard
+        staff_dashboard(manager, auth, session)
+    else:
+        run_menu(manager, auth, session)
+
+
 if __name__ == "__main__":
     main()
