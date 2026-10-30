@@ -12,4 +12,56 @@ Lists are default, if you need a sequence you might add to, remove from, or reor
 2. Sets {1, 2, 3}
 - What: Unordered, no duplicates allowed
 - When to use: Fast lookups, removing duplicates 
+Sets solve that exact problem.checking x in my_set is nearly instant (O(1)) regardless of size. They also auto-remove duplicates. The tradeoff? No order, no indexing, no duplicates allowed.
 
+3. Tuples (1, 2, 3)
+- What: Frozen list - cannot change after creation
+- When to use: Database rows, config values, dictionary keys
+- Safety:- You can guarantee this data won't be accidentally modified downstream.
+- Hashability: - Tuples can be dictionary keys; lists cannot. This matters when grouping database rows by composite keys Like (country, city).
+
+4. Dictionaries: {"key": "value"}
+- What: Key-value pairs
+- When to use: JSON, database records, sessions
+- Why important: Every API request/response is essentially a dict
+Dictionaries are the backbone of backend work. Every JSON requests/response body is essentially a dict. Every ORM row looks like a dict.
+
+
+Comprehensions: - Clean Loops :
+This is a concise way to build a new collection from an existing one. it replaces clunky loops with a single readable line.
+
+List Comprehension:
+
+# Old way
+names = []
+for user in users:
+    names.append(user['name'])
+
+# Comprehension way
+names = [user['name'] for user in users]
+
+Read it like English: " Give me each user's name, for each user in users"
+
+Adding a Filter:
+# Only active users
+active_names = [user['name'] for user in users if user['status'] == 'active']
+
+This reads as: "Give me each user's name, for each user, only if they're active."
+
+
+Dict Comprehension:
+- Turns lists into fast lookup tables:
+
+users = [
+    {'id': 1, 'name': 'Alice'},
+    {'id': 2, 'name': 'Bob'}
+]
+
+# Create instant lookup by ID
+user_lookup = {user['id']: user['name'] for user in users}
+# Result: {1: 'Alice', 2: 'Bob'}
+
+# Now finding Bob is instant
+print(user_lookup[2])  # 'Bob'
+
+Backend pattern: instead of looping through 1,000 users to find one by ID, build a lookup dict once, then access instantly.
