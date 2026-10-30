@@ -319,6 +319,48 @@ class StaffManager:
         target["deleted_at"] = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S")
         self.save_data()
         print(f"[+] Deleted {target['first_name']} {target['last_name']} ({target['id']}).")
+        
+    def view_own_profile(self, staff_code):
+        """Show one staff record (used by the staff dashboard)."""
+        target = self._find_member(staff_code)
+        if not target or not target.get("active", True):
+            print("[!] No active staff record linked to your account.")
+            return
+        print("\n==== YOUR PROFILE ====")
+        print(f" Staff Code : {target['id']}")
+        print(f" Name       : {target['first_name']} {target['last_name']}")
+        print(f" Department : {target['department']}")
+        print(f" Position   : {target['position']}")
+        print(f" Salary     : {target['salary']}")
+        print(f" Joined     : {target['joined_date']}")
+        print("=" * 50)
+        
+        
+    SELF_EDITABLE_FIELDS = ("first_name", "last_name", "department", "position")
+    
+    def edit_own_profile(self, staff_code):
+        """Staff may only edit safe fields on their OWN record."""
+        target = self._find_member(staff_code)
+        if not target or not target.get("active", True):
+            print("[!] No active staff record linked to your account.")
+            return
+        
+        print("\nEditable:", ", ".join(self.SELF_EDITABLE_FIELDS))
+        field = input("which field? ").strip().lower()
+        if field not in self.SELF_EDITABLE_FIELDS:  #whitelist gate
+            print("[1] Not allowed. Nothing changed.")
+            return
+        
+        value = input(f"New {field}: ").strip()
+        try:
+            value = self._validate_text_field(value, field.replace("_", " ").title())
+        except ValueError as exc:
+            print(f"[!] {exc} Nothing changed.")
+            return
+        
+        target[field] = value
+        self.save_data()
+        print(f"[+] {field.replace('_', ' ').title()} updated.")
 
 def get_password(prompt="Password: "):
     """Ask for password with optional reveal and confirm."""
@@ -358,9 +400,16 @@ def run_menu(manager, auth, session):
             last_name = input("Enter last name: ").strip()
             department = input("Enter department: ").strip()
             position = input("Enter position: ").strip()
-            role = input("Enter role: ").strip()
+            role = input("Enter job title (e.g. Officer, Manager): ").strip()
             salary = input("Enter salary: ")
             manager.add_staff(first_name, last_name, department, position, role, salary)
+            
+            if manager.next_id > before:  
+                make_login = input("Create a login account for them? [Y/n]: ").strip().lower()
+                if make_login != "n":
+                    uname = input("Username for them: ").strip()
+                    temp_pw = get_password("Temporary password: ")
+                    auth.create_staff_user(f"STF{before:04d}", uname, temp_pw)
             
         elif choice == "2":
             manager.list_staff()

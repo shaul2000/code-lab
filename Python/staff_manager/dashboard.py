@@ -13,11 +13,13 @@ def staff_dashboard(manager, auth, session):
         choice = input("Choice: ").strip()
         
         if choice == "1":
-            pass #TODO: call manger.view_own_profile(session)
+            manager.view_own_profile(session.get("staff_code"))
         elif choice == "2":
-            pass #TODO: call manager.edit_own_profile(session)
+            manager.edit_own_profile(session.get("staff_code"))
         elif choice == "3":
-            pass #TODO: handle password change
+            old_pw = get_password("Current password: ")
+            new_pw = get_password("New password: ")
+            auth.change_password(session["username"], old_pw, new_pw)
         elif choice == "4":
             print("[!] Logged out.")
             return

@@ -1,0 +1,15 @@
+PYTHON BACKEND FUNDAMENTALS 
+
+Class 1: Advanced Data Structures & Comprehensions
+The Big Four - When to use what?:
+Think of these as different types of containers or boxes or storing data in backend code, choosing the wrong one can cause bugs or slow performance.
+
+1. Lists [1, 2, 3]
+- What: Ordered collection that can change.
+- When to use: API responses, ordered feed(like a timeline)
+Lists are default, if you need a sequence you might add to, remove from, or reorder, use a list. But checking if something or an item is in a list is slow (O/(n)). If you have 10,000 items anc check membership, Python scans every single one.
+
+2. Sets {1, 2, 3}
+- What: Unordered, no duplicates allowed
+- When to use: Fast lookups, removing duplicates 
+
