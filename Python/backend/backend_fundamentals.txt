@@ -1,28 +1,30 @@
 PYTHON BACKEND FUNDAMENTALS 
 
 Class 1: Advanced Data Structures & Comprehensions
+The Big Picture: Backend code is mostly data movement: fetching from a Database (as Dictionaries) and sending to an API (as JSON/Lists). You need to be fast at transforming them.
+
 The Big Four - When to use what?:
 Think of these as different types of containers or boxes or storing data in backend code, choosing the wrong one can cause bugs or slow performance.
 
 1. Lists [1, 2, 3]
-- What: Ordered collection that can change.
+- What it is: Ordered collection that can change. You can also have duplicate items in a list.
 - When to use: API responses, ordered feed(like a timeline)
 Lists are default, if you need a sequence you might add to, remove from, or reorder, use a list. But checking if something or an item is in a list is slow (O/(n)). If you have 10,000 items anc check membership, Python scans every single one.
 
 2. Sets {1, 2, 3}
-- What: Unordered, no duplicates allowed
+- What it is: A collection of unique items, unordered, no duplicates allowed
 - When to use: Fast lookups, removing duplicates 
 Sets solve that exact problem.checking x in my_set is nearly instant (O(1)) regardless of size. They also auto-remove duplicates. The tradeoff? No order, no indexing, no duplicates allowed.
 
 3. Tuples (1, 2, 3)
-- What: Frozen list - cannot change after creation
-- When to use: Database rows, config values, dictionary keys
+- What it is: Frozen list - cannot change after creation
+- When to use: Database rows (data that shouldn't change), config values, dictionary keys, coordinates (x, y).
 - Safety:- You can guarantee this data won't be accidentally modified downstream.
 - Hashability: - Tuples can be dictionary keys; lists cannot. This matters when grouping database rows by composite keys Like (country, city).
 
 4. Dictionaries: {"key": "value"}
-- What: Key-value pairs
-- When to use: JSON, database records, sessions
+- What it is: Key-value pairs, Each key maps to exactly one value.
+- When to use: JSON responses, database records, sessions, and any structured data.
 - Why important: Every API request/response is essentially a dict
 Dictionaries are the backbone of backend work. Every JSON requests/response body is essentially a dict. Every ORM row looks like a dict.
 
@@ -65,3 +67,9 @@ user_lookup = {user['id']: user['name'] for user in users}
 print(user_lookup[2])  # 'Bob'
 
 Backend pattern: instead of looping through 1,000 users to find one by ID, build a lookup dict once, then access instantly.
+
+Set Comprehension:
+Automatically removes duplicates: same syntax, curly braces, no key-value pair: 
+
+
+
