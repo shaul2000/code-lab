@@ -402,14 +402,22 @@ def run_menu(manager, auth, session):
             position = input("Enter position: ").strip()
             role = input("Enter job title (e.g. Officer, Manager): ").strip()
             salary = input("Enter salary: ")
+                     
+            # Capture the ID that will be assigned BEFORE calling add_staff, so we can check if it was actually added.
+            new_id = f"STF{manager.next_id - 1:04d}" 
+            
             manager.add_staff(first_name, last_name, department, position, role, salary)
             
-            if manager.next_id > before:  
+            # Verify the record actually exist before offering to create a login.
+            # (if validation failed inside add_staff, nothing was appended.)
+            added = any(m["id"] == new_id for m in manager.staff)
+            
+            if added:
                 make_login = input("Create a login account for them? [Y/n]: ").strip().lower()
                 if make_login != "n":
-                    uname = input("Username for them: ").strip()
-                    temp_pw = get_password("Temporary password: ")
-                    auth.create_staff_user(f"STF{before:04d}", uname, temp_pw)
+                    uname = input("Enter username for new staff login: ").strip()
+                    temp_pw = get_password("Enter temporary password: ")
+                    auth.create_staff_user(new_id, uname, temp_pw)            
             
         elif choice == "2":
             manager.list_staff()

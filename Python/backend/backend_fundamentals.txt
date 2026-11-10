@@ -69,7 +69,12 @@ print(user_lookup[2])  # 'Bob'
 Backend pattern: instead of looping through 1,000 users to find one by ID, build a lookup dict once, then access instantly.
 
 Set Comprehension:
+This is a shorthand way to create a Set (a collection of unique items) using a loop, all in one line.
+
 Automatically removes duplicates: same syntax, curly braces, no key-value pair: 
 
+The Syntax:
+    { expression for item in iterable }
+(Notice the curly braces {} instead of square brackets [] )
 
 

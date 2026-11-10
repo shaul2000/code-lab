@@ -191,6 +191,23 @@ class AuthManager:
     
     def create_staff_user(self, staff_code, username, temp_password):
         """Create a login linked to a specific staff record."""
+        username = (username or "").strip()
+        if not username:
+            print("[!] Username cannot be empty.")
+            return False
+        
+        # Reject duplicates BEFORE writing anything
+        if username.lower() in self.users:
+            print(f"[!] Username '{username}' already exists.")
+            return False
+        
+        # Temporary passwords must meet the same strength requirements as normal passwords.
+        
+        ok, msg = self._password_is_strong(temp_password)
+        if not ok:
+            print(f"[!] Temporary password rejected: {msg}")
+            return False
+        
         self.users[username.lower()] = {
             "username": username,
             "password_hash": self._hash_password(temp_password),
@@ -198,11 +215,9 @@ class AuthManager:
             "staff_code": staff_code,
             "failed_attempts": 0,
             "locked_until": None,
-            "must_change_pw": True,
-            "created_at": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S"),            
+            "must_change_password": True,
+            "created_at": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S")
         }
         self.save_auth()
-        print(f"[+] Login created for {staff_code}: username '{username}'")
+        print(f"[+] Login created for {staff_code}: username '{username}'.")
         return True
-    
- 
